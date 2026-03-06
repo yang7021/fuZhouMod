@@ -23,24 +23,24 @@ public class RabbitTalisman extends BaseRelic {
 
     @Override
     public void atTurnStart() {
-        isFirstCard = true;
-        this.beginPulse();
+        isFirstCard = true; // 回合开始时，标记下一张打出的是第一张牌
+        this.beginPulse(); // 遗物开始脉冲闪烁，提示可以触发
         this.pulse = true;
     }
 
     @Override
     public void onUseCard(AbstractCard targetCard, UseCardAction useCardAction) {
         if (isFirstCard) {
-            isFirstCard = false;
-            this.pulse = false;
+            isFirstCard = false; // 标记第一张牌已打出
+            this.pulse = false; // 停止闪烁提示
             this.flash();
             addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
 
-            // Refund the energy cost of the played card
+            // 如果这张牌有正常的费用消耗（大于0），并且不是本次免费打出
             if (targetCard.costForTurn > 0 && !targetCard.freeToPlayOnce) {
-                addToBot(new GainEnergyAction(targetCard.costForTurn));
+                addToBot(new GainEnergyAction(targetCard.costForTurn)); // 返还相应的费用
             } else if (targetCard.cost == -1) {
-                // For X cost cards, refund the energy consumed which is stored in energyOnUse
+                // 如果是X费用的牌，则返还本次打出时所消耗的能量
                 addToBot(new GainEnergyAction(targetCard.energyOnUse));
             }
         }

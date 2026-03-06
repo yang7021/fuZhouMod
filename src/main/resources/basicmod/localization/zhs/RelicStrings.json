@@ -5,5 +5,82 @@
         "DESCRIPTIONS": [
             "每回合你打出的 #y第一张 卡牌不消耗能量。"
         ]
+    },
+    "${modID}:RatTalisman": {
+        "NAME": "鼠符咒",
+        "FLAVOR": "化静为动：变废为宝。",
+        "DESCRIPTIONS": [
+            "战斗开始时，手牌中随机一张 #y状态 或 #y诅咒 牌变为随机 #y攻击 牌。"
+        ]
+    },
+    "${modID}:OxTalisman": {
+        "NAME": "牛符咒",
+        "FLAVOR": "巨力：纯粹的伤害增幅。",
+        "DESCRIPTIONS": [
+            "战斗开始时获得 #b2 点 #y力量 。你每打出一张攻击牌，本局战斗在此之后造成的攻击伤害额外 #b+2 。"
+        ]
+    },
+    "${modID}:TigerTalisman": {
+        "NAME": "虎符咒",
+        "FLAVOR": "平衡：节奏大师。",
+        "DESCRIPTIONS": [
+            "每当 #y交替 打出 #y攻击 牌和 #y技能 牌时，抽 #b1 张牌。（每回合限 #b3 次）"
+        ]
+    },
+    "${modID}:DragonTalisman": {
+        "NAME": "龙符咒",
+        "FLAVOR": "爆燃：范围AOE。",
+        "DESCRIPTIONS": [
+            "每当你打出 #b3 张攻击牌，对所有敌人造成 #b8 点伤害。"
+        ]
+    },
+    "${modID}:SnakeTalisman": {
+        "NAME": "蛇符咒",
+        "FLAVOR": "无实体：开局防御与潜行。",
+        "DESCRIPTIONS": [
+            "回合结束时，若你本回合 #y未打出过 攻击牌，获得 #b1 回合 #y无实体 。"
+        ]
+    },
+    "${modID}:HorseTalisman": {
+        "NAME": "马符咒",
+        "FLAVOR": "复愈：净化与治愈。",
+        "DESCRIPTIONS": [
+            "每回合开始移除 #b1 个随机负面效果。若战斗结束时该次战斗从未触发过移除，回复最大生命值的 #b20% 。"
+        ]
+    },
+    "${modID}:SheepTalisman": {
+        "NAME": "羊符咒",
+        "FLAVOR": "灵魂出窍：对敌方造成灵魂层面的干扰。",
+        "DESCRIPTIONS": [
+            "你给予敌方的任何负面效果层数翻倍。"
+        ]
+    },
+    "${modID}:MonkeyTalisman": {
+        "NAME": "猴符咒",
+        "FLAVOR": "任意变化：变身大师。",
+        "DESCRIPTIONS": [
+            "拾取时：选择卡组中 #b2 张牌进行 #y变化 。"
+        ]
+    },
+    "${modID}:RoosterTalisman": {
+        "NAME": "鸡符咒",
+        "FLAVOR": "漂浮：念力增幅。",
+        "DESCRIPTIONS": [
+            "手牌上限 #b+2 ，且你不再受 #y纠缠 影响。"
+        ]
+    },
+    "${modID}:DogTalisman": {
+        "NAME": "狗符咒",
+        "FLAVOR": "永生：不朽防线。",
+        "DESCRIPTIONS": [
+            "每局战斗限 #b1 次：受到致命伤害时，生命值保留在 #b20% 而非死亡。"
+        ]
+    },
+    "${modID}:PigTalisman": {
+        "NAME": "猪符咒",
+        "FLAVOR": "电光眼：抽牌即输出。",
+        "DESCRIPTIONS": [
+            "每当你抽到一张牌，对随机敌人造成 #b3 点伤害。"
+        ]
     }
 }
