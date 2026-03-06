@@ -28,6 +28,7 @@ public class SheepTalisman extends BaseRelic implements OnApplyPowerRelic {
         // 如果施加的是负面状态，且目标不是自己，并且来源是玩家（确保是玩家施加给敌人的debuff）
         if (power.type == AbstractPower.PowerType.DEBUFF && target != source && source == AbstractDungeon.player) {
             this.flash(); // 遗物闪烁提示触发
+            power.amount *= 2; // 关键修复：除了返回双倍值，还需要直接修改将要施布的状态实例的数值
             return stackAmount * 2; // 返回双倍的层数
         }
         return stackAmount; // 否则正常返回原始层数

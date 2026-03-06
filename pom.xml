@@ -4,6 +4,8 @@
     <properties>
         <modID>fuZhouMod</modID>
         <author>guShenMoFeiTe</author>
+        <project.name>成龙历险记遗物mod</project.name>
+        <author>股神墨菲特</author>
 
         <!-- Change the path for your system to match your Steam installation. -->
         <!-- If you're not sure, go to Slay the Spire in the Steam library, and choose Manage -> Browse local files -->
