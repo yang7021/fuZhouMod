@@ -14,17 +14,31 @@ public class PigTalisman extends BaseRelic {
     private static final RelicTier RARITY = RelicTier.COMMON;
     private static final LandingSound SOUND = LandingSound.CLINK;
 
+    private boolean isFirstAttack = true; // 标记每回合判断是否为第一次攻击
+
     public PigTalisman() {
         super(ID, NAME, RARITY, SOUND);
     }
 
     @Override
-    public void onCardDraw(AbstractCard drawnCard) {
-        this.flash(); // 遗物闪烁提示触发
-        // 对随机敌人造成3点荆棘类型的伤害，并带有横向斩击特效
-        addToBot(new DamageRandomEnemyAction(
-                new DamageInfo(AbstractDungeon.player, 3, DamageInfo.DamageType.THORNS),
-                AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+    public void atPreBattle() {
+        isFirstAttack = true; // 战斗前重置
+    }
+
+    @Override
+    public void atTurnStart() {
+        isFirstAttack = true; // 回合开始重置
+    }
+
+    @Override
+    public void onPlayCard(AbstractCard c, com.megacrit.cardcrawl.monsters.AbstractMonster m) {
+        // 如果是本回合第一次打出攻击牌
+        if (isFirstAttack && c.type == AbstractCard.CardType.ATTACK) {
+            isFirstAttack = false;
+            this.flash(); // 遗物闪烁提示触发
+            // 将该牌本回合的伤害类型改为失去生命（HP_LOSS），从而穿透防御、叠甲无效
+            c.damageTypeForTurn = DamageInfo.DamageType.HP_LOSS;
+        }
     }
 
     @Override

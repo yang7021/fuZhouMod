@@ -15,14 +15,21 @@ public class RatTalisman extends BaseRelic {
     private static final RelicTier RARITY = RelicTier.COMMON;
     private static final LandingSound SOUND = LandingSound.MAGICAL;
 
+    private boolean usedThisCombat = false;
+
     public RatTalisman() {
         super(ID, NAME, RARITY, SOUND);
     }
 
     @Override
+    public void atPreBattle() {
+        usedThisCombat = false; // 战斗前重置本场战斗已使用标记
+    }
+
+    @Override
     public void atTurnStartPostDraw() {
-        if (!this.pulse) {
-            this.pulse = true; // 使用 pulse 作为标记，表示“第一回合已经触发过”
+        if (!usedThisCombat) {
+            usedThisCombat = true; // 仅限第一回合
             ArrayList<AbstractCard> candidates = new ArrayList<>();
             // 遍历玩家手牌，寻找状态牌或诅咒牌
             for (AbstractCard c : AbstractDungeon.player.hand.group) {
@@ -37,9 +44,11 @@ public class RatTalisman extends BaseRelic {
                 // 从手牌中移除它
                 AbstractDungeon.player.hand.removeCard(toReplace);
 
-                // 修复BUG：获取一张战斗中随机的攻击牌代替 CardLibrary.getAnyColorCard
-                AbstractCard randomAttack = AbstractDungeon.returnTrulyRandomCardInCombat(AbstractCard.CardType.ATTACK)
-                        .makeCopy();
+                // 获取一张随机的攻击牌（修复原获取方式可能导致的报错异常）
+                AbstractCard randomAttack = null;
+                while (randomAttack == null || randomAttack.type != AbstractCard.CardType.ATTACK) {
+                    randomAttack = AbstractDungeon.returnTrulyRandomCardInCombat().makeCopy();
+                }
 
                 this.flash(); // 遗物闪烁提示触发
                 addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
@@ -47,11 +56,6 @@ public class RatTalisman extends BaseRelic {
                 addToBot(new MakeTempCardInHandAction(randomAttack, 1));
             }
         }
-    }
-
-    @Override
-    public void atPreBattle() {
-        this.pulse = false;
     }
 
     @Override
