@@ -1,0 +1,9 @@
+{
+    "${modID}:RabbitTalisman": {
+        "NAME": "兔符咒",
+        "FLAVOR": "极速：抢占先手。",
+        "DESCRIPTIONS": [
+            "每回合你打出的 #y第一张 卡牌不消耗能量。"
+        ]
+    }
+}
