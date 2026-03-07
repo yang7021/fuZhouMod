@@ -1,21 +1,34 @@
 package basicmod.relics;
 
+import basicmod.actions.RatTalismanReplaceAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.red.Strike_Red;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
 
 import java.util.ArrayList;
 
 import static basicmod.BasicMod.makeID;
 
+/**
+ * 鼠符咒
+ * 一回合一次：摸牌后，若手牌中有 状态 或 诅咒 牌，则选择其中1张，将其替换为1张0费且消耗的攻击牌。
+ * 若回合开始摸牌未触发，后续本回合内因抽牌或效果加入手牌时仍可触发。
+ */
 public class RatTalisman extends BaseRelic {
     public static final String NAME = "RatTalisman";
     public static final String ID = makeID(NAME);
     private static final RelicTier RARITY = RelicTier.COMMON;
     private static final LandingSound SOUND = LandingSound.MAGICAL;
 
-    private boolean usedThisCombat = false;
+    public static final String SELECT_PROMPT = "选择1张要替换的诅咒牌或状态牌";
+
+    // 每回合只允许成功替换一次
+    private boolean usedThisTurn = false;
+    // 防止同一时刻重复加入检测动作
+    private boolean checkQueued = false;
 
     public RatTalisman() {
         super(ID, NAME, RARITY, SOUND);
@@ -23,39 +36,139 @@ public class RatTalisman extends BaseRelic {
 
     @Override
     public void atPreBattle() {
-        usedThisCombat = false; // 战斗前重置本场战斗已使用标记
+        // 每场战斗开始时重置状态
+        usedThisTurn = false;
+        checkQueued = false;
+    }
+
+    @Override
+    public void atTurnStart() {
+        // 每回合开始时重置触发次数
+        usedThisTurn = false;
+        checkQueued = false;
     }
 
     @Override
     public void atTurnStartPostDraw() {
-        if (!usedThisCombat) {
-            usedThisCombat = true; // 仅限第一回合
-            ArrayList<AbstractCard> candidates = new ArrayList<>();
-            // 遍历玩家手牌，寻找状态牌或诅咒牌
-            for (AbstractCard c : AbstractDungeon.player.hand.group) {
-                if (c.type == AbstractCard.CardType.STATUS || c.type == AbstractCard.CardType.CURSE) {
-                    candidates.add(c);
-                }
-            }
+        // 起手摸牌后立刻检测一次
+        queueReplaceCheck();
+    }
 
-            if (!candidates.isEmpty()) {
-                // 随机选择一张状态牌或诅咒牌
-                AbstractCard toReplace = candidates.get(AbstractDungeon.cardRandomRng.random(candidates.size() - 1));
-                // 从手牌中移除它
-                AbstractDungeon.player.hand.removeCard(toReplace);
+    @Override
+    public void update() {
+        super.update();
+        // 覆盖后续抽牌和直接加入手牌的情况
+        if (!checkQueued && canTriggerNow() && hasReplaceableCardInHand()) {
+            queueReplaceCheck();
+        }
+    }
 
-                // 获取一张随机的攻击牌（修复原获取方式可能导致的报错异常）
-                AbstractCard randomAttack = null;
-                while (randomAttack == null || randomAttack.type != AbstractCard.CardType.ATTACK) {
-                    randomAttack = AbstractDungeon.returnTrulyRandomCardInCombat().makeCopy();
-                }
+    @Override
+    public void onVictory() {
+        usedThisTurn = false;
+        checkQueued = false;
+    }
 
-                this.flash(); // 遗物闪烁提示触发
-                addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
-                // 将生成的随机攻击牌加入手牌
-                addToBot(new MakeTempCardInHandAction(randomAttack, 1));
+    // 返回当前手牌中可被替换的诅咒牌/状态牌
+    public ArrayList<AbstractCard> getReplaceCandidates() {
+        ArrayList<AbstractCard> candidates = new ArrayList<>();
+        if (AbstractDungeon.player == null || AbstractDungeon.player.hand == null) {
+            return candidates;
+        }
+
+        for (AbstractCard card : AbstractDungeon.player.hand.group) {
+            if (isReplaceable(card)) {
+                candidates.add(card);
             }
         }
+        return candidates;
+    }
+
+    // 执行真正的替换逻辑，成功返回true
+    public boolean tryReplaceCard(AbstractCard toReplace) {
+        if (usedThisTurn || toReplace == null || AbstractDungeon.player == null || AbstractDungeon.player.hand == null) {
+            return false;
+        }
+        if (!AbstractDungeon.player.hand.group.contains(toReplace) || !isReplaceable(toReplace)) {
+            return false;
+        }
+
+        usedThisTurn = true;
+        checkQueued = false;
+        this.flash();
+
+        AbstractDungeon.player.hand.removeCard(toReplace);
+        AbstractDungeon.player.hand.refreshHandLayout();
+        addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
+        addToBot(new MakeTempCardInHandAction(createReplacementAttack(), 1));
+        return true;
+    }
+
+    // 检测动作结束时回调，释放“已入队”标记
+    public void markCheckResolved() {
+        checkQueued = false;
+    }
+
+    // 将替换检测加入行动队列
+    private void queueReplaceCheck() {
+        if (usedThisTurn || checkQueued || !canTriggerNow() || !hasReplaceableCardInHand()) {
+            return;
+        }
+        checkQueued = true;
+        addToBot(new RatTalismanReplaceAction(this));
+    }
+
+    // 仅在玩家回合且战斗中允许触发
+    private boolean canTriggerNow() {
+        if (AbstractDungeon.player == null || AbstractDungeon.actionManager == null || AbstractDungeon.getCurrRoom() == null) {
+            return false;
+        }
+        if (AbstractDungeon.getCurrRoom().phase != AbstractRoom.RoomPhase.COMBAT) {
+            return false;
+        }
+        return !AbstractDungeon.actionManager.turnHasEnded;
+    }
+
+    private boolean hasReplaceableCardInHand() {
+        if (AbstractDungeon.player == null || AbstractDungeon.player.hand == null) {
+            return false;
+        }
+        for (AbstractCard card : AbstractDungeon.player.hand.group) {
+            if (isReplaceable(card)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean isReplaceable(AbstractCard card) {
+        return card.type == AbstractCard.CardType.CURSE || card.type == AbstractCard.CardType.STATUS;
+    }
+
+    // 生成替换用攻击牌：0费，且使用后消耗
+    private AbstractCard createReplacementAttack() {
+        AbstractCard randomAttack = null;
+        for (int i = 0; i < 200; i++) {
+            AbstractCard candidate = AbstractDungeon.returnTrulyRandomCardInCombat();
+            if (candidate != null && candidate.type == AbstractCard.CardType.ATTACK) {
+                randomAttack = candidate.makeCopy();
+                break;
+            }
+        }
+
+        if (randomAttack == null) {
+            // 极端情况下兜底，避免空牌导致异常
+            randomAttack = new Strike_Red();
+        }
+
+        randomAttack.cost = 0;
+        randomAttack.costForTurn = 0;
+        randomAttack.isCostModified = true;
+        randomAttack.isCostModifiedForTurn = true;
+        randomAttack.freeToPlayOnce = true;
+        randomAttack.exhaust = true;
+        randomAttack.initializeDescription();
+        return randomAttack;
     }
 
     @Override
