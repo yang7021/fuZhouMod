@@ -31,17 +31,28 @@ public class RabbitTalisman extends BaseRelic {
     @Override
     public void onUseCard(AbstractCard targetCard, UseCardAction useCardAction) {
         if (isFirstCard) {
-            isFirstCard = false; // 标记第一张牌已打出
-            this.pulse = false; // 停止闪烁提示
-            this.flash();
-            addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
-
-            // 如果这张牌有正常的费用消耗（大于0），并且不是本次免费打出
+            boolean hasCost = false;
+            
+            // 判断这牌本身是否有真的费用消耗
             if (targetCard.costForTurn > 0 && !targetCard.freeToPlayOnce) {
-                addToBot(new GainEnergyAction(targetCard.costForTurn)); // 返还相应的费用
-            } else if (targetCard.cost == -1) {
-                // 如果是X费用的牌，则返还本次打出时所消耗的能量
-                addToBot(new GainEnergyAction(targetCard.energyOnUse));
+                hasCost = true;
+            } else if (targetCard.cost == -1 && targetCard.energyOnUse > 0) {
+                // 如果是X费用的牌，且消耗了能量
+                hasCost = true;
+            }
+
+            // 只有当打出的是有真实或者视为有费用消耗的牌时，才触发兔符咒的返还逻辑，并消耗掉本回合次数
+            if (hasCost) {
+                isFirstCard = false; // 标记第一张牌已打出
+                this.pulse = false; // 停止闪烁提示
+                this.flash();
+                addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
+
+                if (targetCard.costForTurn > 0 && !targetCard.freeToPlayOnce) {
+                    addToBot(new GainEnergyAction(targetCard.costForTurn)); // 返还相应的费用
+                } else if (targetCard.cost == -1) {
+                    addToBot(new GainEnergyAction(targetCard.energyOnUse));
+                }
             }
         }
     }
