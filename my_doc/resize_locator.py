@@ -25,8 +25,8 @@ try:
     square = Image.new("RGBA", (size, size), (0,0,0,0))
     square.paste(img, ((size - cw) // 2, (size - ch) // 2))
     
-    # 缩小到 84x84（占128的约65%-70%比例，与普通遗物相仿）
-    inner_size = 84
+    # 缩小到 72x72（占128的约56%-60%比例，与普通遗物相仿）
+    inner_size = 72
     icon_128 = Image.new("RGBA", (128, 128), (0,0,0,0))
     shrunk_img = square.resize((inner_size, inner_size), Image.Resampling.LANCZOS)
     icon_128.paste(shrunk_img, ((128 - inner_size) // 2, (128 - inner_size) // 2))

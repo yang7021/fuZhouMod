@@ -10,41 +10,51 @@ import com.megacrit.cardcrawl.screens.CombatRewardScreen;
 
 public class TalismanLocatorPatch {
 
-    // 拦截 CombatRewardScreen.setupItemReward 方法
-    // 在奖励生成界面准备好所有物品后执行
     @SpirePatch(clz = CombatRewardScreen.class, method = "setupItemReward")
     public static class SetupItemRewardPatch {
         @SpirePostfixPatch
         public static void Postfix(CombatRewardScreen __instance) {
-            // 如果玩家拥有“符咒探测仪”遗物
             if (AbstractDungeon.player != null && AbstractDungeon.player.hasRelic(TalismanLocator.ID)) {
 
-                // 检查当前的奖励列表中是否已经包含遗物奖励
-                boolean hasRelicReward = false;
-
-                // 为了防止每次刷新（如读档、某些Mod的影响）重复添加相同的符咒奖励
-                // 我们也要检查是否已经添加了符咒奖励
+                RewardItem originalRelic = null;
+                RewardItem sapphireKey = null;
                 boolean hasTalismanReward = false;
 
                 for (RewardItem reward : __instance.rewards) {
                     if (reward.type == RewardItem.RewardType.RELIC && reward.relic != null) {
-                        hasRelicReward = true;
                         if (TalismanHelper.ALL_TALISMAN_IDS.contains(reward.relic.relicId)) {
                             hasTalismanReward = true;
+                        } else if (originalRelic == null) { // 获取列表中第一个非符咒的普通遗物
+                            originalRelic = reward;
                         }
+                    } else if (reward.type == RewardItem.RewardType.SAPPHIRE_KEY) {
+                        sapphireKey = reward;
                     }
                 }
 
-                // 如果当前战利品中有至少一个遗物，且我们还没追加过符咒，并且玩家未集齐12个符咒
-                if (hasRelicReward && !hasTalismanReward) {
+                if (originalRelic != null && !hasTalismanReward) {
                     AbstractRelic missingTalisman = TalismanHelper.getRandomMissingTalisman();
                     if (missingTalisman != null) {
-                        // 在奖励列表末尾追加这个符咒遗物
                         RewardItem talismanReward = new RewardItem(missingTalisman);
-                        // 确保它是有效的遗物奖励
-                        __instance.rewards.add(talismanReward);
 
-                        // 让遗物闪烁以提示玩家
+                        // 插入到原本遗物下方
+                        int index = __instance.rewards.indexOf(originalRelic);
+                        __instance.rewards.add(index + 1, talismanReward);
+
+                        // 建立互斥链接
+                        if (sapphireKey != null && originalRelic.relicLink == sapphireKey) {
+                            // 游戏原生中有蓝钥匙的话原本是 originalRelic <-> sapphireKey
+                            // 我们改为一个三环，从而让三个奖励互相连锁销毁
+                            // 按照 Y轴 顺序，画出来的双链线是: 原本遗物 -> 符咒 -> 蓝钥匙
+                            originalRelic.relicLink = talismanReward;
+                            talismanReward.relicLink = sapphireKey;
+                            sapphireKey.relicLink = originalRelic;
+                        } else {
+                            // 只有原遗物和符咒互斥
+                            originalRelic.relicLink = talismanReward;
+                            talismanReward.relicLink = originalRelic;
+                        }
+
                         AbstractRelic locator = AbstractDungeon.player.getRelic(TalismanLocator.ID);
                         if (locator != null) {
                             locator.flash();

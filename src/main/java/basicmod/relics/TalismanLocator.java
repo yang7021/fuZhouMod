@@ -1,10 +1,5 @@
 package basicmod.relics;
 
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.relics.AbstractRelic;
-import basicmod.helpers.TalismanHelper;
-import java.util.ArrayList;
-
 import static basicmod.BasicMod.makeID;
 
 public class TalismanLocator extends BaseRelic {
