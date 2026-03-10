@@ -1,0 +1,9 @@
+{
+  "workshopID": 0,
+  "title": "成龙历险记符咒遗物",
+  "description": "成龙历险记中道具效果改制为杀塔遗物mod，包含了十二符咒和符咒定位仪，本mod需要【BaseMod、- StSLib】这两个前置mod",
+  "tags": ["Relics","Jackie Chan Adventures"],
+  "publishID": "",
+  "contentFolder": "content",
+  "previewImage": "preview.png"
+}
