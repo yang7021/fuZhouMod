@@ -1,0 +1,18 @@
+{
+  "fuZhouMod:WeThree": {
+    "NAME": "我们仨",
+    "DESCRIPTION": "造成 !D! 点伤害。"
+  },
+  "fuZhouMod:Tohru": {
+    "NAME": "特鲁",
+    "DESCRIPTION": "获得 !B! 点格挡。"
+  },
+  "fuZhouMod:Valmont": {
+    "NAME": "瓦龙",
+    "DESCRIPTION": "画个金鸡王宝藏的大饼：本回合内，手牌、抽牌堆和弃牌堆中的 [fuZhouMod:WeThree] 和 [fuZhouMod:Tohru] 耗能变为0。 消耗 。"
+  },
+  "fuZhouMod:CrowFlying": {
+    "NAME": "乌鸦坐飞机",
+    "DESCRIPTION": "造成 !D! 点伤害。 抽 !M! 张卡。"
+  }
+}

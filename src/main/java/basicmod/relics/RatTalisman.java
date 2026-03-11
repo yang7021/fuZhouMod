@@ -35,6 +35,25 @@ public class RatTalisman extends BaseRelic {
     }
 
     @Override
+    public void onEquip() {
+        super.onEquip();
+        // 如果在战斗中获得（例如事件或指令），并且玩家是圣主且处于石像状态，解除石像惩罚并给予奖励
+        if (AbstractDungeon.player != null && AbstractDungeon.getCurrRoom() != null
+                && AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT) {
+            if (AbstractDungeon.player.hasPower(basicmod.powers.ShenZhuStatuePower.POWER_ID)) {
+                // 移除石像状态的 Power 及对应的特效
+                addToBot(new com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction(
+                        AbstractDungeon.player, AbstractDungeon.player, basicmod.powers.ShenZhuStatuePower.POWER_ID));
+
+                // 给予1点力量
+                addToBot(new com.megacrit.cardcrawl.actions.common.ApplyPowerAction(
+                        AbstractDungeon.player, AbstractDungeon.player,
+                        new com.megacrit.cardcrawl.powers.StrengthPower(AbstractDungeon.player, 1), 1));
+            }
+        }
+    }
+
+    @Override
     public void atPreBattle() {
         // 每场战斗开始时重置状态
         usedThisTurn = false;
@@ -86,7 +105,8 @@ public class RatTalisman extends BaseRelic {
 
     // 执行真正的替换逻辑，成功返回true
     public boolean tryReplaceCard(AbstractCard toReplace) {
-        if (usedThisTurn || toReplace == null || AbstractDungeon.player == null || AbstractDungeon.player.hand == null) {
+        if (usedThisTurn || toReplace == null || AbstractDungeon.player == null
+                || AbstractDungeon.player.hand == null) {
             return false;
         }
         if (!AbstractDungeon.player.hand.group.contains(toReplace) || !isReplaceable(toReplace)) {
@@ -120,7 +140,8 @@ public class RatTalisman extends BaseRelic {
 
     // 仅在玩家回合且战斗中允许触发
     private boolean canTriggerNow() {
-        if (AbstractDungeon.player == null || AbstractDungeon.actionManager == null || AbstractDungeon.getCurrRoom() == null) {
+        if (AbstractDungeon.player == null || AbstractDungeon.actionManager == null
+                || AbstractDungeon.getCurrRoom() == null) {
             return false;
         }
         if (AbstractDungeon.getCurrRoom().phase != AbstractRoom.RoomPhase.COMBAT) {

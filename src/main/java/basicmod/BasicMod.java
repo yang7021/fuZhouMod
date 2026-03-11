@@ -37,6 +37,8 @@ public class BasicMod implements
         EditKeywordsSubscriber,
         AddAudioSubscriber,
         PostInitializeSubscriber,
+        basemod.interfaces.EditCardsSubscriber,
+        basemod.interfaces.EditCharactersSubscriber,
         basemod.interfaces.EditRelicsSubscriber {
     public static ModInfo info;
     public static String modID; // Edit your pom.xml to change this
@@ -56,6 +58,24 @@ public class BasicMod implements
     // annotation at the top of the class.
     public static void initialize() {
         new BasicMod();
+        // 注册颜色
+        BaseMod.addColor(basicmod.enums.CharacterEnums.SHENGZHU_COLOR,
+                com.megacrit.cardcrawl.helpers.CardHelper.getColor(200.0f, 50.0f, 50.0f),
+                com.megacrit.cardcrawl.helpers.CardHelper.getColor(200.0f, 50.0f, 50.0f),
+                com.megacrit.cardcrawl.helpers.CardHelper.getColor(200.0f, 50.0f, 50.0f),
+                com.megacrit.cardcrawl.helpers.CardHelper.getColor(200.0f, 50.0f, 50.0f),
+                com.megacrit.cardcrawl.helpers.CardHelper.getColor(200.0f, 50.0f, 50.0f),
+                com.megacrit.cardcrawl.helpers.CardHelper.getColor(200.0f, 50.0f, 50.0f),
+                com.megacrit.cardcrawl.helpers.CardHelper.getColor(200.0f, 50.0f, 50.0f),
+                imagePath("512/bg_attack_red.png"),
+                imagePath("512/bg_skill_red.png"),
+                imagePath("512/bg_power_red.png"),
+                imagePath("512/card_red_orb.png"),
+                imagePath("1024/bg_attack_red.png"),
+                imagePath("1024/bg_skill_red.png"),
+                imagePath("1024/bg_power_red.png"),
+                imagePath("1024/card_red_orb.png"),
+                imagePath("512/card_small_orb.png"));
     }
 
     public BasicMod() {
@@ -76,6 +96,22 @@ public class BasicMod implements
                     }
                     com.megacrit.cardcrawl.unlock.UnlockTracker.markRelicAsSeen(relic.relicId);
                 });
+    }
+
+    @Override
+    public void receiveEditCharacters() {
+        BaseMod.addCharacter(new basicmod.character.ShengZhuCustomPlayer("圣主", basicmod.enums.CharacterEnums.SHENGZHU),
+                imagePath("character/shengzhu/button.png"),
+                imagePath("character/shengzhu/portrait.png"),
+                basicmod.enums.CharacterEnums.SHENGZHU);
+    }
+
+    @Override
+    public void receiveEditCards() {
+        new basemod.AutoAdd(modID)
+                .packageFilter(basicmod.cards.BaseCard.class)
+                .setDefaultSeen(true)
+                .cards();
     }
 
     @Override
@@ -125,29 +161,14 @@ public class BasicMod implements
     }
 
     private void loadLocalization(String lang) {
-        // While this does load every type of localization, most of these files are just
-        // outlines so that you can see how they're formatted.
-        // Feel free to comment out/delete any that you don't end up using.
-        /*
-         * BaseMod.loadCustomStringsFile(CardStrings.class,
-         * localizationPath(lang, "CardStrings.json"));
-         * BaseMod.loadCustomStringsFile(CharacterStrings.class,
-         * localizationPath(lang, "CharacterStrings.json"));
-         * BaseMod.loadCustomStringsFile(EventStrings.class,
-         * localizationPath(lang, "EventStrings.json"));
-         * BaseMod.loadCustomStringsFile(OrbStrings.class,
-         * localizationPath(lang, "OrbStrings.json"));
-         * BaseMod.loadCustomStringsFile(PotionStrings.class,
-         * localizationPath(lang, "PotionStrings.json"));
-         * BaseMod.loadCustomStringsFile(PowerStrings.class,
-         * localizationPath(lang, "PowerStrings.json"));
-         */
-        BaseMod.loadCustomStringsFile(RelicStrings.class,
+        BaseMod.loadCustomStringsFile(com.megacrit.cardcrawl.localization.CardStrings.class,
+                localizationPath(lang, "CardStrings.json"));
+        BaseMod.loadCustomStringsFile(com.megacrit.cardcrawl.localization.CharacterStrings.class,
+                localizationPath(lang, "CharacterStrings.json"));
+        BaseMod.loadCustomStringsFile(com.megacrit.cardcrawl.localization.PowerStrings.class,
+                localizationPath(lang, "PowerStrings.json"));
+        BaseMod.loadCustomStringsFile(com.megacrit.cardcrawl.localization.RelicStrings.class,
                 localizationPath(lang, "RelicStrings.json"));
-        /*
-         * BaseMod.loadCustomStringsFile(UIStrings.class,
-         * localizationPath(lang, "UIStrings.json"));
-         */
     }
 
     @Override
