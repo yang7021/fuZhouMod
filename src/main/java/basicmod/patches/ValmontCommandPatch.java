@@ -16,7 +16,7 @@ public class ValmontCommandPatch {
         @SpirePrefixPatch
         // 这一层可以在核心判定前截胡
         public static SpireReturn<Boolean> Prefix(AbstractCard __instance) {
-            // 如果玩家拥有“老板的指使”状态，且打出的是“我们仨”或“特鲁”
+            // 如果玩家拥有“老板的指使”状态，且打出的是“葱姜蒜”或“特鲁”
             if (AbstractDungeon.player != null && AbstractDungeon.player.hasPower(ValmontCommandPower.POWER_ID)) {
                 if (__instance.cardID.equals(CardWeThree.ID) || __instance.cardID.equals(CardTohru.ID)) {
                     // 当符合条件时，此卡这回合就必定当作 0 费来打出（不管之前能量判定多严格）

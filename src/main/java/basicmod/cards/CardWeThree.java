@@ -21,7 +21,7 @@ public class CardWeThree extends BaseCard {
         super(ID, info);
         // 造成 6 点伤害，升级变为 9 点 (+3)
         setDamage(6, 3);
-        // 我们仨 是基础攻击牌，所以打上 STARTER_STRIKE 和 STRIKE 标签
+        // 葱姜蒜 是基础攻击牌，所以打上 STARTER_STRIKE 和 STRIKE 标签
         tags.add(CardTags.STARTER_STRIKE);
         tags.add(CardTags.STRIKE);
     }

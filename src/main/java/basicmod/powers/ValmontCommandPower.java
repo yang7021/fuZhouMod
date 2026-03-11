@@ -8,7 +8,7 @@ import basicmod.BasicMod;
 public class ValmontCommandPower extends AbstractPower {
     public static final String POWER_ID = BasicMod.makeID("ValmontCommandPower");
     public static final String NAME = "老板的指使";
-    public static final String[] DESCRIPTIONS = { "本回合内你打出 #y我们仨 和 #y特鲁 时，耗费变为 #b0 。" };
+    public static final String[] DESCRIPTIONS = { "本回合内你打出 #y葱姜蒜 和 #y特鲁 时，耗费变为 #b0 。" };
 
     public ValmontCommandPower(AbstractCreature owner, int amount) {
         this.name = NAME;

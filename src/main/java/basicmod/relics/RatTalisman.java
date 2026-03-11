@@ -37,6 +37,13 @@ public class RatTalisman extends BaseRelic {
     @Override
     public void onEquip() {
         super.onEquip();
+        
+        // 当获得鼠符咒时，把玩家贴图切换为人类形态 main.png
+        if (AbstractDungeon.player instanceof basicmod.character.ShengZhuCustomPlayer) {
+            ((basicmod.character.ShengZhuCustomPlayer) AbstractDungeon.player).img = basicmod.util.TextureLoader
+                    .getTexture(basicmod.BasicMod.imagePath("character/shengzhu/main.png"));
+        }
+
         // 如果在战斗中获得（例如事件或指令），并且玩家是圣主且处于石像状态，解除石像惩罚并给予奖励
         if (AbstractDungeon.player != null && AbstractDungeon.getCurrRoom() != null
                 && AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT) {
@@ -50,6 +57,16 @@ public class RatTalisman extends BaseRelic {
                         AbstractDungeon.player, AbstractDungeon.player,
                         new com.megacrit.cardcrawl.powers.StrengthPower(AbstractDungeon.player, 1), 1));
             }
+        }
+    }
+
+    @Override
+    public void onUnequip() {
+        super.onUnequip();
+        // 当失去鼠符咒时，把玩家贴图还原为石像形态 statue.png
+        if (AbstractDungeon.player instanceof basicmod.character.ShengZhuCustomPlayer) {
+            ((basicmod.character.ShengZhuCustomPlayer) AbstractDungeon.player).img = basicmod.util.TextureLoader
+                    .getTexture(basicmod.BasicMod.imagePath("character/shengzhu/statue.png"));
         }
     }
 

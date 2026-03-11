@@ -37,7 +37,7 @@ public class ShengZhuCustomPlayer extends CustomPlayer {
         super(name, setClass, new com.megacrit.cardcrawl.ui.panels.energyorb.EnergyOrbRed(),
                 (String) null, (String) null);
 
-        initializeClass(BasicMod.imagePath("character/shengzhu/main.png"),
+        initializeClass(BasicMod.imagePath("character/shengzhu/statue.png"),
                 BasicMod.imagePath("character/shengzhu/shoulder2.png"),
                 BasicMod.imagePath("character/shengzhu/shoulder.png"),
                 BasicMod.imagePath("character/shengzhu/corpse.png"),
@@ -70,7 +70,7 @@ public class ShengZhuCustomPlayer extends CustomPlayer {
     @Override
     public ArrayList<String> getStartingDeck() {
         ArrayList<String> retVal = new ArrayList<>();
-        // 初始套牌：4张我们仨、4张特鲁、1张瓦龙、1张乌鸦坐飞机
+        // 初始套牌：4张葱姜蒜、4张特鲁、1张瓦龙、1张乌鸦坐飞机
         for (int i = 0; i < 4; i++) {
             retVal.add("fuZhouMod:WeThree");
             retVal.add("fuZhouMod:Tohru");

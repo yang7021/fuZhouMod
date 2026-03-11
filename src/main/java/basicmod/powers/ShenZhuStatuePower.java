@@ -52,7 +52,7 @@ public class ShenZhuStatuePower extends AbstractPower {
     public void onRemove() {
         // 移除石像状态时，削减这3层荆棘
         if (this.owner.hasPower(ThornsPower.POWER_ID)) {
-            addToTop(new ApplyPowerAction(this.owner, this.owner, new ThornsPower(this.owner, -3), -3));
+            addToTop(new com.megacrit.cardcrawl.actions.common.ReducePowerAction(this.owner, this.owner, ThornsPower.POWER_ID, 3));
         }
     }
 }

@@ -1,6 +1,6 @@
 {
   "fuZhouMod:WeThree": {
-    "NAME": "我们仨",
+    "NAME": "葱姜蒜",
     "DESCRIPTION": "造成 !D! 点伤害。"
   },
   "fuZhouMod:Tohru": {
@@ -9,7 +9,7 @@
   },
   "fuZhouMod:Valmont": {
     "NAME": "瓦龙",
-    "DESCRIPTION": "画个金鸡王宝藏的大饼：本回合内，手牌、抽牌堆和弃牌堆中的 [fuZhouMod:WeThree] 和 [fuZhouMod:Tohru] 耗能变为0。 消耗 。"
+    "DESCRIPTION": "金鸡王宝藏的大饼：本回合内 葱姜蒜 和 特鲁 耗能变为0。 消耗 。"
   },
   "fuZhouMod:CrowFlying": {
     "NAME": "乌鸦坐飞机",
