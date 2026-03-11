@@ -52,10 +52,10 @@ public class RatTalisman extends BaseRelic {
                 addToBot(new com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction(
                         AbstractDungeon.player, AbstractDungeon.player, basicmod.powers.ShenZhuStatuePower.POWER_ID));
 
-                // 给予1点力量
+                // 给予复苏能力
                 addToBot(new com.megacrit.cardcrawl.actions.common.ApplyPowerAction(
                         AbstractDungeon.player, AbstractDungeon.player,
-                        new com.megacrit.cardcrawl.powers.StrengthPower(AbstractDungeon.player, 1), 1));
+                        new basicmod.powers.ShenZhuRevivedPower(AbstractDungeon.player)));
             }
         }
     }
@@ -67,6 +67,19 @@ public class RatTalisman extends BaseRelic {
         if (AbstractDungeon.player instanceof basicmod.character.ShengZhuCustomPlayer) {
             ((basicmod.character.ShengZhuCustomPlayer) AbstractDungeon.player).img = basicmod.util.TextureLoader
                     .getTexture(basicmod.BasicMod.imagePath("character/shengzhu/statue.png"));
+        }
+        
+        // 如果在战斗中失去，移除复苏能力，变回石像
+        if (AbstractDungeon.player != null && AbstractDungeon.getCurrRoom() != null
+                && AbstractDungeon.getCurrRoom().phase == com.megacrit.cardcrawl.rooms.AbstractRoom.RoomPhase.COMBAT) {
+            if (AbstractDungeon.player.hasPower(basicmod.powers.ShenZhuRevivedPower.POWER_ID)) {
+                addToBot(new com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction(
+                        AbstractDungeon.player, AbstractDungeon.player, basicmod.powers.ShenZhuRevivedPower.POWER_ID));
+                
+                addToBot(new com.megacrit.cardcrawl.actions.common.ApplyPowerAction(
+                        AbstractDungeon.player, AbstractDungeon.player,
+                        new basicmod.powers.ShenZhuStatuePower(AbstractDungeon.player)));
+            }
         }
     }
 

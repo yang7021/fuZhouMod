@@ -13,7 +13,9 @@ public class ShenZhuStatuePower extends AbstractPower {
     public static final String POWER_ID = BasicMod.makeID("ShenZhuStatuePower");
     // 我们暂时硬编码中文字符串或者使用预留的资源
     public static final String NAME = "圣主石像";
-    public static final String[] DESCRIPTIONS = { "你是一尊石像。你的 #y攻击牌 费用加倍。获得的 #y护甲 翻三倍。" };
+    public static final String[] DESCRIPTIONS = { "你是一尊石像。你的 #y攻击牌 费用加倍。获得的 #y护甲 翻三倍。每回合开始时，获得 #b1 层 #y荆棘 。" };
+
+    private int thornsGained = 3;
 
     public ShenZhuStatuePower(AbstractCreature owner) {
         this.name = NAME;
@@ -49,10 +51,17 @@ public class ShenZhuStatuePower extends AbstractPower {
     }
 
     @Override
+    public void atStartOfTurnPostDraw() {
+        this.flash();
+        addToBot(new ApplyPowerAction(this.owner, this.owner, new ThornsPower(this.owner, 1), 1));
+        this.thornsGained += 1;
+    }
+
+    @Override
     public void onRemove() {
-        // 移除石像状态时，削减这3层荆棘
+        // 移除石像状态时，削减这期间获得的所有荆棘
         if (this.owner.hasPower(ThornsPower.POWER_ID)) {
-            addToTop(new com.megacrit.cardcrawl.actions.common.ReducePowerAction(this.owner, this.owner, ThornsPower.POWER_ID, 3));
+            addToTop(new com.megacrit.cardcrawl.actions.common.ReducePowerAction(this.owner, this.owner, ThornsPower.POWER_ID, this.thornsGained));
         }
     }
 }

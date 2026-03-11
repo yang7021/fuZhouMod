@@ -18,7 +18,7 @@ import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import com.megacrit.cardcrawl.events.city.Vampires;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.powers.StrengthPower;
+
 import com.badlogic.gdx.math.MathUtils;
 import basicmod.powers.ShenZhuStatuePower;
 
@@ -181,7 +181,7 @@ public class ShengZhuCustomPlayer extends CustomPlayer {
                     new ApplyPowerAction(this, this, new ShenZhuStatuePower(this)));
         } else {
             AbstractDungeon.actionManager.addToBottom(
-                    new ApplyPowerAction(this, this, new StrengthPower(this, 1), 1));
+                    new ApplyPowerAction(this, this, new basicmod.powers.ShenZhuRevivedPower(this)));
         }
     }
 }

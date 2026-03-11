@@ -1,8 +1,14 @@
 {
-    "fuZhouMod:StatueStatePower": {
+    "fuZhouMod:ShenZhuStatuePower": {
         "NAME": "圣主石像",
         "DESCRIPTIONS": [
-            "由于还是一座石像：所有的格挡效果翻 #b3 倍。打出攻击牌需要付出 #b2 倍的能量（打出时额外扣除对应点数费用）。自带 #b3 层 #y荆棘 。"
+            "由于还是一座石像：所有的格挡效果翻 #b3 倍。打出攻击牌需要付出 #b2 倍的能量（打出时额外扣除对应点数费用）。初始获得 #b3 层并且每回合开始获得 #b1 层 #y荆棘 。"
+        ]
+    },
+    "fuZhouMod:ShenZhuRevivedPower": {
+        "NAME": "圣主真身",
+        "DESCRIPTIONS": [
+            "拥有鼠符咒：你恢复了真身。每回合开始时，获得 #b1 点 #y力量 。"
         ]
     }
 }
