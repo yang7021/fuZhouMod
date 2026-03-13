@@ -9,7 +9,6 @@ import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 public class CardHeadCracksWalnut extends BaseCard {
@@ -36,23 +35,15 @@ public class CardHeadCracksWalnut extends BaseCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.BLUNT_HEAVY));
 
-        if (isComboActive()) {
+        if (isAfuComboActive()) {
             addToBot(new DrawCardAction(p, magicNumber));
         }
-    }
-
-    private boolean isComboActive() {
-        if (AbstractDungeon.actionManager.cardsPlayedThisTurn.size() >= 2) {
-            AbstractCard lastCard = AbstractDungeon.actionManager.cardsPlayedThisTurn.get(AbstractDungeon.actionManager.cardsPlayedThisTurn.size() - 2);
-            return lastCard.tags.contains(CustomTags.afu);
-        }
-        return false;
     }
 
     @Override
     public void triggerOnGlowCheck() {
         this.glowColor = AbstractCard.BLUE_BORDER_GLOW_COLOR.cpy();
-        if (isComboActive()) {
+        if (isAfuComboActive()) {
             this.glowColor = AbstractCard.GOLD_BORDER_GLOW_COLOR.cpy();
         }
     }

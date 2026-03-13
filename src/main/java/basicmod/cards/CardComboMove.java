@@ -10,7 +10,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToHandEffect;
 
 import java.util.ArrayList;
@@ -69,7 +68,8 @@ public class CardComboMove extends BaseCard {
                     if (p.hand.size() < 10) {
                         p.drawPile.removeCard(c);
                         p.hand.addToTop(c);
-                        c.setCostForTurn(0);
+                        // 使用 modifyCostForCombat 使 0 费效果在该实例上更持久
+                        c.modifyCostForCombat(-99);
                     } else {
                         p.drawPile.removeCard(c);
                         p.discardPile.addToTop(c);

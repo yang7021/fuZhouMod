@@ -7,7 +7,6 @@ import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.LoseStrengthPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
@@ -36,24 +35,16 @@ public class CardLameGoose extends BaseCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new GainBlockAction(p, p, block));
 
-        if (isComboActive()) {
+        if (isAfuComboActive()) {
             addToBot(new ApplyPowerAction(p, p, new StrengthPower(p, magicNumber), magicNumber));
             addToBot(new ApplyPowerAction(p, p, new LoseStrengthPower(p, magicNumber), magicNumber));
         }
     }
 
-    private boolean isComboActive() {
-        if (AbstractDungeon.actionManager.cardsPlayedThisTurn.size() >= 2) {
-            AbstractCard lastCard = AbstractDungeon.actionManager.cardsPlayedThisTurn.get(AbstractDungeon.actionManager.cardsPlayedThisTurn.size() - 2);
-            return lastCard.tags.contains(CustomTags.afu);
-        }
-        return false;
-    }
-
     @Override
     public void triggerOnGlowCheck() {
         this.glowColor = AbstractCard.BLUE_BORDER_GLOW_COLOR.cpy();
-        if (isComboActive()) {
+        if (isAfuComboActive()) {
             this.glowColor = AbstractCard.GOLD_BORDER_GLOW_COLOR.cpy();
         }
     }

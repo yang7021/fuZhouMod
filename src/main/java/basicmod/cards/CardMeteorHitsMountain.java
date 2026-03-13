@@ -9,7 +9,6 @@ import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.watcher.VigorPower;
 
@@ -43,23 +42,15 @@ public class CardMeteorHitsMountain extends BaseCard {
         }
 
         // 连招检查：如果本回合已打出的上一张牌是 阿福招式
-        if (isComboActive()) {
-            addToBot(new ApplyPowerAction(p, p, new VigorPower(p, customVar("B")), customVar("B")));
+        if (isAfuComboActive()) {
+            addToBot(new ApplyPowerAction(p, p, new VigorPower(p, 4), 4));
         }
-    }
-
-    private boolean isComboActive() {
-        if (AbstractDungeon.actionManager.cardsPlayedThisTurn.size() >= 2) {
-            AbstractCard lastCard = AbstractDungeon.actionManager.cardsPlayedThisTurn.get(AbstractDungeon.actionManager.cardsPlayedThisTurn.size() - 2);
-            return lastCard.tags.contains(CustomTags.afu);
-        }
-        return false;
     }
 
     @Override
     public void triggerOnGlowCheck() {
         this.glowColor = AbstractCard.BLUE_BORDER_GLOW_COLOR.cpy();
-        if (isComboActive()) {
+        if (isAfuComboActive()) {
             this.glowColor = AbstractCard.GOLD_BORDER_GLOW_COLOR.cpy();
         }
     }

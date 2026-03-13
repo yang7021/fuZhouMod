@@ -9,7 +9,7 @@
   },
   "fuZhouMod:Valmont": {
     "NAME": "瓦龙",
-    "DESCRIPTION": "金鸡王宝藏的大饼：本回合内 #y葱姜蒜 和 #y特鲁 耗能变为 #b0 。 消耗。"
+    "DESCRIPTION": "金鸡王宝藏的大饼：本回合内 #y葱姜蒜 、 #y特鲁 和所有 #y阿福 系列卡牌耗费变为 #b0 。 消耗。"
   },
   "fuZhouMod:CrowFlying": {
     "NAME": "乌鸦坐飞机",

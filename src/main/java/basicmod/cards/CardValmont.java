@@ -3,6 +3,7 @@ package basicmod.cards;
 import basicmod.util.CardStats;
 import basicmod.enums.CharacterEnums;
 import basicmod.powers.ValmontCommandPower;
+import basicmod.enums.CustomTags;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -18,9 +19,9 @@ public class CardValmont extends BaseCard {
 
     public CardValmont() {
         super(ID, info);
-        // 升级变为消耗（原版未说明是否消耗，一般类似这种卡设为消耗或者升级降费用）
+        tags.add(CustomTags.afu);
         setExhaust(true);
-        setCostUpgrade(0); // 升级后0费
+        setCostUpgrade(0);
     }
 
     @Override

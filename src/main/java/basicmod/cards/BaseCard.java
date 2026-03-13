@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import basicmod.enums.CustomTags;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -90,7 +91,17 @@ public abstract class BaseCard extends CustomCard {
         return CardCrawlGame.languagePack.getCardStrings(ID).DESCRIPTION;
     }
 
-    //Methods meant for constructor use
+    public boolean isAfuComboActive() {
+        if (AbstractDungeon.actionManager == null) return false;
+        
+        // 判定条件：本回合除当前牌外，是否已经打出过带有 afu 标签的牌
+        for (AbstractCard c : AbstractDungeon.actionManager.cardsPlayedThisTurn) {
+            if (c != this && c.tags.contains(CustomTags.afu)) {
+                return true;
+            }
+        }
+        return false;
+    }
     protected final void setDamage(int damage)
     {
         this.setDamage(damage, 0);
