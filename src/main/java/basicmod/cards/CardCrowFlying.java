@@ -2,10 +2,13 @@ package basicmod.cards;
 
 import basicmod.util.CardStats;
 import basicmod.enums.CharacterEnums;
-import com.megacrit.cardcrawl.actions.common.DrawCardAction;
+import basicmod.enums.CustomTags;
+import basicmod.relics.RoosterTalisman;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 public class CardCrowFlying extends BaseCard {
@@ -15,20 +18,48 @@ public class CardCrowFlying extends BaseCard {
             CardType.ATTACK,
             CardRarity.UNCOMMON,
             CardTarget.ENEMY,
-            1);
+            2);
+
+    private static final int DAMAGE = 18;
+    private static final int UPG_DAMAGE = 6;
 
     public CardCrowFlying() {
         super(ID, info);
-        // 造成 9 点伤害，升级变为 12 (+3)
-        setDamage(9, 3);
-        // 抽 1 张牌，升级抽 2 张 (+1)
-        setMagic(1, 1);
+        setDamage(DAMAGE, UPG_DAMAGE);
+        tags.add(CustomTags.afu);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn),
-                com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect.BLUNT_HEAVY));
-        addToBot(new DrawCardAction(p, magicNumber));
+                AbstractGameAction.AttackEffect.BLUNT_HEAVY));
+    }
+
+    @Override
+    public void applyPowers() {
+        super.applyPowers();
+        if (AbstractDungeon.player.hasRelic(RoosterTalisman.ID)) {
+            if (this.cost > 1) {
+                this.setCostForTurn(this.cost - 1);
+                this.isCostModified = true;
+            } else if (this.cost == 1) {
+                this.setCostForTurn(0);
+                this.isCostModified = true;
+            }
+        }
+    }
+
+    @Override
+    public void triggerWhenDrawn() {
+        super.triggerWhenDrawn();
+        if (AbstractDungeon.player.hasRelic(RoosterTalisman.ID)) {
+            if (this.cost > 1) {
+                this.setCostForTurn(this.cost - 1);
+                this.isCostModified = true;
+            } else if (this.cost == 1) {
+                this.setCostForTurn(0);
+                this.isCostModified = true;
+            }
+        }
     }
 }

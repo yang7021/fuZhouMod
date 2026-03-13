@@ -1,1 +1,28 @@
-[]
+[
+  {
+    "ID": "Combo",
+    "PROPER_NAME": "阿福连招",
+    "NAMES": [
+      "阿福连招",
+      "连招"
+    ],
+    "DESCRIPTION": "如果你本回合上一张打出的牌是 #y阿福 招式，触发额外效果。"
+  },
+  {
+    "ID": "AfuMove",
+    "PROPER_NAME": "阿福招式",
+    "NAMES": [
+      "阿福招式",
+      "阿福"
+    ],
+    "DESCRIPTION": "由黑手党大将阿福使出的威猛招式。"
+  },
+  {
+    "ID": "Flight",
+    "PROPER_NAME": "飞行",
+    "NAMES": [
+      "飞行"
+    ],
+    "DESCRIPTION": "受到的下一次伤害减半。"
+  }
+]
