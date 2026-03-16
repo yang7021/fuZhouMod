@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 import static basicmod.BasicMod.makeID;
@@ -33,8 +34,16 @@ public class DragonTalisman extends BaseRelic {
                 this.counter = 0; // 满3次后，计数器重置
                 this.flash(); // 遗物闪烁提示触发
                 addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
-                // 对所有敌人造成8点荆棘类型（非攻击直接加成）的伤害，并附带火属性特效
-                addToBot(new DamageAllEnemiesAction(null, DamageInfo.createDamageMatrix(8, true),
+                
+                // 计算受力量影响的伤害：8 + 力量
+                int finalDamage = 8;
+                if (AbstractDungeon.player.hasPower(StrengthPower.POWER_ID)) {
+                    finalDamage += AbstractDungeon.player.getPower(StrengthPower.POWER_ID).amount;
+                }
+                if (finalDamage < 0) finalDamage = 0; // 防御极端负力量
+
+                // 对所有敌人造成荆棘类型伤害
+                addToBot(new DamageAllEnemiesAction(null, DamageInfo.createDamageMatrix(finalDamage, true),
                         DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.FIRE));
             }
         }
