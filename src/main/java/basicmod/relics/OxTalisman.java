@@ -1,11 +1,12 @@
 package basicmod.relics;
 
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.helpers.input.InputHelper;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
 
 import static basicmod.BasicMod.makeID;
 
@@ -15,41 +16,73 @@ public class OxTalisman extends BaseRelic {
     private static final RelicTier RARITY = RelicTier.RARE;
     private static final LandingSound SOUND = LandingSound.HEAVY;
 
+    private boolean activated = false;
+    private boolean usedThisTurn = false;
+
     public OxTalisman() {
         super(ID, NAME, RARITY, SOUND);
     }
 
     @Override
-    public void atBattleStart() {
-        this.counter = 0; // 初始化附加伤害计数器
-        this.flash();
-        addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
-        // 战斗开始时给予玩家2点力量
-        addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player,
-                new StrengthPower(AbstractDungeon.player, 2), 2));
+    public void atPreBattle() {
+        this.activated = false;
+        this.usedThisTurn = false;
+        this.grayscale = false;
+        stopPulse();
     }
 
     @Override
-    public void onUseCard(AbstractCard targetCard, UseCardAction useCardAction) {
-        // 如果打出的是攻击牌，计数器+2，这将在后续的伤害计算中作为附加伤害
-        if (targetCard.type == AbstractCard.CardType.ATTACK) {
-            this.counter += 2;
-            this.flash();
+    public void atTurnStart() {
+        // 每个回合开始重置使用限制
+        this.usedThisTurn = false;
+        this.grayscale = false;
+    }
+
+    @Override
+    public void update() {
+        super.update();
+        // 战斗内、本回合尚未使用，且鼠标悬停时右键点击
+        if (AbstractDungeon.getCurrRoom() != null && AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT && !this.usedThisTurn) {
+            if (this.hb.hovered && InputHelper.justClickedRight) {
+                this.activated = !this.activated;
+                if (this.activated) {
+                    CardCrawlGame.sound.play("UI_CLICK_1");
+                    this.beginLongPulse(); // 快速发光提示已激活
+                } else {
+                    CardCrawlGame.sound.play("UI_CLICK_2");
+                    this.stopPulse();
+                }
+            }
         }
     }
 
     @Override
     public float atDamageModify(float damage, AbstractCard c) {
-        // 在计算攻击牌基础伤害时，加上计数器中累积的额外伤害
-        if (c.type == AbstractCard.CardType.ATTACK && this.counter > 0) {
-            return damage + this.counter;
+        // 如果已激活且是攻击牌，基础伤害翻倍
+        if (this.activated && c.type == AbstractCard.CardType.ATTACK) {
+            return damage * 2.0F;
         }
         return damage;
     }
 
     @Override
+    public void onUseCard(AbstractCard targetCard, UseCardAction useCardAction) {
+        // 当打出的是攻击牌且处于激活状态时
+        if (this.activated && targetCard.type == AbstractCard.CardType.ATTACK) {
+            this.activated = false;
+            this.usedThisTurn = true;
+            this.grayscale = true; // 变灰标识已使用
+            this.flash();
+            this.stopPulse();
+        }
+    }
+
+    @Override
     public void onVictory() {
-        this.counter = -1;
+        this.activated = false;
+        this.usedThisTurn = false;
+        this.grayscale = false;
+        stopPulse();
     }
 
     @Override
