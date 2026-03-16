@@ -9,19 +9,19 @@
   },
   "fuZhouMod:Valmont": {
     "NAME": "瓦龙",
-    "DESCRIPTION": "金鸡王宝藏的大饼：本回合内 #y葱姜蒜 、 #y特鲁 和所有 #y阿福 系列卡牌耗费变为 #b0 。 消耗。"
+    "DESCRIPTION": "金鸡王宝藏的大饼：本回合内 *葱姜蒜 、 *特鲁 和所有 *阿福 系列卡牌耗费变为 *0 。 消耗。"
   },
   "fuZhouMod:CrowFlying": {
     "NAME": "乌鸦坐飞机",
-    "DESCRIPTION": "造成 !D! 点伤害。 如果拥有 #y鸡符咒 ，耗能减少 [G] 。"
+    "DESCRIPTION": "造成 !D! 点伤害。 如果拥有 *鸡符咒 ，耗能减少 [G] 。"
   },
   "fuZhouMod:LaserEyes": {
     "NAME": "电眼逼人",
-    "DESCRIPTION": "造成 !D! 点伤害。 施加 !M! 层 #y易伤 。 如果持有 #y猪符咒 ，则改为对所有敌人生效。"
+    "DESCRIPTION": "造成 !D! 点伤害。 施加 !M! 层 *易伤 。 如果持有 *猪符咒 ，则改为对所有敌人生效。"
   },
   "fuZhouMod:OneTigerTwoSheep": {
     "NAME": "一虎杀两羊",
-    "DESCRIPTION": "造成 !D! 点伤害 #b2 次。 如果此牌击杀了敌人，获得 !M! 点 #y力量 。"
+    "DESCRIPTION": "造成 !D! 点伤害 *2 次。 如果此牌击杀了敌人，获得 !M! 点 *力量 。"
   },
   "fuZhouMod:MeteorHitsMountain": {
     "NAME": "流星连打山",
@@ -33,19 +33,19 @@
   },
   "fuZhouMod:AxeCutsTree": {
     "NAME": "巨斧砍大树",
-    "DESCRIPTION": "造成 !D! 点伤害。 如果目标拥有 #y格挡 ，伤害提升 #b50% 。"
+    "DESCRIPTION": "造成 !D! 点伤害。 如果目标拥有 *格挡 ，伤害提升 *50% 。"
   },
   "fuZhouMod:AfuBeatJackie": {
     "NAME": "阿福揍扁了成龙",
-    "DESCRIPTION": "造成 !D! 点伤害。 本场战斗中你每打出一张名称不同的 阿福招式 ，此牌伤害增加 !M! 点。"
+    "DESCRIPTION": "造成 !D! 点伤害。 本场战斗中你每打出一张名称不同的 *阿福招式 ，此牌伤害增加 !M! 点。"
   },
   "fuZhouMod:ComboMove": {
     "NAME": "组合技",
-    "DESCRIPTION": "从抽牌堆中寻找一张攻击牌放入手牌。 其耗能在本回合变为 #b0 。"
+    "DESCRIPTION": "从抽牌堆中寻找一张攻击牌放入手牌。 其耗能在本回合变为 *0 。"
   },
   "fuZhouMod:RatStealsCheese": {
     "NAME": "老鼠偷奶酪",
-    "DESCRIPTION": "获得 !M! 点能量。 将一张 #y晕眩 加入弃牌堆。",
+    "DESCRIPTION": "获得 !M! 点能量。 将一张 *晕眩 加入弃牌堆。",
     "UPGRADE_DESCRIPTION": "获得 !M! 点能量。"
   },
   "fuZhouMod:CraneCatchesShrimp": {
@@ -54,7 +54,7 @@
   },
   "fuZhouMod:EagleWings": {
     "NAME": "飞鹰展翅",
-    "DESCRIPTION": "获得 !M! 层 飞行 。 消耗。"
+    "DESCRIPTION": "获得 !M! 层 *飞行 。 消耗。"
   },
   "fuZhouMod:TwoDragons": {
     "NAME": "二龙戏珠",
@@ -62,26 +62,26 @@
   },
   "fuZhouMod:GoatClimbsMountain": {
     "NAME": "山羊爬山",
-    "DESCRIPTION": "每当你在一回合内打出 !M! 张攻击牌，获得 #b1 点 #y力量 。"
+    "DESCRIPTION": "每当你在一回合内打出 !M! 张攻击牌，获得 *1 点 *力量 。"
   },
   "fuZhouMod:TaiShanPress": {
     "NAME": "泰山压顶",
-    "DESCRIPTION": "每当你打出一张 阿福招式 ，获得 !M! 点 #y格挡 。"
+    "DESCRIPTION": "每当你打出一张 *阿福招式 ，获得 !M! 点 *格挡 。"
   },
   "fuZhouMod:Tornado": {
     "NAME": "龙卷风摧毁停车场",
-    "DESCRIPTION": "在你的回合结束时，对所有敌人造成本回合你造成总伤害 #b30% ( !M! ) 的伤害。"
+    "DESCRIPTION": "在你的回合结束时，对所有敌人造成本回合你造成总伤害 *30% ( !M! ) 的伤害。"
   },
   "fuZhouMod:FlamingoStep": {
     "NAME": "弗朗明哥舞步",
-    "DESCRIPTION": "获得 !B! 点 #y格挡 。 如果触发了 阿福连招 ，下回合额外获得 !M! 点能量。"
+    "DESCRIPTION": "获得 !B! 点 *格挡 。 如果触发了 *阿福连招 ，下回合额外获得 !M! 点能量。"
   },
   "fuZhouMod:LameGoose": {
     "NAME": "我成了瘸腿鹅",
-    "DESCRIPTION": "获得 !B! 点 #y格挡 。 如果触发了 阿福连招 ，本回合获得 !M! 点临时 #y力量 。"
+    "DESCRIPTION": "获得 !B! 点 *格挡 。 如果触发了 *阿福连招 ，本回合获得 !M! 点临时 *力量 。"
   },
   "fuZhouMod:ElephantKick": {
     "NAME": "大象踢腿",
-    "DESCRIPTION": "获得 !B! 点 #y格挡 。 如果目标意图为攻击，则对其造成 !D! 点伤害。"
+    "DESCRIPTION": "获得 !B! 点 *格挡 。 如果目标意图为攻击，则对其造成 !D! 点伤害。"
   }
 }
