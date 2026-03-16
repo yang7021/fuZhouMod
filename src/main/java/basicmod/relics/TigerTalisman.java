@@ -11,7 +11,7 @@ import static basicmod.BasicMod.makeID;
 public class TigerTalisman extends BaseRelic {
     public static final String NAME = "TigerTalisman";
     public static final String ID = makeID(NAME);
-    private static final RelicTier RARITY = RelicTier.COMMON;
+    private static final RelicTier RARITY = RelicTier.RARE;
     private static final LandingSound SOUND = LandingSound.CLINK;
 
     private AbstractCard.CardType lastPlayedType = null;

@@ -20,7 +20,7 @@ import static basicmod.BasicMod.makeID;
 public class RatTalisman extends BaseRelic {
     public static final String NAME = "RatTalisman";
     public static final String ID = makeID(NAME);
-    private static final RelicTier RARITY = RelicTier.COMMON;
+    private static final RelicTier RARITY = RelicTier.RARE;
     private static final LandingSound SOUND = LandingSound.MAGICAL;
 
     public static final String SELECT_PROMPT = "选择1张要替换的诅咒牌或状态牌";

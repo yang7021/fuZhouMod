@@ -12,7 +12,7 @@ import static basicmod.BasicMod.makeID;
 public class OxTalisman extends BaseRelic {
     public static final String NAME = "OxTalisman";
     public static final String ID = makeID(NAME);
-    private static final RelicTier RARITY = RelicTier.COMMON;
+    private static final RelicTier RARITY = RelicTier.RARE;
     private static final LandingSound SOUND = LandingSound.HEAVY;
 
     public OxTalisman() {

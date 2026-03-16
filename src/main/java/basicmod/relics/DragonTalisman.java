@@ -13,7 +13,7 @@ import static basicmod.BasicMod.makeID;
 public class DragonTalisman extends BaseRelic {
     public static final String NAME = "DragonTalisman";
     public static final String ID = makeID(NAME);
-    private static final RelicTier RARITY = RelicTier.COMMON;
+    private static final RelicTier RARITY = RelicTier.RARE;
     private static final LandingSound SOUND = LandingSound.HEAVY;
 
     public DragonTalisman() {

@@ -15,7 +15,7 @@ import static basicmod.BasicMod.makeID;
 public class PigTalisman extends BaseRelic {
     public static final String NAME = "PigTalisman";
     public static final String ID = makeID(NAME);
-    private static final RelicTier RARITY = RelicTier.COMMON;
+    private static final RelicTier RARITY = RelicTier.RARE;
     private static final LandingSound SOUND = LandingSound.CLINK;
 
     private boolean activated = false;
