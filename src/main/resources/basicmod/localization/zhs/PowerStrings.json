@@ -9,7 +9,7 @@
   },
   "fuZhouMod:GoatClimbsMountainPower": {
     "NAME": "山羊爬山",
-    "DESCRIPTIONS": ["每当你在一回合内打出 #b3 张攻击牌，获得 #b", " 点 #y力量 。"]
+    "DESCRIPTIONS": ["每当你打出 #b2 张牌，获得 #b", " 点临时 #y力量 。"]
   },
   "fuZhouMod:TaiShanPressPower": {
     "NAME": "泰山压顶",
@@ -20,7 +20,7 @@
     "DESCRIPTIONS": ["在你的回合结束时，对所有敌人造成本回合你造成总伤害 #b30% ( #b", " ) 的伤害。"]
   },
   "fuZhouMod:ValmontCommandPower": {
-    "NAME": "老板的指使",
-    "DESCRIPTIONS": ["本回合内你的 #y葱姜蒜 、 #y特鲁 及所有 #y阿福 系列卡牌耗费变为 #b0 。"]
+    "NAME": "瓦龙",
+    "DESCRIPTIONS": ["本轮你的 #y葱姜蒜 、 #y特鲁 及所有 #y阿福 系列卡牌耗费变为 #b0 。"]
   }
 }

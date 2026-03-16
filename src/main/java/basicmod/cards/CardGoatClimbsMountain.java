@@ -22,6 +22,7 @@ public class CardGoatClimbsMountain extends BaseCard {
     public CardGoatClimbsMountain() {
         super(ID, info);
         setMagic(STR);
+        setCostUpgrade(0);
         tags.add(CustomTags.afu);
     }
 

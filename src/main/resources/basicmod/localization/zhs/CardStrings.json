@@ -62,7 +62,7 @@
   },
   "fuZhouMod:GoatClimbsMountain": {
     "NAME": "山羊爬山",
-    "DESCRIPTION": "每当你在一回合内打出 !M! 张攻击牌，获得 *1 点 *力量 。"
+    "DESCRIPTION": "每打出两张牌，本轮获得 *1 点临时 *力量 。"
   },
   "fuZhouMod:TaiShanPress": {
     "NAME": "泰山压顶",
