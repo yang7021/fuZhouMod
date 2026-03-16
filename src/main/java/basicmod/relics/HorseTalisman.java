@@ -55,7 +55,12 @@ public class HorseTalisman extends BaseRelic {
                 if (!debuffs.isEmpty()) {
                     CardCrawlGame.sound.play("UI_CLICK_1");
                     this.selectingPower = true;
-                    AbstractDungeon.gridSelectScreen.open(debuffs, 1, "选择要移除的状态", false);
+                    // 使用 7 参数多载版本：open(group, numCards, tipMsg, forUpgrade, forTransform, canCancel, forPurge)
+                    AbstractDungeon.gridSelectScreen.open(debuffs, 1, "选择要移除的状态", false, false, true, false);
+                    // 强制手动开启并设置取消文字
+                    // 杀戮尖塔部分版本中，GridSelectScreen 的取消按钮字段名为 cancelBtn 且非 public
+                    // 我们可以通过这种方式触发它的显示逻辑
+                    AbstractDungeon.overlayMenu.cancelButton.show("取消");
                 } else {
                     // 如果身上没 Debuff，晃动一下提示
                     this.flash();
@@ -64,18 +69,26 @@ public class HorseTalisman extends BaseRelic {
         }
 
         // 2. 处理网格选择后的移除逻辑
-        if (this.selectingPower && !AbstractDungeon.gridSelectScreen.selectedCards.isEmpty()) {
-            AbstractCard selectedCard = AbstractDungeon.gridSelectScreen.selectedCards.get(0);
-            AbstractDungeon.gridSelectScreen.selectedCards.clear();
-            this.selectingPower = false;
-            this.usedThisTurn = true;
-            this.removedDebuffThisCombat = true;
-            this.grayscale = true;
-            this.flash();
+        if (this.selectingPower) {
+            // 情况 A: 玩家选了卡
+            if (!AbstractDungeon.gridSelectScreen.selectedCards.isEmpty()) {
+                AbstractCard selectedCard = AbstractDungeon.gridSelectScreen.selectedCards.get(0);
+                AbstractDungeon.gridSelectScreen.selectedCards.clear();
+                this.selectingPower = false;
+                this.usedThisTurn = true;
+                this.removedDebuffThisCombat = true; // 真正移除了才取消回血奖励
+                this.grayscale = true;
+                this.flash();
 
-            if (selectedCard instanceof PowerPreviewCard) {
-                String powerId = ((PowerPreviewCard) selectedCard).powerId;
-                addToBot(new com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction(AbstractDungeon.player, AbstractDungeon.player, powerId));
+                if (selectedCard instanceof PowerPreviewCard) {
+                    String powerId = ((PowerPreviewCard) selectedCard).powerId;
+                    addToBot(new com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction(AbstractDungeon.player, AbstractDungeon.player, powerId));
+                }
+            }
+            // 情况 B: 玩家取消了选择（通过取消按钮或 ESC）
+            else if (AbstractDungeon.screen != AbstractDungeon.CurrentScreen.GRID) {
+                this.selectingPower = false;
+                // 不设置 usedThisTurn，不设置 removedDebuffThisCombat
             }
         }
     }
