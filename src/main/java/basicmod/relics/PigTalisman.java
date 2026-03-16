@@ -1,20 +1,25 @@
 package basicmod.relics;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.DamageRandomEnemyAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.input.InputHelper;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
 
 import static basicmod.BasicMod.makeID;
 
+/**
+ * 猪符咒
+ */
 public class PigTalisman extends BaseRelic {
     public static final String NAME = "PigTalisman";
     public static final String ID = makeID(NAME);
     private static final RelicTier RARITY = RelicTier.COMMON;
     private static final LandingSound SOUND = LandingSound.CLINK;
 
-    private boolean isFirstAttack = true; // 标记每回合判断是否为第一次攻击
+    private boolean activated = false;
+    private boolean usedThisTurn = false;
 
     public PigTalisman() {
         super(ID, NAME, RARITY, SOUND);
@@ -22,21 +27,49 @@ public class PigTalisman extends BaseRelic {
 
     @Override
     public void atPreBattle() {
-        isFirstAttack = true; // 战斗前重置
+        usedThisTurn = false;
+        activated = false;
+        stopPulse();
     }
 
     @Override
     public void atTurnStart() {
-        isFirstAttack = true; // 回合开始重置
+        usedThisTurn = false;
+        activated = false;
+        stopPulse();
+        this.grayscale = false;
+    }
+
+    @Override
+    public void update() {
+        super.update();
+        // 如果在战斗中，未曾被使用，且鼠标悬停在遗物上并点击了右键
+        if (AbstractDungeon.getCurrRoom() != null && AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT && !usedThisTurn) {
+            if (this.hb.hovered && InputHelper.justClickedRight) {
+                this.activated = !this.activated;
+                if (this.activated) {
+                    CardCrawlGame.sound.play("UI_CLICK_1");
+                    this.beginLongPulse(); // 开始闪烁
+                } else {
+                    CardCrawlGame.sound.play("UI_CLICK_2");
+                    this.stopPulse(); // 取消闪烁
+                }
+            }
+        }
     }
 
     @Override
     public void onPlayCard(AbstractCard c, com.megacrit.cardcrawl.monsters.AbstractMonster m) {
-        // 如果是本回合第一次打出攻击牌
-        if (isFirstAttack && c.type == AbstractCard.CardType.ATTACK) {
-            isFirstAttack = false;
-            this.flash(); // 遗物闪烁提示触发
-            // 将该牌本回合的伤害类型改为失去生命（HP_LOSS），从而穿透防御、叠甲无效
+        // 如果符咒已激发且打出的是攻击牌
+        if (activated && c.type == AbstractCard.CardType.ATTACK) {
+            activated = false;
+            usedThisTurn = true;
+            this.flash();
+            this.stopPulse();
+            this.grayscale = true; // 本回合不可再用
+            
+            // 将该牌本回合的伤害类型改为失去生命（HP_LOSS）
+            // 在卡牌逻辑中，HP_LOSS 会无视护甲、无实体和虚弱等伤害修正
             c.damageTypeForTurn = DamageInfo.DamageType.HP_LOSS;
         }
     }

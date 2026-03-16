@@ -1,11 +1,11 @@
 package basicmod.relics;
 
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
-import com.megacrit.cardcrawl.actions.utility.UseCardAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
 
 import static basicmod.BasicMod.makeID;
 
@@ -15,43 +15,72 @@ public class SnakeTalisman extends BaseRelic {
     private static final RelicTier RARITY = RelicTier.RARE;
     private static final LandingSound SOUND = LandingSound.MAGICAL;
 
-    private boolean playedAttackThisTurn = false;
+    private boolean activated = false;
 
     public SnakeTalisman() {
         super(ID, NAME, RARITY, SOUND);
     }
 
     @Override
-    public void atTurnStart() {
-        playedAttackThisTurn = false; // 回合开始，重置打出过攻击牌的标记
-        this.pulse = true; // 遗物发光，提示回合开始时处于可触发状态
-        this.beginPulse();
+    public void atPreBattle() {
+        this.counter = 0;
+        this.activated = false;
+        this.grayscale = false;
+        stopPulse();
     }
 
     @Override
-    public void onUseCard(AbstractCard targetCard, UseCardAction useCardAction) {
-        if (targetCard.type == AbstractCard.CardType.ATTACK) {
-            playedAttackThisTurn = true; // 记录本回合打出过攻击牌
-            this.pulse = false; // 如果打出了攻击牌，结束闪烁提示
+    public void atTurnStart() {
+        // 回合开始时，如果正在冷却中，数字减 1
+        if (this.counter > 0) {
+            this.counter--;
+            if (this.counter == 0) {
+                this.grayscale = false; // 冷却结束，恢复彩色
+            }
+        }
+    }
+
+    @Override
+    public void update() {
+        super.update();
+        // 只有在战斗中、非冷却状态下才允许点击
+        if (AbstractDungeon.getCurrRoom() != null && AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT && this.counter <= 0) {
+            if (this.hb.hovered && InputHelper.justClickedRight) {
+                this.activated = !this.activated;
+                if (this.activated) {
+                    CardCrawlGame.sound.play("UI_CLICK_1");
+                    this.beginLongPulse(); // 开始闪烁
+                } else {
+                    CardCrawlGame.sound.play("UI_CLICK_2");
+                    this.stopPulse(); // 取消闪烁
+                }
+            }
         }
     }
 
     @Override
     public void onPlayerEndTurn() {
-        if (!playedAttackThisTurn) { // 如果本回合内没有打出过攻击牌
+        if (this.activated) {
+            this.activated = false;
             this.flash();
-            addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
-            // 给予玩家1层“无实体”buff，可让受到的所有单次伤害变为1
+            this.stopPulse();
+            
+            // 给予 1 层无实体
             addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player,
                     new IntangiblePlayerPower(AbstractDungeon.player, 1), 1));
+            
+            // 进入 8 回合冷却
+            this.counter = 8;
+            this.grayscale = true;
         }
-        this.pulse = false; // 回合结束，关闭脉冲发光
     }
 
     @Override
     public void onVictory() {
-        playedAttackThisTurn = false;
-        this.pulse = false;
+        this.counter = -1; // 战斗结束重置，但在本 mod 习惯中 counter 为 -1 通常表示数字消失
+        this.grayscale = false;
+        this.activated = false;
+        stopPulse();
     }
 
     @Override

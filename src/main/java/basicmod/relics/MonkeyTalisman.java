@@ -1,90 +1,92 @@
 package basicmod.relics;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.CardLibrary;
 
 import static basicmod.BasicMod.makeID;
 
+/**
+ * 猴符咒：七十二变 (临时版)
+ * 战前先选一张要变的牌，再从职业卡池里自选一张变幻后的样子。
+ */
 public class MonkeyTalisman extends BaseRelic {
     public static final String NAME = "MonkeyTalisman";
     public static final String ID = makeID(NAME);
     private static final RelicTier RARITY = RelicTier.RARE;
     private static final LandingSound SOUND = LandingSound.MAGICAL;
 
-    private enum SelectionState {
-        IDLE, REMOVING, ADDING
+    private enum State {
+        IDLE, SELECTING_TARGET, SELECTING_REPLACEMENT
     }
 
-    private SelectionState state = SelectionState.IDLE;
+    private State state = State.IDLE;
+    private AbstractCard targetCard = null;
 
     public MonkeyTalisman() {
         super(ID, NAME, RARITY, SOUND);
     }
 
     @Override
-    public void onEquip() {
-        state = SelectionState.REMOVING; // 进入删牌阶段
-        // 隐藏不必要的UI元素，开启选择屏幕
-        if (AbstractDungeon.isScreenUp) {
-            AbstractDungeon.dynamicBanner.hide();
-            AbstractDungeon.overlayMenu.cancelButton.hide();
-            AbstractDungeon.previousScreen = AbstractDungeon.screen;
-        }
-        AbstractDungeon.getCurrRoom().phase = com.megacrit.cardcrawl.rooms.AbstractRoom.RoomPhase.INCOMPLETE;
-        // 打开卡牌网格选择页面，允许选择2张牌进行删除
-        AbstractDungeon.gridSelectScreen.open(AbstractDungeon.player.masterDeck.getPurgeableCards(), 2, "选择2张牌删除",
-                false, false, false, false);
+    public void atBattleStartPreDraw() {
+        // 战斗发牌前触发
+        this.flash();
+        state = State.SELECTING_TARGET;
+        
+        // 第一步：从玩家克隆后的战斗卡组副本里选1张要变的（网格显示 masterDeck 比较稳妥）
+        AbstractDungeon.gridSelectScreen.open(AbstractDungeon.player.masterDeck, 1, "选择一张牌临时进行“七十二变”", false);
     }
 
     @Override
     public void update() {
         super.update();
-        // 如果处于删牌阶段，且此时玩家选好了2张牌
-        if (state == SelectionState.REMOVING && AbstractDungeon.gridSelectScreen.selectedCards.size() == 2) {
-            // 删牌阶段选好后，执行删除逻辑
-            for (AbstractCard card : AbstractDungeon.gridSelectScreen.selectedCards) {
-                AbstractDungeon.player.masterDeck.removeCard(card); // 从卡组移除原卡牌
-            }
+        
+        // 第一步回调：选好了要变的“原型”
+        if (state == State.SELECTING_TARGET && !AbstractDungeon.gridSelectScreen.selectedCards.isEmpty()) {
+            this.targetCard = AbstractDungeon.gridSelectScreen.selectedCards.get(0);
             AbstractDungeon.gridSelectScreen.selectedCards.clear();
 
-            // 生成供玩家自选的牌库 (生成72张不重复的全图鉴任何颜色卡池卡)
-            com.megacrit.cardcrawl.cards.CardGroup group = new com.megacrit.cardcrawl.cards.CardGroup(
-                    com.megacrit.cardcrawl.cards.CardGroup.CardGroupType.UNSPECIFIED);
-            while (group.size() < 72) {
-                // 获取任意职业颜色的随机卡牌
-                AbstractCard randomCard = com.megacrit.cardcrawl.helpers.CardLibrary
-                        .getAnyColorCard(AbstractDungeon.rollRarity()).makeCopy();
-                boolean duplicate = false;
-                for (AbstractCard c : group.group) {
-                    if (c.cardID.equals(randomCard.cardID)) {
-                        duplicate = true;
-                        break;
-                    }
-                }
-                // 确保不要生成诅咒牌和状态牌，且不重复
-                if (!duplicate && randomCard.type != AbstractCard.CardType.CURSE
-                        && randomCard.type != AbstractCard.CardType.STATUS) {
-                    group.addToBottom(randomCard);
+            // 构建本职业全卡池供玩家挑选
+            CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
+            for (AbstractCard c : CardLibrary.getAllCards()) {
+                // 筛选出本职业颜色的、非诅咒、非状态、非特殊牌
+                if (c.color == AbstractDungeon.player.getCardColor() && 
+                    c.type != AbstractCard.CardType.CURSE && 
+                    c.type != AbstractCard.CardType.STATUS &&
+                    c.rarity != AbstractCard.CardRarity.SPECIAL) {
+                    group.addToBottom(c.makeStatEquivalentCopy());
                 }
             }
+            
+            state = State.SELECTING_REPLACEMENT;
+            // 第二步：打开网格选变后的牌
+            AbstractDungeon.gridSelectScreen.open(group, 1, "选择变幻后的模样", false);
 
-            state = SelectionState.ADDING; // 进入选牌阶段
-            // 利用选牌网格复用展示72张全职业卡供玩家选2张
-            AbstractDungeon.gridSelectScreen.open(group, 2, "随机七十二张牌中选择2张牌添加到卡组——地煞七十二变", false, false, false, false);
+        } 
+        // 第二步回调：选好了变身后的模样
+        else if (state == State.SELECTING_REPLACEMENT && !AbstractDungeon.gridSelectScreen.selectedCards.isEmpty()) {
+            AbstractCard replacementCard = AbstractDungeon.gridSelectScreen.selectedCards.get(0);
+            AbstractDungeon.gridSelectScreen.selectedCards.clear();
+            state = State.IDLE;
 
-        } else if (state == SelectionState.ADDING && AbstractDungeon.gridSelectScreen.selectedCards.size() == 2) {
-            // 如果处于加牌阶段，且玩家选好了2张牌，那么执行增加逻辑
-            for (int i = 0; i < AbstractDungeon.gridSelectScreen.selectedCards.size(); i++) {
-                AbstractCard card = AbstractDungeon.gridSelectScreen.selectedCards.get(i);
-                float x = com.megacrit.cardcrawl.core.Settings.WIDTH / 2.0F
-                        + (i == 0 ? -150.0F * com.megacrit.cardcrawl.core.Settings.scale
-                                : 150.0F * com.megacrit.cardcrawl.core.Settings.scale);
-                AbstractDungeon.effectsQueue.add(new com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect(
-                        card.makeCopy(), x, com.megacrit.cardcrawl.core.Settings.HEIGHT / 2.0F));
+            // 执行替换：在当前战斗的抽牌堆里把那张牌换掉
+            if (targetCard != null) {
+                replaceCardInGroup(AbstractDungeon.player.drawPile, targetCard, replacementCard);
             }
-            AbstractDungeon.gridSelectScreen.selectedCards.clear(); // 清空选择列表
-            state = SelectionState.IDLE; // 恢复正常状态
-            AbstractDungeon.getCurrRoom().phase = com.megacrit.cardcrawl.rooms.AbstractRoom.RoomPhase.COMPLETE; // 恢复房间正常阶段
+            this.flash();
+            this.targetCard = null;
+        }
+    }
+
+    private void replaceCardInGroup(CardGroup group, AbstractCard target, AbstractCard replacement) {
+        for (int i = 0; i < group.size(); i++) {
+            AbstractCard c = group.group.get(i);
+            // 通过 ID 匹配，确保临时变身成功
+            if (c.cardID.equals(target.cardID) && c.upgraded == target.upgraded) {
+                group.group.set(i, replacement.makeStatEquivalentCopy());
+                break; // 每次只变一张
+            }
         }
     }
 
