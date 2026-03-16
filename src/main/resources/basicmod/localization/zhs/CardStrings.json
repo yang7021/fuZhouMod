@@ -54,7 +54,8 @@
   },
   "fuZhouMod:EagleWings": {
     "NAME": "飞鹰展翅",
-    "DESCRIPTION": "获得 !M! 层 *飞行 。 消耗。"
+    "DESCRIPTION": "获得 !M! 层 *飞行 。 消耗。",
+    "UPGRADE_DESCRIPTION": "获得 !M! 层 *飞行 。"
   },
   "fuZhouMod:TwoDragons": {
     "NAME": "二龙戏珠",

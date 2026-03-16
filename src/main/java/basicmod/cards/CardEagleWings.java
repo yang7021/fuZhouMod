@@ -22,7 +22,7 @@ public class CardEagleWings extends BaseCard {
     public CardEagleWings() {
         super(ID, info);
         setMagic(FLIGHT);
-        this.exhaust = true;
+        setExhaust(true, false);
         tags.add(CustomTags.afu);
     }
 

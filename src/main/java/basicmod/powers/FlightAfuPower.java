@@ -16,6 +16,7 @@ public class FlightAfuPower extends BasePower {
 
     public FlightAfuPower(AbstractCreature owner, int amount) {
         super(POWER_ID, PowerType.BUFF, false, owner, amount);
+        this.loadRegion("flight");
     }
 
     @Override
