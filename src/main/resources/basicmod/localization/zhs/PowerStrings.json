@@ -18,9 +18,5 @@
   "fuZhouMod:TornadoPower": {
     "NAME": "龙卷风摧毁停车场",
     "DESCRIPTIONS": ["在你的回合结束时，对所有敌人造成本回合你造成总伤害 #b30% ( #b", " ) 的伤害。"]
-  },
-  "fuZhouMod:ValmontCommandPower": {
-    "NAME": "瓦龙",
-    "DESCRIPTIONS": ["本轮你的 #y葱姜蒜 、 #y特鲁 及所有 #y阿福 系列卡牌耗费变为 #b0 。"]
   }
 }

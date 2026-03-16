@@ -2,9 +2,8 @@ package basicmod.cards;
 
 import basicmod.util.CardStats;
 import basicmod.enums.CharacterEnums;
-import basicmod.powers.ValmontCommandPower;
+import basicmod.actions.ValmontAction;
 import basicmod.enums.CustomTags;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -26,7 +25,7 @@ public class CardValmont extends BaseCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        // 给玩家挂上“老板的指使”状态，持续一回合
-        addToBot(new ApplyPowerAction(p, p, new ValmontCommandPower(p, 1), 1));
+        // 直接执行费用削减逻辑，不再产生可见能力
+        addToBot(new ValmontAction());
     }
 }
