@@ -13,8 +13,21 @@ import static basicmod.BasicMod.relicPath;
 
 public abstract class BaseRelic extends CustomRelic {
     public AbstractCard.CardColor pool = null;
-    public RelicType relicType = RelicType.SHARED;
+    public basemod.helpers.RelicType relicType = basemod.helpers.RelicType.SHARED;
     protected String imageName;
+
+    /**
+     * 安全检查：当前是否在可以交互的战斗中
+     * 解决在 RelicViewScreen (图鉴) 中 update 导致的 NullPointerException
+     */
+    public boolean canInteractInCombat() {
+        return CardCrawlGame.isInARun() && 
+               com.megacrit.cardcrawl.dungeons.AbstractDungeon.id != null && 
+               com.megacrit.cardcrawl.dungeons.AbstractDungeon.player != null &&
+               com.megacrit.cardcrawl.dungeons.AbstractDungeon.currMapNode != null && 
+               com.megacrit.cardcrawl.dungeons.AbstractDungeon.getCurrRoom() != null && 
+               com.megacrit.cardcrawl.dungeons.AbstractDungeon.getCurrRoom().phase == com.megacrit.cardcrawl.rooms.AbstractRoom.RoomPhase.COMBAT;
+    }
 
     //for character specific relics
     public BaseRelic(String id, String imageName, AbstractCard.CardColor pool, RelicTier tier, LandingSound sfx) {

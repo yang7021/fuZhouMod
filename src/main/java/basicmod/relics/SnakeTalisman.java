@@ -5,7 +5,6 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
-import com.megacrit.cardcrawl.rooms.AbstractRoom;
 
 import static basicmod.BasicMod.makeID;
 
@@ -44,7 +43,7 @@ public class SnakeTalisman extends BaseRelic {
     public void update() {
         super.update();
         // 只有在战斗中、非冷却状态下才允许点击
-        if (AbstractDungeon.getCurrRoom() != null && AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT && this.counter <= 0) {
+        if (canInteractInCombat() && this.counter <= 0) {
             if (this.hb.hovered && InputHelper.justClickedRight) {
                 this.activated = !this.activated;
                 if (this.activated) {

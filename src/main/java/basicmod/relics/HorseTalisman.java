@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import basicmod.powers.ShenZhuStatuePower;
 
 import static basicmod.BasicMod.makeID;
@@ -41,7 +40,7 @@ public class HorseTalisman extends BaseRelic {
         super.update();
 
         // 1. 处理右键点击激活选择
-        if (AbstractDungeon.getCurrRoom() != null && AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT && !this.usedThisTurn) {
+        if (canInteractInCombat() && !this.usedThisTurn) {
             if (this.hb.hovered && InputHelper.justClickedRight) {
                 // 查找所有负面状态
                 CardGroup debuffs = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);

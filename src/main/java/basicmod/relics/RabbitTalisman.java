@@ -7,7 +7,6 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
-import com.megacrit.cardcrawl.rooms.AbstractRoom;
 
 import static basicmod.BasicMod.makeID;
 
@@ -48,8 +47,7 @@ public class RabbitTalisman extends BaseRelic {
     public void update() {
         super.update();
         // 战斗内、本回合尚未触发效果且不在 CD 中
-        if (AbstractDungeon.getCurrRoom() != null && AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT 
-            && !this.usedThisTurn && this.counter <= 0) {
+        if (canInteractInCombat() && !this.usedThisTurn && this.counter <= 0) {
             
             // 1. 处理对我自己的右键点击：切换激活状态
             if (this.hb.hovered && InputHelper.justClickedRight) {

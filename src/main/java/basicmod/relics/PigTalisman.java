@@ -3,10 +3,7 @@ package basicmod.relics;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
-import com.megacrit.cardcrawl.rooms.AbstractRoom;
-
 import static basicmod.BasicMod.makeID;
 
 /**
@@ -44,7 +41,7 @@ public class PigTalisman extends BaseRelic {
     public void update() {
         super.update();
         // 如果在战斗中，未曾被使用，且鼠标悬停在遗物上并点击了右键
-        if (AbstractDungeon.getCurrRoom() != null && AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT && !usedThisTurn) {
+        if (canInteractInCombat() && !usedThisTurn) {
             if (this.hb.hovered && InputHelper.justClickedRight) {
                 this.activated = !this.activated;
                 if (this.activated) {

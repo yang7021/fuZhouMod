@@ -5,7 +5,6 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
-import com.megacrit.cardcrawl.rooms.AbstractRoom;
 
 import static basicmod.BasicMod.makeID;
 
@@ -41,7 +40,7 @@ public class OxTalisman extends BaseRelic {
     public void update() {
         super.update();
         // 战斗内、本回合尚未使用，且鼠标悬停时右键点击
-        if (AbstractDungeon.getCurrRoom() != null && AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT && !this.usedThisTurn) {
+        if (canInteractInCombat() && !this.usedThisTurn) {
             if (this.hb.hovered && InputHelper.justClickedRight) {
                 this.activated = !this.activated;
                 if (this.activated) {

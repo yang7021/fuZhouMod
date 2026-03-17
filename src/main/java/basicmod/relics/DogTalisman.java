@@ -1,7 +1,6 @@
 package basicmod.relics;
 
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.rooms.AbstractRoom;
 
 import static basicmod.BasicMod.makeID;
 
@@ -27,7 +26,7 @@ public class DogTalisman extends BaseRelic {
     @Override
     public int onLoseHpLast(int damageAmount) {
         // 如果当前处于战斗阶段，受到的伤害大于等于当前血量（即受到致命伤害），且本局战斗未使用过
-        if (AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT
+        if (canInteractInCombat()
                 && damageAmount >= AbstractDungeon.player.currentHealth && !usedThisCombat) {
             usedThisCombat = true; // 标记本场战斗已使用
             this.pulse = false; // 停止发光提示

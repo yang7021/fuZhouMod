@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.red.Strike_Red;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.rooms.AbstractRoom;
 
 import java.util.ArrayList;
 
@@ -45,8 +44,7 @@ public class RatTalisman extends BaseRelic {
         }
 
         // 如果在战斗中获得（例如事件或指令），并且玩家是圣主且处于石像状态，解除石像惩罚并给予奖励
-        if (AbstractDungeon.player != null && AbstractDungeon.getCurrRoom() != null
-                && AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT) {
+        if (AbstractDungeon.player != null && canInteractInCombat()) {
             if (AbstractDungeon.player.hasPower(basicmod.powers.ShenZhuStatuePower.POWER_ID)) {
                 // 移除石像状态的 Power 及对应的特效
                 addToBot(new com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction(
@@ -70,8 +68,7 @@ public class RatTalisman extends BaseRelic {
         }
         
         // 如果在战斗中失去，移除复苏能力，变回石像
-        if (AbstractDungeon.player != null && AbstractDungeon.getCurrRoom() != null
-                && AbstractDungeon.getCurrRoom().phase == com.megacrit.cardcrawl.rooms.AbstractRoom.RoomPhase.COMBAT) {
+        if (AbstractDungeon.player != null && canInteractInCombat()) {
             if (AbstractDungeon.player.hasPower(basicmod.powers.ShenZhuRevivedPower.POWER_ID)) {
                 addToBot(new com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction(
                         AbstractDungeon.player, AbstractDungeon.player, basicmod.powers.ShenZhuRevivedPower.POWER_ID));
@@ -179,11 +176,7 @@ public class RatTalisman extends BaseRelic {
 
     // 仅在玩家回合且战斗中允许触发
     private boolean canTriggerNow() {
-        if (AbstractDungeon.player == null || AbstractDungeon.actionManager == null
-                || AbstractDungeon.getCurrRoom() == null) {
-            return false;
-        }
-        if (AbstractDungeon.getCurrRoom().phase != AbstractRoom.RoomPhase.COMBAT) {
+        if (AbstractDungeon.actionManager == null || !canInteractInCombat()) {
             return false;
         }
         return !AbstractDungeon.actionManager.turnHasEnded;
