@@ -159,6 +159,15 @@ public class RatTalisman extends BaseRelic {
         checkQueued = false;
     }
 
+    /**
+     * 重置鼠符咒的使用标记，使其能在本回合再次触发
+     */
+    public void resetUsedThisTurn() {
+        this.usedThisTurn = false;
+        this.grayscale = false; // Added this line based on the instruction's intent
+        this.flash();
+    }
+
     // 将替换检测加入行动队列
     private void queueReplaceCheck() {
         if (usedThisTurn || checkQueued || !canTriggerNow() || !hasReplaceableCardInHand()) {

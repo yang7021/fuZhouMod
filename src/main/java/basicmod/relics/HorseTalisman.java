@@ -93,6 +93,15 @@ public class HorseTalisman extends BaseRelic {
         }
     }
 
+    /**
+     * 重置马符咒的使用标记，使其能在本回合再次触发
+     */
+    public void resetUsedThisTurn() {
+        this.usedThisTurn = false;
+        this.grayscale = false;
+        this.flash();
+    }
+
     // 内部类：用于在 GridSelectScreen 中展示状态的“虚拟卡片”
     private static class PowerPreviewCard extends AbstractCard {
         public String powerId;

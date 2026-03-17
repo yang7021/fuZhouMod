@@ -84,6 +84,15 @@ public class OxTalisman extends BaseRelic {
         stopPulse();
     }
 
+    /**
+     * 重置牛符咒的使用标记，使其能在本回合再次触发
+     */
+    public void resetUsedThisTurn() {
+        this.usedThisTurn = false;
+        this.grayscale = false;
+        this.flash();
+    }
+
     @Override
     public String getUpdatedDescription() {
         return DESCRIPTIONS[0];

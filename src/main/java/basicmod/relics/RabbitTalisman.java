@@ -4,8 +4,10 @@ import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
+import com.megacrit.cardcrawl.helpers.input.InputHelper;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
 
 import static basicmod.BasicMod.makeID;
 
@@ -15,41 +17,137 @@ public class RabbitTalisman extends BaseRelic {
     private static final RelicTier RARITY = RelicTier.RARE;
     private static final LandingSound SOUND = LandingSound.MAGICAL;
 
-    private boolean isFirstCard = true;
+    private boolean activated = false;
+    private boolean usedThisTurn = false;
 
     public RabbitTalisman() {
         super(ID, NAME, RARITY, SOUND);
+        this.counter = 0;
+    }
+
+    @Override
+    public void atPreBattle() {
+        this.activated = false;
+        this.usedThisTurn = false;
+        this.grayscale = false;
+        stopPulse();
     }
 
     @Override
     public void atTurnStart() {
-        isFirstCard = true; // 回合开始时，标记下一张打出的是第一张牌
-        this.beginPulse(); // 遗物开始脉冲闪烁，提示可以触发
-        this.pulse = true;
+        this.usedThisTurn = false;
+        if (this.counter > 0) {
+            this.counter--;
+        }
+        if (this.counter <= 0) {
+            this.grayscale = false;
+        }
+    }
+
+    @Override
+    public void update() {
+        super.update();
+        // 战斗内、本回合尚未触发效果且不在 CD 中
+        if (AbstractDungeon.getCurrRoom() != null && AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT 
+            && !this.usedThisTurn && this.counter <= 0) {
+            
+            // 1. 处理对我自己的右键点击：切换激活状态
+            if (this.hb.hovered && InputHelper.justClickedRight) {
+                this.activated = !this.activated;
+                if (this.activated) {
+                    CardCrawlGame.sound.play("UI_CLICK_1");
+                    this.beginLongPulse();
+                } else {
+                    CardCrawlGame.sound.play("UI_CLICK_2");
+                    this.stopPulse();
+                }
+            }
+
+            // 2. 处理对其他遗物的右键点击：重置 CD/刷新效果
+            if (this.activated && InputHelper.justClickedRight) {
+                for (com.megacrit.cardcrawl.relics.AbstractRelic r : AbstractDungeon.player.relics) {
+                    if (r != this && r.hb.hovered) {
+                        if (tryRefreshRelic(r)) {
+                            triggerEffect2();
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private boolean tryRefreshRelic(com.megacrit.cardcrawl.relics.AbstractRelic r) {
+        // CD 型遗物 (counter > 0)
+        if (r.counter > 0) {
+            r.counter = 0;
+            if (r instanceof BaseRelic) {
+                r.grayscale = false;
+            }
+            r.flash();
+            return true;
+        }
+        // 自动触发型/阶段型 (已由我方添加特定的重置方法)
+        if (r instanceof RatTalisman) {
+            ((RatTalisman) r).resetUsedThisTurn();
+            return true;
+        }
+        if (r instanceof HorseTalisman) {
+            ((HorseTalisman) r).resetUsedThisTurn();
+            return true;
+        }
+        if (r instanceof MonkeyTalisman) {
+            ((MonkeyTalisman) r).triggerManually();
+            return true;
+        }
+        if (r instanceof OxTalisman) {
+            ((OxTalisman) r).resetUsedThisTurn();
+            return true;
+        }
+        if (r instanceof PigTalisman) {
+            ((PigTalisman) r).resetUsedThisTurn();
+            return true;
+        }
+        // 对于其他使用了 grayscale 标识已使用的遗物，尝试恢复其可用状态
+        if (r.grayscale) {
+            r.grayscale = false;
+            r.flash();
+            return true;
+        }
+
+        return false;
+    }
+
+    private void triggerEffect1() {
+        this.flash();
+        this.activated = false;
+        this.usedThisTurn = true;
+        this.stopPulse();
+        // 效果1：本回合不再有 CD 消耗，直接记录 triggered
+    }
+
+    private void triggerEffect2() {
+        this.flash();
+        this.activated = false;
+        this.usedThisTurn = true;
+        this.stopPulse();
+        this.counter = 3; // 进入 3 回合冷却
+        this.grayscale = true;
+        addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
     }
 
     @Override
     public void onUseCard(AbstractCard targetCard, UseCardAction useCardAction) {
-        if (isFirstCard) {
-            boolean hasCost = false;
+        // 如果激活了且本回合没用过，打出的是有费牌
+        if (this.activated && !this.usedThisTurn && this.counter <= 0) {
+            boolean hasCost = (targetCard.costForTurn > 0 && !targetCard.freeToPlayOnce) || (targetCard.cost == -1 && targetCard.energyOnUse > 0);
             
-            // 判断这牌本身是否有真的费用消耗
-            if (targetCard.costForTurn > 0 && !targetCard.freeToPlayOnce) {
-                hasCost = true;
-            } else if (targetCard.cost == -1 && targetCard.energyOnUse > 0) {
-                // 如果是X费用的牌，且消耗了能量
-                hasCost = true;
-            }
-
-            // 只有当打出的是有真实或者视为有费用消耗的牌时，才触发兔符咒的返还逻辑，并消耗掉本回合次数
             if (hasCost) {
-                isFirstCard = false; // 标记第一张牌已打出
-                this.pulse = false; // 停止闪烁提示
-                this.flash();
+                triggerEffect1();
                 addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
-
-                if (targetCard.costForTurn > 0 && !targetCard.freeToPlayOnce) {
-                    addToBot(new GainEnergyAction(targetCard.costForTurn)); // 返还相应的费用
+                // 简单的实现：直接返还能量。严格的实现可以用 Patch 改 card.freeToPlayOnce
+                if (targetCard.costForTurn > 0) {
+                    addToBot(new GainEnergyAction(targetCard.costForTurn));
                 } else if (targetCard.cost == -1) {
                     addToBot(new GainEnergyAction(targetCard.energyOnUse));
                 }
@@ -59,8 +157,11 @@ public class RabbitTalisman extends BaseRelic {
 
     @Override
     public void onVictory() {
-        this.pulse = false;
-        this.isFirstCard = true;
+        this.activated = false;
+        this.usedThisTurn = false;
+        this.grayscale = false;
+        if (this.counter > 0) this.counter = 0;
+        stopPulse();
     }
 
     @Override

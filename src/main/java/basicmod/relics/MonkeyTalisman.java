@@ -23,6 +23,7 @@ public class MonkeyTalisman extends BaseRelic {
 
     private State state = State.IDLE;
     private AbstractCard targetCard = null;
+    private boolean forceTrigger = false;
 
     public MonkeyTalisman() {
         super(ID, NAME, RARITY, SOUND);
@@ -42,6 +43,14 @@ public class MonkeyTalisman extends BaseRelic {
     public void update() {
         super.update();
         
+        // 兔符咒等可能强行触发“七十二变”
+        if (this.state == State.IDLE && AbstractDungeon.gridSelectScreen.selectedCards.isEmpty() && forceTrigger) {
+            forceTrigger = false;
+            this.flash();
+            state = State.SELECTING_TARGET;
+            AbstractDungeon.gridSelectScreen.open(AbstractDungeon.player.masterDeck, 1, "再次选择一张牌临时进行“七十二变”", false);
+        }
+
         // 第一步回调：选好了要变的“原型”
         if (state == State.SELECTING_TARGET && !AbstractDungeon.gridSelectScreen.selectedCards.isEmpty()) {
             this.targetCard = AbstractDungeon.gridSelectScreen.selectedCards.get(0);
@@ -88,6 +97,13 @@ public class MonkeyTalisman extends BaseRelic {
                 break; // 每次只变一张
             }
         }
+    }
+
+    /**
+     * 强行在战斗中再次触发七十二变
+     */
+    public void triggerManually() {
+        this.forceTrigger = true;
     }
 
     @Override
