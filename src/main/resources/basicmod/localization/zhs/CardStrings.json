@@ -84,5 +84,14 @@
   "fuZhouMod:ElephantKick": {
     "NAME": "大象踢腿",
     "DESCRIPTION": "获得 !B! 点 *格挡 。 如果目标意图为攻击，则对其造成 !D! 点伤害。"
+  },
+  "fuZhouMod:GanWenCui": {
+    "NAME": "甘文崔",
+    "DESCRIPTION": "造成 !D! 点伤害。"
+  },
+  "fuZhouMod:DaoLongBlackQi": {
+    "NAME": "刀龙黑气",
+    "DESCRIPTION": "将手牌、抽牌堆里的 *葱姜蒜 变为 *甘文崔 。 消耗。",
+    "UPGRADE_DESCRIPTION": "将手牌、抽牌堆里的 *葱姜蒜 变为 *甘文崔+ 。 消耗。"
   }
 }
