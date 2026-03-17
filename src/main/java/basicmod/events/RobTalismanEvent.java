@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
+import basicmod.effects.RelicExhaustEffect;
 
 import java.util.ArrayList;
 
@@ -62,12 +63,14 @@ public class RobTalismanEvent extends AbstractImageEvent {
                             String toRemove = ownedTalismans.get(AbstractDungeon.miscRng.random(ownedTalismans.size() - 1));
                             AbstractRelic r = AbstractDungeon.player.getRelic(toRemove);
                             if (r != null) {
+                                String relicName = r.name;
+                                AbstractDungeon.topLevelEffects.add(new RelicExhaustEffect(r));
                                 r.onUnequip();
                                 AbstractDungeon.player.relics.remove(r);
                                 AbstractDungeon.player.reorganizeRelics();
+                                this.imageEventText.updateBodyText(DESCRIPTIONS[2] + " ( " + relicName + " )");
                             }
                         }
-                        this.imageEventText.updateBodyText(DESCRIPTIONS[2]);
                         break;
                     case 2: // 硬扛伤害
                         AbstractDungeon.player.decreaseMaxHealth(10);
