@@ -21,7 +21,11 @@ import com.evacipated.cardcrawl.modthespire.Patcher;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.google.gson.Gson;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.localization.*;
+import com.megacrit.cardcrawl.localization.CardStrings;
+import com.megacrit.cardcrawl.localization.CharacterStrings;
+import com.megacrit.cardcrawl.localization.PowerStrings;
+import com.megacrit.cardcrawl.localization.RelicStrings;
+import com.megacrit.cardcrawl.localization.EventStrings;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.scannotation.AnnotationDB;
@@ -164,15 +168,15 @@ public class BasicMod implements
     }
 
     private void loadLocalization(String lang) {
-        BaseMod.loadCustomStringsFile(com.megacrit.cardcrawl.localization.CardStrings.class,
+        BaseMod.loadCustomStringsFile(CardStrings.class,
                 localizationPath(lang, "CardStrings.json"));
-        BaseMod.loadCustomStringsFile(com.megacrit.cardcrawl.localization.CharacterStrings.class,
+        BaseMod.loadCustomStringsFile(CharacterStrings.class,
                 localizationPath(lang, "CharacterStrings.json"));
-        BaseMod.loadCustomStringsFile(com.megacrit.cardcrawl.localization.PowerStrings.class,
+        BaseMod.loadCustomStringsFile(PowerStrings.class,
                 localizationPath(lang, "PowerStrings.json"));
-        BaseMod.loadCustomStringsFile(com.megacrit.cardcrawl.localization.RelicStrings.class,
+        BaseMod.loadCustomStringsFile(RelicStrings.class,
                 localizationPath(lang, "RelicStrings.json"));
-        BaseMod.loadCustomStringsFile(com.megacrit.cardcrawl.localization.EventStrings.class,
+        BaseMod.loadCustomStringsFile(EventStrings.class,
                 localizationPath(lang, "EventStrings.json"));
     }
 

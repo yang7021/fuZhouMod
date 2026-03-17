@@ -18,10 +18,7 @@ import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import com.megacrit.cardcrawl.events.city.Vampires;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-
 import com.badlogic.gdx.math.MathUtils;
-import basicmod.powers.ShenZhuStatuePower;
-
 import java.util.ArrayList;
 
 public class ShengZhuCustomPlayer extends CustomPlayer {
@@ -34,7 +31,7 @@ public class ShengZhuCustomPlayer extends CustomPlayer {
     public static final int ORB_SLOTS = 0;
 
     public ShengZhuCustomPlayer(String name, PlayerClass setClass) {
-        super(name, setClass, new com.megacrit.cardcrawl.ui.panels.energyorb.EnergyOrbRed(),
+        super(name, setClass, new basicmod.util.ShengZhuEnergyOrb(),
                 (String) null, (String) null);
 
         initializeClass(BasicMod.imagePath("character/shengzhu/statue.png"),
@@ -201,7 +198,7 @@ public class ShengZhuCustomPlayer extends CustomPlayer {
         // 如果没有鼠符咒，变石像；一旦有，得力量
         if (!AbstractDungeon.player.hasRelic("fuZhouMod:RatTalisman")) {
             AbstractDungeon.actionManager.addToBottom(
-                    new ApplyPowerAction(this, this, new ShenZhuStatuePower(this)));
+                    new ApplyPowerAction(this, this, new basicmod.powers.ShenZhuStatuePower(this)));
         } else {
             AbstractDungeon.actionManager.addToBottom(
                     new ApplyPowerAction(this, this, new basicmod.powers.ShenZhuRevivedPower(this)));
