@@ -38,13 +38,36 @@ public class ShengZhuCustomPlayer extends CustomPlayer {
                 (String) null, (String) null);
 
         initializeClass(BasicMod.imagePath("character/shengzhu/statue.png"),
-                BasicMod.imagePath("character/shengzhu/shoulder2.png"),
+                BasicMod.imagePath("character/shengzhu/shoulder.png"),
                 BasicMod.imagePath("character/shengzhu/shoulder.png"),
                 BasicMod.imagePath("character/shengzhu/corpse.png"),
                 getLoadout(), 20.0F, -10.0F, 220.0F, 290.0F, new EnergyManager(ENERGY_PER_TURN));
 
         this.dialogX = (this.drawX + 0.0F * Settings.scale);
         this.dialogY = (this.drawY + 220.0F * Settings.scale);
+    }
+
+    @Override
+    public void render(SpriteBatch sb) {
+        // 如果在篝火/营地界面，游戏引擎默认会用 512x512 且只画左下角区域
+        // 我们在这里拦截一下，如果是营地且不是战斗，就按图片的真实比例画
+        if (AbstractDungeon.getCurrRoom() instanceof com.megacrit.cardcrawl.rooms.RestRoom) {
+            com.badlogic.gdx.graphics.Texture shoulderImg = this.animX > 0.0F ? this.shoulder2Img : this.shoulderImg;
+            if (shoulderImg != null) {
+                sb.setColor(Color.WHITE);
+                sb.draw(shoulderImg,
+                        this.drawX - (float) shoulderImg.getWidth() * Settings.scale / 2.0F,
+                        this.drawY - 300.0F * Settings.scale,
+                        (float) shoulderImg.getWidth() * Settings.scale,
+                        (float) shoulderImg.getHeight() * Settings.scale);
+            }
+            this.hb.render(sb);
+            this.healthHb.render(sb);
+            return;
+        }
+
+        // 其它情况（如战斗、事件）走原本或自定义的 renderPlayerImage 逻辑
+        super.render(sb);
     }
 
     @Override
