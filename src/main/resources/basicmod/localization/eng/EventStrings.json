@@ -1,21 +1,19 @@
 {
-  "${modID}:EventID": {
-    "NAME": "Event Name",
+  "fuZhouMod:RobTalismanEvent": {
+    "NAME": "Rob Talisman",
     "DESCRIPTIONS": [
-      "This is event text, generally used to describe what's happening.",
-      "#g~This~ #g~text~ #g~is~ #g~green~ #g~and~ #g~wavy.~",
-      "#r@RED@ #r@AND@ #r@VIBRATING@ #r@TEXT.@",
-      "#rRed #gGreen #yYellow #bBlue #pPurple. ~Wavy~ @vibrating.@",
-      "You have to mark every word individually.",
-      "You can also use [#ffffff]white[] hex color codes like this to color text.",
-      "Hex color codes also work in card text! But not on keywords, without some workarounds."
+      "The power of the talismans you carry has caused a celestial anomaly, alerting the righteous (or the greedy). They suddenly appear, claiming that good and evil are irreconcilable, and demand to seize your source of energy! NL NL You feel an unprecedented sense of crisis...",
+      "You handed over all your gold and reflected deeply on your actions. The person snorted and left with the money. But the regret in your heart follows you like a shadow.",
+      "At the moment the opponent acted, you felt a void in your chest. A precious talisman was forcibly stripped away, and your power weakened accordingly.",
+      "You gritted your teeth and let the opponent's ripples hit you. Although you kept the talisman, your foundation was damaged, and you felt an unprecedented arrogance: since the Heavens do not allow it, I will act against Heaven!"
     ],
     "OPTIONS": [
-      "[Action Description] What you actually get.",
-      "[Denial] #rLose #r1 #rMax #rHP. Bad stuff is red.",
-      "[Acceptance] #gGain #gApotheosis. Good stuff is green.",
-      "[Leave]",
-      "Select card to remove. (You can also stick extra text like this in here.)"
+      "[Escape] Lose all gold (",
+      "), obtain [Regret] ",
+      "[Locked] Requires at least 200 gold",
+      "[Give up Talisman] Randomly lose a talisman",
+      "[Endure] Lose 10 Max HP, obtain [Pride] ",
+      "[Leave]"
     ]
   }
 }

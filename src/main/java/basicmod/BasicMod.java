@@ -126,6 +126,9 @@ public class BasicMod implements
         // Panel".
         BaseMod.registerModBadge(badgeTexture, info.Name, GeneralUtils.arrToString(info.Authors), info.Description,
                 null);
+
+        // 注册事件
+        BaseMod.addEvent(basicmod.events.RobTalismanEvent.ID, basicmod.events.RobTalismanEvent.class);
     }
 
     /*----------Localization----------*/
@@ -169,6 +172,8 @@ public class BasicMod implements
                 localizationPath(lang, "PowerStrings.json"));
         BaseMod.loadCustomStringsFile(com.megacrit.cardcrawl.localization.RelicStrings.class,
                 localizationPath(lang, "RelicStrings.json"));
+        BaseMod.loadCustomStringsFile(com.megacrit.cardcrawl.localization.EventStrings.class,
+                localizationPath(lang, "EventStrings.json"));
     }
 
     @Override
