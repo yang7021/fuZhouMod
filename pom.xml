@@ -4,7 +4,7 @@
     <properties>
         <modID>fuZhouMod</modID>
         <author>guShenMoFeiTe</author>
-        <project.name>成龙历险记遗物mod</project.name>
+        <project.name>圣主历险记</project.name>
         <author>股神墨菲特</author>
 
         <!-- Change the path for your system to match your Steam installation. -->
@@ -29,7 +29,7 @@
     <version>1.0.0</version>
     <!-- Avoid using \ in this description, as they can cause the description to fail to load. -->
     <!-- If you really want to use them, you'll need to "escape" them by putting another one in front, like \\ -->
-    <description>成龙历险记中道具效果改制为杀塔遗物mod</description>
+    <description>以成龙历险记为蓝本开发的mod，主视角是圣主</description>
 
     <!--You shouldn't need to change anything below this point, but feel free to look at it.-->
     <!--You'll get a warning regarding these when you package your mod, but don't worry, it's just set up like this for convenience.-->
