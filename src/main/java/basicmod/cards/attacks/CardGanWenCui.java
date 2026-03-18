@@ -9,12 +9,13 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
+@basemod.AutoAdd.Ignore
 public class CardGanWenCui extends BaseCard {
     public static final String ID = makeID("GanWenCui");
     private static final CardStats info = new CardStats(
             CharacterEnums.SHENGZHU_COLOR,
             CardType.ATTACK,
-            CardRarity.UNCOMMON,
+            CardRarity.SPECIAL,
             CardTarget.ENEMY,
             1);
 

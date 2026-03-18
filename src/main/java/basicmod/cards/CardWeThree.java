@@ -8,12 +8,13 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
+@basemod.AutoAdd.Ignore
 public class CardWeThree extends BaseCard {
     public static final String ID = makeID("WeThree");
     private static final CardStats info = new CardStats(
             CharacterEnums.SHENGZHU_COLOR,
             CardType.ATTACK,
-            CardRarity.BASIC,
+            CardRarity.SPECIAL,
             CardTarget.ENEMY,
             1);
 

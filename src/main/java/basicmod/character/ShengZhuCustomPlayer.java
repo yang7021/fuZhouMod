@@ -151,7 +151,7 @@ public class ShengZhuCustomPlayer extends CustomPlayer {
 
     @Override
     public AbstractCard getStartCardForEvent() {
-        return new basicmod.cards.CardWeThree(); // Placeholder
+        return new basicmod.cards.CardBlackHandAhFen(); // Placeholder
     }
 
     @Override
