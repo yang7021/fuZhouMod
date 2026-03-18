@@ -17,17 +17,14 @@ public class CardTaiShanPress extends BaseCard {
             CardTarget.SELF,
             2);
 
-    private static final int BLOCK = 3;
-    private static final int UPG_BLOCK = 1;
-
     public CardTaiShanPress() {
         super(ID, info);
-        setMagic(BLOCK, UPG_BLOCK);
+        setCostUpgrade(1); // 升级后费用-1
         tags.add(CustomTags.afu);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new ApplyPowerAction(p, p, new TaiShanPressPower(p, magicNumber), magicNumber));
+        addToBot(new ApplyPowerAction(p, p, new TaiShanPressPower(p, 1), 1));
     }
 }

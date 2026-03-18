@@ -4,12 +4,12 @@
     "DESCRIPTION": "造成 !D! 点伤害。"
   },
   "fuZhouMod:Tohru": {
-    "NAME": "特鲁",
-    "DESCRIPTION": "获得 !B! 点格挡。"
+    "NAME": "黑手帮·特鲁",
+    "DESCRIPTION": "造成 !D! 点伤害，获得 !B! 点格挡，并额外造成等同于（计算本卡格挡前）当前护甲值的伤害。"
   },
   "fuZhouMod:Valmont": {
-    "NAME": "瓦龙",
-    "DESCRIPTION": "金鸡王宝藏的大饼：本轮内 *葱姜蒜 、 *特鲁 和所有 *阿福 系列卡牌耗费变为 *0 。 消耗。"
+    "NAME": "金鸡王的宝藏",
+    "DESCRIPTION": "本轮内所有 *黑手帮 和 *阿福 系列卡牌耗费变为 *0 。 消耗。"
   },
   "fuZhouMod:CrowFlying": {
     "NAME": "乌鸦坐飞机",
@@ -67,11 +67,11 @@
   },
   "fuZhouMod:TaiShanPress": {
     "NAME": "泰山压顶",
-    "DESCRIPTION": "每当你打出一张 *阿福 ，获得 !M! 点 *格挡 。"
+    "DESCRIPTION": "在你的回合结束时，对一名随机敌人造成本轮你造成总伤害 *30% 的伤害。"
   },
   "fuZhouMod:Tornado": {
     "NAME": "龙卷风摧毁停车场",
-    "DESCRIPTION": "在你的回合结束时，对所有敌人造成本轮你造成总伤害 *30% ( !M! ) 的伤害。"
+    "DESCRIPTION": "在你的回合结束时，对所有敌人造成本轮你造成总伤害 *30% 的伤害。"
   },
   "fuZhouMod:FlamingoStep": {
     "NAME": "弗朗明哥舞步",
@@ -91,7 +91,39 @@
   },
   "fuZhouMod:DaoLongBlackQi": {
     "NAME": "刀龙黑气",
-    "DESCRIPTION": "将手牌、抽牌堆里的 *葱姜蒜 变为 *甘文崔 。 消耗。",
-    "UPGRADE_DESCRIPTION": "将手牌、抽牌堆里的 *葱姜蒜 变为 *甘文崔+ 。 消耗。"
+    "DESCRIPTION": "将所有的 *周 、 *拉苏 、 *阿奋 和 *泰山压顶 变为 *甘 、 *文 、 *崔 和 *龙卷风摧毁停车场 。 消耗。",
+    "UPGRADE_DESCRIPTION": "将所有的 *周 、 *拉苏 、 *阿奋 和 *泰山压顶 变为 *甘+ 、 *文+ 、 *崔+ 和 *龙卷风摧毁停车场+ 。 消耗。"
+  },
+  "fuZhouMod:BlackHandAhFen": {
+    "NAME": "黑手帮·阿奋",
+    "DESCRIPTION": "造成 !D! 点伤害。"
+  },
+  "fuZhouMod:BlackHandChow": {
+    "NAME": "黑手帮·周",
+    "DESCRIPTION": "获得 !B! 点格挡。"
+  },
+  "fuZhouMod:BlackHandRatso": {
+    "NAME": "黑手帮·拉苏",
+    "DESCRIPTION": "获得 !B! 点格挡。 NL 抽 !M! 张牌，丢弃 !M! 张牌。"
+  },
+  "fuZhouMod:BlackHandValmont": {
+    "NAME": "黑手帮·瓦龙",
+    "DESCRIPTION": "造成 !D! 点伤害。本回合每打出1张 *黑手帮 卡牌，额外造成 !M! 点伤害。"
+  },
+  "fuZhouMod:BlackHand": {
+    "NAME": "黑手帮",
+    "DESCRIPTION": "升级手牌中所有基础的 *黑手帮 卡牌。 消耗。"
+  },
+  "fuZhouMod:Gan": {
+    "NAME": "甘",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 暴击率随使用次数增加。若暴击造成 *1.5 倍伤害。"
+  },
+  "fuZhouMod:Wen": {
+    "NAME": "文",
+    "DESCRIPTION": "获得 !B! 点格挡。 NL 获得 !M! 层 *火焰屏障 。"
+  },
+  "fuZhouMod:Cui": {
+    "NAME": "崔",
+    "DESCRIPTION": "获得 !B! 点格挡。 NL 抽 !M! 张牌，丢弃 !M! 张牌。 给予敌人 !M! 层 *虚弱 。"
   }
 }

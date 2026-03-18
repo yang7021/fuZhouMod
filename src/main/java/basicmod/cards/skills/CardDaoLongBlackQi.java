@@ -14,7 +14,7 @@ public class CardDaoLongBlackQi extends BaseCard {
             CardType.SKILL,
             CardRarity.RARE,
             CardTarget.NONE,
-            1);
+            2);
 
     public CardDaoLongBlackQi() {
         super(ID, info);

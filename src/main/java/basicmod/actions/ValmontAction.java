@@ -1,6 +1,5 @@
 package basicmod.actions;
 
-import basicmod.BasicMod;
 import basicmod.enums.CustomTags;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -32,9 +31,7 @@ public class ValmontAction extends AbstractGameAction {
     }
 
     private boolean shouldReduceCost(AbstractCard card) {
-        // 识别逻辑：ID 是 葱姜蒜/特鲁，或者带有 阿福 标签
-        return card.cardID.equals(BasicMod.makeID("WeThree")) ||
-               card.cardID.equals(BasicMod.makeID("Tohru")) ||
-               card.tags.contains(CustomTags.afu);
+        // 识别逻辑：带有 afu 或 blackhand 标签的卡牌
+        return card.tags.contains(CustomTags.afu) || card.tags.contains(CustomTags.blackhand);
     }
 }

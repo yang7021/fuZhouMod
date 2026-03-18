@@ -3,28 +3,27 @@ package basicmod.cards;
 import basicmod.util.CardStats;
 import basicmod.enums.CharacterEnums;
 import basicmod.enums.CustomTags;
-import basicmod.powers.TornadoPower;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-public class CardTornado extends BaseCard {
-    public static final String ID = makeID("Tornado");
+public class CardBlackHandChow extends BaseCard {
+    public static final String ID = makeID("BlackHandChow");
     private static final CardStats info = new CardStats(
             CharacterEnums.SHENGZHU_COLOR,
-            CardType.POWER,
-            CardRarity.RARE,
+            CardType.SKILL,
+            CardRarity.COMMON,
             CardTarget.SELF,
-            2);
+            1);
 
-    public CardTornado() {
+    public CardBlackHandChow() {
         super(ID, info);
-        setCostUpgrade(1); // 升级后费用-1
-        tags.add(CustomTags.afu);
+        setBlock(5, 3);
+        tags.add(CustomTags.blackhand);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new ApplyPowerAction(p, p, new TornadoPower(p, 1), 1));
+        addToBot(new GainBlockAction(p, p, block));
     }
 }

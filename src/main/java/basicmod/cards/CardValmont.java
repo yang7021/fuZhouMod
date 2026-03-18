@@ -12,15 +12,15 @@ public class CardValmont extends BaseCard {
     private static final CardStats info = new CardStats(
             CharacterEnums.SHENGZHU_COLOR,
             CardType.SKILL,
-            CardRarity.UNCOMMON,
+            CardRarity.RARE, // 已更新为金卡
             CardTarget.SELF,
-            1);
+            2);
 
     public CardValmont() {
         super(ID, info);
         tags.add(CustomTags.afu);
         setExhaust(true);
-        setCostUpgrade(0);
+        setCostUpgrade(1); // 升级后-1费 (升1)
     }
 
     @Override

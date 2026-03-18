@@ -90,13 +90,13 @@ public class ShengZhuCustomPlayer extends CustomPlayer {
     @Override
     public ArrayList<String> getStartingDeck() {
         ArrayList<String> retVal = new ArrayList<>();
-        // 初始套牌：4张葱姜蒜、4张特鲁、1张瓦龙、1张乌鸦坐飞机
+        // 初始套牌：4张阿奋(打击)、4张周(防御)、1张拉苏、1张电眼逼人
         for (int i = 0; i < 4; i++) {
-            retVal.add("fuZhouMod:WeThree");
-            retVal.add("fuZhouMod:Tohru");
+            retVal.add("fuZhouMod:BlackHandAhFen");
+            retVal.add("fuZhouMod:BlackHandChow");
         }
-        retVal.add("fuZhouMod:Valmont");
-        retVal.add("fuZhouMod:CrowFlying");
+        retVal.add("fuZhouMod:BlackHandRatso");
+        retVal.add("fuZhouMod:LaserEyes");
         return retVal;
     }
 
