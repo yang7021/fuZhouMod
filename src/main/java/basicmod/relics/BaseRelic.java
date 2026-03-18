@@ -115,4 +115,14 @@ public abstract class BaseRelic extends CustomRelic {
     private static boolean notPng(String name) {
         return !name.endsWith(".png");
     }
+
+    @Override
+    public void onEquip() {
+        super.onEquip();
+        // 装备时立刻通过清单判断：若为十二生肖符咒，则将其在原版遗物池中彻底摘除。
+        // （应对事件或者其他强制赋予手段时的双重保险防重复获取）
+        if (basicmod.helpers.TalismanHelper.ALL_TALISMAN_IDS.contains(this.relicId)) {
+            basicmod.helpers.TalismanHelper.removeTalismanFromPools(this.relicId);
+        }
+    }
 }

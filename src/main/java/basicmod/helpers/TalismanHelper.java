@@ -44,6 +44,19 @@ public class TalismanHelper {
         }
 
         String chosenId = missing.get(AbstractDungeon.relicRng.random(missing.size() - 1));
+        // 从原生遗物池中彻底剔除，防止在其他途径再次掉落
+        removeTalismanFromPools(chosenId);
         return RelicLibrary.getRelic(chosenId).makeCopy();
+    }
+
+    /**
+     * 将指定的符咒从各个原生掉落池中移除，防止在商店或下一个奖励窗口中重复掉落
+     */
+    public static void removeTalismanFromPools(String relicId) {
+        if (AbstractDungeon.commonRelicPool != null) AbstractDungeon.commonRelicPool.remove(relicId);
+        if (AbstractDungeon.uncommonRelicPool != null) AbstractDungeon.uncommonRelicPool.remove(relicId);
+        if (AbstractDungeon.rareRelicPool != null) AbstractDungeon.rareRelicPool.remove(relicId);
+        if (AbstractDungeon.bossRelicPool != null) AbstractDungeon.bossRelicPool.remove(relicId);
+        if (AbstractDungeon.shopRelicPool != null) AbstractDungeon.shopRelicPool.remove(relicId);
     }
 }
