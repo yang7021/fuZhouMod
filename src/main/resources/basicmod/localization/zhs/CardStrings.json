@@ -116,7 +116,7 @@
   },
   "fuZhouMod:Gan": {
     "NAME": "甘",
-    "DESCRIPTION": "造成 !D! 点伤害。 NL 暴击率随使用次数增加。若暴击造成 *1.5 倍伤害。"
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 暴击率随使用次数增加。暴击时额外造成 *一半伤害。"
   },
   "fuZhouMod:Wen": {
     "NAME": "文",
