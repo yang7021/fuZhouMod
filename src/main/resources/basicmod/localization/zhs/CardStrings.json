@@ -1,129 +1,129 @@
 {
   "fuZhouMod:WeThree": {
     "NAME": "葱姜蒜(已废弃)",
-    "DESCRIPTION": "此卡已废弃。"
+    "DESCRIPTION": "此卡已废弃"
   },
   "fuZhouMod:GanWenCui": {
     "NAME": "甘文崔(已废弃)",
-    "DESCRIPTION": "此卡已废弃。"
+    "DESCRIPTION": "此卡已废弃"
   },
   "fuZhouMod:Tohru": {
     "NAME": "黑手帮·特鲁",
-    "DESCRIPTION": "造成 !D! 点伤害，获得 !B! 点格挡，并额外造成等同于（计算本卡格挡前）当前护甲值的伤害。"
+    "DESCRIPTION": "造成 !D! 点伤害，获得 !B! 点格挡，并额外造成等同于（计算本卡格挡前）当前护甲值的伤害"
   },
   "fuZhouMod:Valmont": {
     "NAME": "金鸡王的宝藏",
-    "DESCRIPTION": "本轮内所有 *黑手帮 和 *阿福 系列卡牌耗费变为 *0 。 消耗。"
+    "DESCRIPTION": "本轮内所有 *黑手帮 和 *阿福 系列卡牌耗费变为 *0 。 NL 消耗"
   },
   "fuZhouMod:CrowFlying": {
     "NAME": "乌鸦坐飞机",
-    "DESCRIPTION": "造成 !D! 点伤害。 如果拥有 *鸡符咒 ，耗能减少 [G] 。"
+    "DESCRIPTION": "造成 !D! 点伤害。 如果拥有 *鸡符咒 ，耗能减少 [G] "
   },
   "fuZhouMod:LaserEyes": {
     "NAME": "电眼逼人",
-    "DESCRIPTION": "造成 !D! 点伤害。 施加 !M! 层 *易伤 。 如果持有 *猪符咒 ，则改为对所有敌人生效。"
+    "DESCRIPTION": "造成 !D! 点伤害。 施加 !M! 层 *易伤 。 如果持有 *猪符咒 ，则改为对所有敌人生效"
   },
   "fuZhouMod:OneTigerTwoSheep": {
     "NAME": "一虎杀两羊",
-    "DESCRIPTION": "造成 !D! 点伤害 *2 次。 如果此牌击杀了敌人，获得 !M! 点 *力量 。"
+    "DESCRIPTION": "造成 !D! 点伤害 *2 次。 如果此牌击杀了敌人，获得 !M! 点 *力量 "
   },
   "fuZhouMod:MeteorHitsMountain": {
     "NAME": "流星连打山",
-    "DESCRIPTION": "造成 !D! 点伤害 !M! 次。 NL 若本轮已打出 *阿福 ：你的下一次攻击伤害增加 !fuZhouMod:B! 点。"
+    "DESCRIPTION": "造成 !D! 点伤害 !M! 次。 NL 若本轮已打出 *阿福 ：你的下一次攻击伤害增加 !fuZhouMod:B! 点"
   },
   "fuZhouMod:HeadCracksWalnut": {
     "NAME": "脑袋砸核桃",
-    "DESCRIPTION": "造成 !D! 点伤害。 NL 若本轮已打出 *阿福 ：抽 !M! 张牌。"
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 若本轮已打出 *阿福 ：抽 !M! 张牌"
   },
   "fuZhouMod:AxeCutsTree": {
     "NAME": "巨斧砍大树",
-    "DESCRIPTION": "造成 !D! 点伤害。 如果目标拥有 *格挡 ，伤害提升 *50% 。"
+    "DESCRIPTION": "造成 !D! 点伤害。 如果目标拥有 *格挡 ，伤害提升 *百分之五十 "
   },
   "fuZhouMod:AfuBeatJackie": {
     "NAME": "阿福揍扁了成龙",
-    "DESCRIPTION": "造成 !D! 点伤害。 本场战斗中你每打出一张名称不同的 *阿福 ，此牌伤害增加 !M! 点。"
+    "DESCRIPTION": "造成 !D! 点伤害。 本场战斗中你每打出一张名称不同的 *阿福 ，此牌伤害增加 !M! 点"
   },
   "fuZhouMod:ComboMove": {
     "NAME": "组合技",
-    "DESCRIPTION": "从抽牌堆中寻找一张攻击牌放入手牌。 其耗能在本轮变为 *0 。"
+    "DESCRIPTION": "从抽牌堆中寻找一张攻击牌放入手牌。 其耗能在本轮变为 *0 "
   },
   "fuZhouMod:RatStealsCheese": {
     "NAME": "老鼠偷奶酪",
-    "DESCRIPTION": "获得 !M! 点能量。 将一张 *晕眩 加入弃牌堆。",
-    "UPGRADE_DESCRIPTION": "获得 !M! 点能量。"
+    "DESCRIPTION": "获得 !M! 点能量。 将一张 *晕眩 加入弃牌堆",
+    "UPGRADE_DESCRIPTION": "获得 !M! 点能量"
   },
   "fuZhouMod:CraneCatchesShrimp": {
     "NAME": "飞鹤捕虾",
-    "DESCRIPTION": "丢弃手牌中所有非攻击牌，每丢弃一张，抽 !M! 张牌。"
+    "DESCRIPTION": "丢弃手牌中所有非攻击牌，每丢弃一张，抽 !M! 张牌"
   },
   "fuZhouMod:EagleWings": {
     "NAME": "飞鹰展翅",
-    "DESCRIPTION": "获得 !M! 层 *飞行 。 消耗。",
-    "UPGRADE_DESCRIPTION": "获得 !M! 层 *飞行 。"
+    "DESCRIPTION": "获得 !M! 层 *飞行 。 NL 消耗",
+    "UPGRADE_DESCRIPTION": "获得 !M! 层 *飞行 "
   },
   "fuZhouMod:TwoDragons": {
     "NAME": "二龙戏珠",
-    "DESCRIPTION": "你在本轮打出的下 !M! 张牌将额外触发一次。"
+    "DESCRIPTION": "你在本轮打出的下 !M! 张牌将额外触发一次"
   },
   "fuZhouMod:GoatClimbsMountain": {
     "NAME": "山羊爬山",
-    "DESCRIPTION": "每打出两张牌，本轮获得 *1 点临时 *力量 。"
+    "DESCRIPTION": "每打出两张牌，本轮获得 *1 点临时 *力量 "
   },
   "fuZhouMod:TaiShanPress": {
     "NAME": "泰山压顶",
-    "DESCRIPTION": "在你的回合结束时，对一名随机敌人造成本轮你造成总伤害 *30% 的伤害。"
+    "DESCRIPTION": "在你的回合结束时，对一名随机敌人造成本轮你造成总伤害 *百分之三十 的伤害"
   },
   "fuZhouMod:Tornado": {
     "NAME": "山",
-    "DESCRIPTION": "在你的回合结束时，对所有敌人造成本轮你造成总伤害 *30% 的伤害。"
+    "DESCRIPTION": "在你的回合结束时，对所有敌人造成本轮你造成总伤害 *百分之三十 的伤害"
   },
   "fuZhouMod:FlamingoStep": {
     "NAME": "弗朗明哥舞步",
-    "DESCRIPTION": "获得 !B! 点 *格挡 。 NL 若本轮已打出 *阿福 ：下回合额外获得 !M! 点能量。"
+    "DESCRIPTION": "获得 !B! 点 *格挡 。 NL 若本轮已打出 *阿福 ：下回合额外获得 !M! 点能量"
   },
   "fuZhouMod:LameGoose": {
     "NAME": "我成了瘸腿鹅",
-    "DESCRIPTION": "获得 !B! 点 *格挡 。 NL 若本轮已打出 *阿福 ：本轮获得 !M! 点临时 *力量 。"
+    "DESCRIPTION": "获得 !B! 点 *格挡 。 NL 若本轮已打出 *阿福 ：本轮获得 !M! 点临时 *力量 "
   },
   "fuZhouMod:ElephantKick": {
     "NAME": "大象踢腿",
-    "DESCRIPTION": "获得 !B! 点 *格挡 。 如果目标意图为攻击，则对其造成 !D! 点伤害。"
+    "DESCRIPTION": "获得 !B! 点 *格挡 。 如果目标意图为攻击，则对其造成 !D! 点伤害"
   },
   "fuZhouMod:DaoLongBlackQi": {
     "NAME": "刀龙黑气",
-    "DESCRIPTION": "将所有的 *周 、 *拉苏 、 *阿奋 和 *泰山压顶 变为 *甘 、 *文 、 *崔 和 *山 。 消耗。",
-    "UPGRADE_DESCRIPTION": "将所有的 *周 、 *拉苏 、 *阿奋 和 *泰山压顶 变为 *甘+ 、 *文+ 、 *崔+ 和 *山+ 。 消耗。"
+    "DESCRIPTION": "将所有的 *周 、 *拉苏 、 *阿奋 和 *泰山压顶 变为 *甘 、 *文 、 *崔 和 *山 。 NL 消耗",
+    "UPGRADE_DESCRIPTION": "将所有的 *周 、 *拉苏 、 *阿奋 和 *泰山压顶 变为 *甘+ 、 *文+ 、 *崔+ 和 *山+ 。 NL 消耗"
   },
   "fuZhouMod:BlackHandAhFen": {
     "NAME": "黑手帮·阿奋",
-    "DESCRIPTION": "造成 !D! 点伤害。"
+    "DESCRIPTION": "造成 !D! 点伤害"
   },
   "fuZhouMod:BlackHandChow": {
     "NAME": "黑手帮·周",
-    "DESCRIPTION": "获得 !B! 点格挡。"
+    "DESCRIPTION": "获得 !B! 点格挡"
   },
   "fuZhouMod:BlackHandRatso": {
     "NAME": "黑手帮·拉苏",
-    "DESCRIPTION": "获得 !B! 点格挡。 NL 抽 !M! 张牌，丢弃 !M! 张牌。"
+    "DESCRIPTION": "获得 !B! 点格挡。 NL 抽 !M! 张牌，丢弃 !M! 张牌"
   },
   "fuZhouMod:BlackHandValmont": {
     "NAME": "黑手帮·瓦龙",
-    "DESCRIPTION": "造成 !D! 点伤害。本回合每打出1张 *黑手帮 卡牌，额外造成 !M! 点伤害。"
+    "DESCRIPTION": "造成 !D! 点伤害。本回合每打出1张 *黑手帮 卡牌，额外造成 !M! 点伤害"
   },
   "fuZhouMod:BlackHand": {
     "NAME": "黑手帮",
-    "DESCRIPTION": "升级手牌中所有基础的 *黑手帮 卡牌。 消耗。"
+    "DESCRIPTION": "升级手牌中所有基础的 *黑手帮 卡牌。 NL 消耗"
   },
   "fuZhouMod:Gan": {
     "NAME": "甘",
-    "DESCRIPTION": "造成 !D! 点伤害。 NL 暴击率随使用次数增加。暴击时额外造成 *一半伤害。"
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 暴击率随使用次数增加。暴击时额外造成 *百分之五十 伤害"
   },
   "fuZhouMod:Wen": {
     "NAME": "文",
-    "DESCRIPTION": "获得 !B! 点格挡。 NL 获得 !M! 层 *火焰屏障 。"
+    "DESCRIPTION": "获得 !B! 点格挡。 NL 获得 !M! 层 *火焰屏障 "
   },
   "fuZhouMod:Cui": {
     "NAME": "崔",
-    "DESCRIPTION": "获得 !B! 点格挡。 NL 抽 !M! 张牌，丢弃 !M! 张牌。 给予敌人 !M! 层 *虚弱 。"
+    "DESCRIPTION": "获得 !B! 点格挡。 NL 抽 !M! 张牌，丢弃 !M! 张牌。 给予敌人 !M! 层 *虚弱 "
   }
 }
