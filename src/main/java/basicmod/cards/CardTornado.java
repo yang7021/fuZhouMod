@@ -13,7 +13,7 @@ public class CardTornado extends BaseCard {
     private static final CardStats info = new CardStats(
             CharacterEnums.SHENGZHU_COLOR,
             CardType.POWER,
-            CardRarity.RARE,
+            CardRarity.SPECIAL,
             CardTarget.SELF,
             2);
 

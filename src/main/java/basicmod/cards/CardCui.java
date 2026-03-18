@@ -15,7 +15,7 @@ public class CardCui extends BaseCard {
     private static final CardStats info = new CardStats(
             CharacterEnums.SHENGZHU_COLOR,
             CardType.SKILL,
-            CardRarity.RARE,
+            CardRarity.SPECIAL,
             CardTarget.ENEMY,
             1);
 

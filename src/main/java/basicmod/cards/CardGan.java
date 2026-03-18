@@ -15,7 +15,7 @@ public class CardGan extends BaseCard {
     private static final CardStats info = new CardStats(
             CharacterEnums.SHENGZHU_COLOR,
             CardType.ATTACK,
-            CardRarity.RARE,
+            CardRarity.SPECIAL,
             CardTarget.ENEMY,
             1);
 
