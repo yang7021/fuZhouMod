@@ -8,6 +8,9 @@ import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
+/**
+ * 曾经叫【龙卷风摧毁停车场】，后来还是觉得还是叫【山】
+ */
 public class CardTornado extends BaseCard {
     public static final String ID = makeID("Tornado");
     private static final CardStats info = new CardStats(

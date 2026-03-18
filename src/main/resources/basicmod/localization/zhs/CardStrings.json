@@ -74,7 +74,7 @@
     "DESCRIPTION": "在你的回合结束时，对一名随机敌人造成本轮你造成总伤害 *30% 的伤害。"
   },
   "fuZhouMod:Tornado": {
-    "NAME": "龙卷风摧毁停车场",
+    "NAME": "山",
     "DESCRIPTION": "在你的回合结束时，对所有敌人造成本轮你造成总伤害 *30% 的伤害。"
   },
   "fuZhouMod:FlamingoStep": {
@@ -91,8 +91,8 @@
   },
   "fuZhouMod:DaoLongBlackQi": {
     "NAME": "刀龙黑气",
-    "DESCRIPTION": "将所有的 *周 、 *拉苏 、 *阿奋 和 *泰山压顶 变为 *甘 、 *文 、 *崔 和 *龙卷风摧毁停车场 。 消耗。",
-    "UPGRADE_DESCRIPTION": "将所有的 *周 、 *拉苏 、 *阿奋 和 *泰山压顶 变为 *甘+ 、 *文+ 、 *崔+ 和 *龙卷风摧毁停车场+ 。 消耗。"
+    "DESCRIPTION": "将所有的 *周 、 *拉苏 、 *阿奋 和 *泰山压顶 变为 *甘 、 *文 、 *崔 和 *山 。 消耗。",
+    "UPGRADE_DESCRIPTION": "将所有的 *周 、 *拉苏 、 *阿奋 和 *泰山压顶 变为 *甘+ 、 *文+ 、 *崔+ 和 *山+ 。 消耗。"
   },
   "fuZhouMod:BlackHandAhFen": {
     "NAME": "黑手帮·阿奋",
