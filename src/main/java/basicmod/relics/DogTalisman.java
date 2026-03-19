@@ -31,8 +31,8 @@ public class DogTalisman extends BaseRelic {
             usedThisCombat = true; // 标记本场战斗已使用
             this.pulse = false; // 停止发光提示
             this.flash(); // 触发遗物闪烁特效
-            // 将生命值锁定保留在20%（若低于20%则提升至20%，若等于则其实也是20%）
-            AbstractDungeon.player.currentHealth = (int) (AbstractDungeon.player.maxHealth * 0.2f);
+            // 将生命值锁定保留在30%（若低于30%则提升至30%，若等于则其实也是30%）
+            AbstractDungeon.player.currentHealth = (int) (AbstractDungeon.player.maxHealth * 0.3f);
             AbstractDungeon.player.healthBarUpdatedEvent(); // 更新血条UI
             return 0; // Prevent the fatal damage 返回0伤害以阻止本次致命攻击
         }
