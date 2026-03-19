@@ -14,7 +14,16 @@ public class LeiSuCursePower extends BasePower {
     public LeiSuCursePower(AbstractCreature owner, AbstractCreature source, int amount) {
         super(POWER_ID, TYPE, TURN_BASED, owner, amount);
         this.canGoNegative = false;
-        // In localizations, add LeiSuCurse
+        updateDescription();
+    }
+
+    @Override
+    public void updateDescription() {
+        com.megacrit.cardcrawl.localization.PowerStrings powerStrings = com.megacrit.cardcrawl.core.CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
+        if (powerStrings != null && powerStrings.DESCRIPTIONS != null && powerStrings.DESCRIPTIONS.length > 0) {
+            this.name = powerStrings.NAME;
+            this.description = powerStrings.DESCRIPTIONS[0] + this.amount + powerStrings.DESCRIPTIONS[1];
+        }
     }
 
     @Override
