@@ -48,7 +48,7 @@ public class RabbitTalisman extends BaseRelic {
         super.update();
         // 战斗内、本回合尚未触发效果且不在 CD 中
         if (canInteractInCombat() && !this.usedThisTurn && this.counter <= 0) {
-            
+
             // 1. 处理对我自己的右键点击：切换激活状态
             if (this.hb.hovered && InputHelper.justClickedRight) {
                 this.activated = !this.activated;
@@ -94,10 +94,13 @@ public class RabbitTalisman extends BaseRelic {
             ((HorseTalisman) r).resetUsedThisTurn();
             return true;
         }
-        if (r instanceof MonkeyTalisman) {
-            ((MonkeyTalisman) r).triggerManually();
-            return true;
-        }
+
+        // 猴符咒已移除手动触发功能，所以不需要这个判断。老版本猴符咒有战局内变换卡片的功能。
+        // if (r instanceof MonkeyTalisman) {
+        // ((MonkeyTalisman) r).triggerManually();
+        // return true;
+        // }
+
         if (r instanceof OxTalisman) {
             ((OxTalisman) r).resetUsedThisTurn();
             return true;
@@ -138,8 +141,9 @@ public class RabbitTalisman extends BaseRelic {
     public void onUseCard(AbstractCard targetCard, UseCardAction useCardAction) {
         // 如果激活了且本回合没用过，打出的是有费牌
         if (this.activated && !this.usedThisTurn && this.counter <= 0) {
-            boolean hasCost = (targetCard.costForTurn > 0 && !targetCard.freeToPlayOnce) || (targetCard.cost == -1 && targetCard.energyOnUse > 0);
-            
+            boolean hasCost = (targetCard.costForTurn > 0 && !targetCard.freeToPlayOnce)
+                    || (targetCard.cost == -1 && targetCard.energyOnUse > 0);
+
             if (hasCost) {
                 triggerEffect1();
                 addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
@@ -158,7 +162,8 @@ public class RabbitTalisman extends BaseRelic {
         this.activated = false;
         this.usedThisTurn = false;
         this.grayscale = false;
-        if (this.counter > 0) this.counter = 0;
+        if (this.counter > 0)
+            this.counter = 0;
         stopPulse();
     }
 
