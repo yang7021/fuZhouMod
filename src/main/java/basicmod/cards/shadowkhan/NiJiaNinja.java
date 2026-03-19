@@ -11,7 +11,7 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-public class NiJiaNinja extends basicmod.cards.BaseCard {
+public class NiJiaNinja extends BaseShadowKhanCard {
     public static final String ID = BasicMod.makeID(NiJiaNinja.class.getSimpleName());
     private static final CardStats info = new CardStats(
             CharacterEnums.SHENGZHU_COLOR,

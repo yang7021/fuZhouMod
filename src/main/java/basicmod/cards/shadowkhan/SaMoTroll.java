@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-public class SaMoTroll extends basicmod.cards.BaseCard {
+public class SaMoTroll extends BaseShadowKhanCard {
     public static final String ID = BasicMod.makeID(SaMoTroll.class.getSimpleName());
     private static final CardStats info = new CardStats(
             CharacterEnums.SHENGZHU_COLOR,

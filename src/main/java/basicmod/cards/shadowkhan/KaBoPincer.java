@@ -11,7 +11,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.WeakPower;
 
-public class KaBoPincer extends basicmod.cards.BaseCard {
+public class KaBoPincer extends BaseShadowKhanCard {
     public static final String ID = BasicMod.makeID(KaBoPincer.class.getSimpleName());
     private static final CardStats info = new CardStats(
             CharacterEnums.SHENGZHU_COLOR,

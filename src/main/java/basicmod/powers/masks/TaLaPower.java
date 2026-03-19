@@ -7,6 +7,8 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
+import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.localization.PowerStrings;
 import java.util.ArrayList;
 
 public class TaLaPower extends BasePower {
@@ -16,6 +18,16 @@ public class TaLaPower extends BasePower {
 
     public TaLaPower(AbstractCreature owner, int amount) {
         super(POWER_ID, TYPE, TURN_BASED, owner, amount);
+        updateDescription();
+    }
+
+    @Override
+    public void updateDescription() {
+        PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(this.ID);
+        if (powerStrings != null && powerStrings.DESCRIPTIONS != null && powerStrings.DESCRIPTIONS.length > 0) {
+            this.name = powerStrings.NAME;
+            this.description = powerStrings.DESCRIPTIONS[0] + this.amount + powerStrings.DESCRIPTIONS[1];
+        }
     }
 
     @Override

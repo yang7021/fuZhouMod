@@ -13,7 +13,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-public class MingTaShadow extends basicmod.cards.BaseCard {
+public class MingTaShadow extends BaseShadowKhanCard {
     public static final String ID = BasicMod.makeID(MingTaShadow.class.getSimpleName());
     private static final CardStats info = new CardStats(
             CharacterEnums.SHENGZHU_COLOR,

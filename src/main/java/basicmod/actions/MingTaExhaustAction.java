@@ -16,7 +16,7 @@ public class MingTaExhaustAction extends AbstractGameAction {
     private AbstractMonster m;
     private int baseDamage;
     private AbstractCard sourceCard;
-    private boolean isTargetFound = false;
+    private ArrayList<AbstractCard> nonAttacks = new ArrayList<>();
 
     public MingTaExhaustAction(AbstractMonster target, int baseDamage, AbstractCard sourceCard) {
         this.actionType = ActionType.EXHAUST;
@@ -29,57 +29,59 @@ public class MingTaExhaustAction extends AbstractGameAction {
     @Override
     public void update() {
         if (this.duration == Settings.ACTION_DUR_FAST) {
-            ArrayList<AbstractCard> hand = AbstractDungeon.player.hand.group;
-            ArrayList<AbstractCard> attacks = new ArrayList<>();
-            for (AbstractCard c : hand) {
-                if (c.type == AbstractCard.CardType.ATTACK && c != sourceCard) {
-                    attacks.add(c);
+            for (AbstractCard c : AbstractDungeon.player.hand.group) {
+                if (c.type != AbstractCard.CardType.ATTACK || c == sourceCard) {
+                    nonAttacks.add(c);
                 }
             }
 
-            if (attacks.isEmpty()) {
+            if (nonAttacks.size() == AbstractDungeon.player.hand.group.size()) {
                 this.isDone = true;
-                // Still do base damage
-                int totalDamage = baseDamage + (MaskManager.mingTaTotalDamage / 2);
-                AbstractDungeon.actionManager.addToTop(new DamageAction(m, new DamageInfo(AbstractDungeon.player, totalDamage, DamageInfo.DamageType.NORMAL), AttackEffect.SLASH_HEAVY));
+                doBaseDamage();
                 return;
             }
 
-            if (attacks.size() == 1) {
-                AbstractCard targetCard = attacks.get(0);
-                exhaustAndDamage(targetCard);
-                this.isDone = true;
-                return;
+            if (AbstractDungeon.player.hand.group.size() - nonAttacks.size() == 1) {
+                for (AbstractCard c : AbstractDungeon.player.hand.group) {
+                    if (c.type == AbstractCard.CardType.ATTACK && c != sourceCard) {
+                        exhaustAndDamage(c);
+                        this.isDone = true;
+                        return;
+                    }
+                }
             }
 
-            // Exceeds 1, select a card. Need a hand select screen. 
-            // For simplicity in this modding setup without full custom GridCardSelectAction callback:
-            // Since it says "指定消耗手中一张攻击牌", we should use HandCardSelectScreen.
-            AbstractDungeon.handCardSelectScreen.open("消耗1张攻击牌作为噬影团的祭品", 1, false, false, false, true, true);
-            isTargetFound = true;
+            AbstractDungeon.player.hand.group.removeAll(nonAttacks);
+            AbstractDungeon.handCardSelectScreen.open("消耗1张攻击牌作为祭品", 1, false, false, false, false);
             tickDuration();
             return;
         }
 
-        if (isTargetFound) {
-            if (!AbstractDungeon.handCardSelectScreen.wereCardsRetrieved) {
-                for (AbstractCard c : AbstractDungeon.handCardSelectScreen.selectedCards.group) {
-                    exhaustAndDamage(c);
-                }
-                AbstractDungeon.handCardSelectScreen.wereCardsRetrieved = true;
-                AbstractDungeon.handCardSelectScreen.selectedCards.group.clear();
-                AbstractDungeon.player.hand.refreshHandLayout();
+        if (!AbstractDungeon.handCardSelectScreen.wereCardsRetrieved) {
+            for (AbstractCard c : AbstractDungeon.handCardSelectScreen.selectedCards.group) {
+                AbstractDungeon.player.hand.addToTop(c); 
+                exhaustAndDamage(c);
             }
+            
+            for (AbstractCard c : nonAttacks) {
+                AbstractDungeon.player.hand.addToTop(c);
+            }
+            AbstractDungeon.player.hand.refreshHandLayout();
+            
+            AbstractDungeon.handCardSelectScreen.wereCardsRetrieved = true;
+            AbstractDungeon.handCardSelectScreen.selectedCards.group.clear();
             this.isDone = true;
         }
     }
 
     private void exhaustAndDamage(AbstractCard c) {
-        // Track the exhausted attack's damage
         int dmg = c.baseDamage > 0 ? c.baseDamage : 0;
         MaskManager.mingTaTotalDamage += dmg;
         AbstractDungeon.actionManager.addToTop(new ExhaustSpecificCardAction(c, AbstractDungeon.player.hand));
+        doBaseDamage();
+    }
 
+    private void doBaseDamage() {
         int totalDamage = baseDamage + (MaskManager.mingTaTotalDamage / 2);
         AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(AbstractDungeon.player, totalDamage, DamageInfo.DamageType.NORMAL), AttackEffect.SLASH_HEAVY));
     }

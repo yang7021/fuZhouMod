@@ -12,7 +12,7 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-public class BaTeBat extends basicmod.cards.BaseCard {
+public class BaTeBat extends BaseShadowKhanCard {
     public static final String ID = BasicMod.makeID(BaTeBat.class.getSimpleName());
     private static final CardStats info = new CardStats(
             CharacterEnums.SHENGZHU_COLOR,

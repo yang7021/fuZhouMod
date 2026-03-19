@@ -5,6 +5,8 @@ import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.localization.PowerStrings;
 
 public abstract class BaseMaskPower extends BasePower {
     
@@ -12,6 +14,16 @@ public abstract class BaseMaskPower extends BasePower {
 
     public BaseMaskPower(String id, PowerType powerType, boolean isTurnBased, AbstractCreature owner, int amount) {
         super(id, powerType, isTurnBased, owner, amount);
+        updateDescription();
+    }
+
+    @Override
+    public void updateDescription() {
+        PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(this.ID);
+        if (powerStrings != null && powerStrings.DESCRIPTIONS != null && powerStrings.DESCRIPTIONS.length > 0) {
+            this.name = powerStrings.NAME;
+            this.description = powerStrings.DESCRIPTIONS[0] + this.amount + powerStrings.DESCRIPTIONS[1];
+        }
     }
 
     @Override

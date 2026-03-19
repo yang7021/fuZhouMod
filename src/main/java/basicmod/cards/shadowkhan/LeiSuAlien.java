@@ -11,7 +11,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.PoisonPower; // Wait, curse? Using Poison as a placeholder for "Curse" or we should make a custom CursePower? User says "给予对手8层诅咒", STS has no "Curse" power natively, usually it's Poison for green or custom. Let's make a custom CursePower later, using generic for now.
 
-public class LeiSuAlien extends basicmod.cards.BaseCard {
+public class LeiSuAlien extends BaseShadowKhanCard {
     public static final String ID = BasicMod.makeID(LeiSuAlien.class.getSimpleName());
     private static final CardStats info = new CardStats(
             CharacterEnums.SHENGZHU_COLOR,

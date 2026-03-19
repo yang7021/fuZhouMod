@@ -13,7 +13,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 
-public class LaZuoBlade extends basicmod.cards.BaseCard {
+public class LaZuoBlade extends BaseShadowKhanCard {
     public static final String ID = BasicMod.makeID(LaZuoBlade.class.getSimpleName());
     private static final CardStats info = new CardStats(
             CharacterEnums.SHENGZHU_COLOR,
