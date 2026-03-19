@@ -29,6 +29,7 @@ public class SheepTalisman extends BaseRelic implements OnApplyPowerRelic {
         if (power.type == AbstractPower.PowerType.DEBUFF && target != source && source == AbstractDungeon.player) {
             this.flash(); // 遗物闪烁提示触发
             power.amount *= 2; // 关键修复：除了返回双倍值，还需要直接修改将要施布的状态实例的数值
+            power.updateDescription(); // 强制刷新该状态的文字描述，修复所有状态的文本不同步问题
             return stackAmount * 2; // 返回双倍的层数
         }
         return stackAmount; // 否则正常返回原始层数

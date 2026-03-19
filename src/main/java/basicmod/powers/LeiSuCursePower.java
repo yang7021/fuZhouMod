@@ -27,6 +27,24 @@ public class LeiSuCursePower extends BasePower {
     }
 
     @Override
+    public void onInitialApplication() {
+        super.onInitialApplication();
+        updateDescription();
+    }
+
+    @Override
+    public void stackPower(int stackAmount) {
+        super.stackPower(stackAmount);
+        updateDescription();
+    }
+
+    @Override
+    public void reducePower(int reduceAmount) {
+        super.reducePower(reduceAmount);
+        updateDescription();
+    }
+
+    @Override
     public void atEndOfRound() {
         if (this.owner != null && !this.owner.isDeadOrEscaped()) {
             if (this.owner.currentHealth <= this.amount) {
