@@ -1,0 +1,34 @@
+package basicmod.cards.shadowkhan;
+
+import basicmod.BasicMod;
+import basicmod.enums.CharacterEnums;
+import basicmod.enums.CustomTags;
+import basicmod.util.CardStats;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
+
+public class NiJiaNinja extends basicmod.cards.BaseCard {
+    public static final String ID = BasicMod.makeID(NiJiaNinja.class.getSimpleName());
+    private static final CardStats info = new CardStats(
+            CharacterEnums.SHENGZHU_COLOR,
+            AbstractCard.CardType.ATTACK,
+            AbstractCard.CardRarity.SPECIAL, // Not in normal rewards
+            AbstractCard.CardTarget.ENEMY,
+            0
+    );
+
+    public NiJiaNinja() {
+        super(ID, info);
+        setDamage(4, 2); // 4 damage, augments by +2 on upgrade
+        tags.add(CustomTags.SHADOW_KHAN);
+    }
+
+    @Override
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        addToBot(new DamageAction(m, new DamageInfo(p, damage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+    }
+}

@@ -35,6 +35,10 @@ import java.lang.reflect.Modifier;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
+import basemod.interfaces.OnPlayerTurnStartPostDrawSubscriber;
+import basemod.interfaces.OnCardUseSubscriber;
+import basemod.interfaces.PostBattleSubscriber;
+
 @SpireInitializer
 public class BasicMod implements
         EditStringsSubscriber,
@@ -43,7 +47,10 @@ public class BasicMod implements
         PostInitializeSubscriber,
         basemod.interfaces.EditCardsSubscriber,
         basemod.interfaces.EditCharactersSubscriber,
-        basemod.interfaces.EditRelicsSubscriber {
+        basemod.interfaces.EditRelicsSubscriber,
+        OnPlayerTurnStartPostDrawSubscriber,
+        OnCardUseSubscriber,
+        PostBattleSubscriber {
     public static ModInfo info;
     public static String modID; // Edit your pom.xml to change this
     static {
@@ -133,6 +140,24 @@ public class BasicMod implements
 
         // 注册事件
         BaseMod.addEvent(basicmod.events.RobTalismanEvent.ID, basicmod.events.RobTalismanEvent.class);
+    }
+
+    /*----------Hook Implementation----------*/
+    @Override
+    public void receiveOnPlayerTurnStartPostDraw() {
+        basicmod.helpers.MaskManager.shadowKhanCardsPlayedThisTurn = 0;
+    }
+
+    @Override
+    public void receiveCardUsed(com.megacrit.cardcrawl.cards.AbstractCard c) {
+        if (c.hasTag(basicmod.enums.CustomTags.SHADOW_KHAN)) {
+            basicmod.helpers.MaskManager.shadowKhanCardsPlayedThisTurn++;
+        }
+    }
+
+    @Override
+    public void receivePostBattle(com.megacrit.cardcrawl.rooms.AbstractRoom r) {
+        basicmod.helpers.MaskManager.clear();
     }
 
     /*----------Localization----------*/

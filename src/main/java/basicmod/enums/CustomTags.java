@@ -9,4 +9,10 @@ public class CustomTags {
 
     @SpireEnum
     public static AbstractCard.CardTags blackhand;
+
+    @SpireEnum
+    public static AbstractCard.CardTags SHADOW_KHAN;
+
+    @SpireEnum
+    public static AbstractCard.CardTags MASK;
 }

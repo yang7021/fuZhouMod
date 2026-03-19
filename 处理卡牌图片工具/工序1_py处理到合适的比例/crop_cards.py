@@ -4,6 +4,7 @@ from PIL import Image
 # pip install Pillow
 # conda activate ui-ux-skill
 # cd D:\code\my\2\fuZhouMod\处理卡牌图片工具\工序1_py处理到合适的比例
+# python crop_cards.py
 
 def process_images(input_path):
     # 设定目标尺寸
