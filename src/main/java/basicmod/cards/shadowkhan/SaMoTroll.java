@@ -29,13 +29,15 @@ public class SaMoTroll extends BaseShadowKhanCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        int totalBlock = this.block + (this.magicNumber * MaskManager.shadowKhanCardsPlayedThisTurn);
-        addToBot(new GainBlockAction(p, p, totalBlock));
+        int count = basicmod.helpers.MaskManager.shadowKhanCardsPlayedThisTurn;
+        int bonusSk = Math.max(0, count - 1);
+        int totalBlock = this.block + (this.magicNumber * bonusSk);
         
-        // This card itself is a Shadow Khan card, so after it is played, the counter will increment via common hook.
-        // Wait, does it count itself? The doc says "本回合每打出一张【面具】召唤的【黑影兵团】牌，格挡增加 X 点。"
-        // If it means "Previously played", then `cardsPlayedThisTurn` before this card increments.
-        // If it means "Including itself", we should +1 or let the counter logic handle it depending on Hook timing.
-        // Usually, `use` is called while the card is being played, before hook increments. 
+        basicmod.BasicMod.logger.info("【萨莫-巨魔团】打出日志: 卡片基础" + this.baseBlock 
+            + " + 敏捷等状态修正" + (this.block - this.baseBlock) 
+            + " + 本回合打出其他黑影兵团卡数量(" + bonusSk + "张) x 每张加成格挡(" + this.magicNumber + ")=" + (this.magicNumber * bonusSk) 
+            + " = 合计" + totalBlock + "点格挡");
+
+        addToBot(new GainBlockAction(p, p, totalBlock));
     }
 }

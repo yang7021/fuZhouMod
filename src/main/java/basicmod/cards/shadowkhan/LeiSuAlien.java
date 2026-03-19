@@ -29,8 +29,14 @@ public class LeiSuAlien extends BaseShadowKhanCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        int totalCurse = magicNumber + (2 * MaskManager.shadowKhanCardsPlayedThisTurn);
-        // We will apply a custom power here later: LeiSuCursePower
+        int count = basicmod.helpers.MaskManager.shadowKhanCardsPlayedThisTurn;
+        int bonusCurse = Math.max(0, count - 1);
+        int totalCurse = this.magicNumber + bonusCurse;
+        
+        basicmod.BasicMod.logger.info("【雷苏-异形团】打出日志: 卡片基础诅咒" + this.magicNumber 
+            + " + 本回合额外计数加成" + bonusCurse 
+            + " = 合计" + totalCurse + "层诅咒");
+
         addToBot(new ApplyPowerAction(m, p, new basicmod.powers.LeiSuCursePower(m, p, totalCurse), totalCurse));
     }
 }

@@ -150,7 +150,7 @@ public class BasicMod implements
 
     @Override
     public void receiveCardUsed(com.megacrit.cardcrawl.cards.AbstractCard c) {
-        if (c.hasTag(basicmod.enums.CustomTags.SHADOW_KHAN)) {
+        if (c instanceof basicmod.cards.shadowkhan.BaseShadowKhanCard) {
             basicmod.helpers.MaskManager.shadowKhanCardsPlayedThisTurn++;
         }
     }
