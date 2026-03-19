@@ -13,7 +13,7 @@ public class YiKaMask extends BaseMaskCard {
     private static final CardStats info = new CardStats(
             CharacterEnums.SHENGZHU_COLOR,
             AbstractCard.CardType.POWER,
-            AbstractCard.CardRarity.UNCOMMON,
+            AbstractCard.CardRarity.COMMON,
             AbstractCard.CardTarget.SELF,
             1
     );

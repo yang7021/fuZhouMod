@@ -13,7 +13,7 @@ public class LaZuoMask extends BaseMaskCard {
     private static final CardStats info = new CardStats(
             CharacterEnums.SHENGZHU_COLOR,
             AbstractCard.CardType.POWER,
-            AbstractCard.CardRarity.COMMON,
+            AbstractCard.CardRarity.UNCOMMON,
             AbstractCard.CardTarget.SELF,
             1
     );
