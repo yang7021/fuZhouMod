@@ -1,22 +1,113 @@
 {
   "fuZhouMod:FlightAfuPower": {
     "NAME": "飞行",
-    "DESCRIPTIONS": ["所受到的攻击伤害减半。 受到攻击伤害后层数减少 #b1 。"]
+    "DESCRIPTIONS": [
+      "所受到的攻击伤害减半。 受到攻击伤害后层数减少 #b1 。"
+    ]
   },
   "fuZhouMod:TwoDragonsPower": {
     "NAME": "二龙戏珠",
-    "DESCRIPTIONS": ["你下 #b", " 张打出的牌将额外触发一次。"]
+    "DESCRIPTIONS": [
+      "你下 #b",
+      " 张打出的牌将额外触发一次。"
+    ]
   },
   "fuZhouMod:GoatClimbsMountainPower": {
     "NAME": "山羊爬山",
-    "DESCRIPTIONS": ["每当你打出 #b2 张牌，获得 #b", " 点临时 #y力量 。"]
+    "DESCRIPTIONS": [
+      "每当你打出 #b2 张牌，获得 #b",
+      " 点临时 #y力量 。"
+    ]
   },
   "fuZhouMod:TaiShanPressPower": {
     "NAME": "泰山压顶",
-    "DESCRIPTIONS": ["每当你打出一个 阿福招式 ，获得 #b", " 点 #y格挡 。"]
+    "DESCRIPTIONS": [
+      "每当你打出一个 阿福招式 ，获得 #b",
+      " 点 #y格挡 。"
+    ]
   },
   "fuZhouMod:TornadoPower": {
     "NAME": "山",
-    "DESCRIPTIONS": ["在你的回合结束时，对所有敌人造成本回合你造成总伤害 #b30% ( #b", " ) 的伤害。"]
+    "DESCRIPTIONS": [
+      "在你的回合结束时，对所有敌人造成本回合你造成总伤害 #b30% ( #b",
+      " ) 的伤害。"
+    ]
+  },
+  "fuZhouMod:NiJiaPower": {
+    "NAME": "尼嘉面具",
+    "DESCRIPTIONS": [
+      "回合开始时增加 #b",
+      " 张尼嘉-忍者团到手中。"
+    ]
+  },
+  "fuZhouMod:LaZuoPower": {
+    "NAME": "拉佐面具",
+    "DESCRIPTIONS": [
+      "回合开始时增加 #b",
+      " 张拉佐-刺刃团到手中。"
+    ]
+  },
+  "fuZhouMod:SaMoPower": {
+    "NAME": "萨莫面具",
+    "DESCRIPTIONS": [
+      "回合开始时增加 #b",
+      " 张萨莫-巨魔团到手中。"
+    ]
+  },
+  "fuZhouMod:BaTePower": {
+    "NAME": "巴特面具",
+    "DESCRIPTIONS": [
+      "回合开始时增加 #b",
+      " 张巴特-夜蝠团到手中。"
+    ]
+  },
+  "fuZhouMod:KaBoPower": {
+    "NAME": "卡博面具",
+    "DESCRIPTIONS": [
+      "回合开始时增加 #b",
+      " 张卡博-猎钳团到手中。"
+    ]
+  },
+  "fuZhouMod:LeiSuPower": {
+    "NAME": "雷苏面具",
+    "DESCRIPTIONS": [
+      "回合开始时增加 #b",
+      " 张雷苏-异形团到手中。"
+    ]
+  },
+  "fuZhouMod:ManNiPower": {
+    "NAME": "曼尼面具",
+    "DESCRIPTIONS": [
+      "回合开始时增加 #b",
+      " 张曼尼-螳形团到手中。"
+    ]
+  },
+  "fuZhouMod:MingTaPower": {
+    "NAME": "明塔面具",
+    "DESCRIPTIONS": [
+      "回合开始时增加 #b",
+      " 张明塔-噬影团到手中。"
+    ]
+  },
+  "fuZhouMod:YiKaPower": {
+    "NAME": "伊卡面具",
+    "DESCRIPTIONS": [
+      "回合开始时增加 #b",
+      " 张伊卡-武士团到手中。"
+    ]
+  },
+  "fuZhouMod:TaLaPower": {
+    "NAME": "塔拉面具",
+    "DESCRIPTIONS": [
+      "面具容量增加 #b",
+      " 层。回合开始时随机获取一张黑影兵团牌。"
+    ]
+  },
+  "fuZhouMod:LeiSuCurse": {
+    "NAME": "异形诅咒",
+    "DESCRIPTIONS": [
+      "回合结束时如果层数大于等于生命值，则被 #y斩杀 。目前层数： #b",
+      ""
+    ]
   }
 }

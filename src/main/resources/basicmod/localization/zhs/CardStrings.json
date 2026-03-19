@@ -125,5 +125,100 @@
   "fuZhouMod:Cui": {
     "NAME": "崔",
     "DESCRIPTION": "获得 !B! 点格挡。 NL 抽 !M! 张牌，丢弃 !M! 张牌。 给予敌人 !M! 层 *虚弱 "
+  },
+  "fuZhouMod:NiJiaMask": {
+    "NAME": "尼嘉面具",
+    "DESCRIPTION": "在你回合开始时增加 !M! 张 *尼嘉-忍者团 到你手中。",
+    "UPGRADE_DESCRIPTION": "在你回合开始时增加 !M! 张 *尼嘉-忍者团+ 到你手中。"
+  },
+  "fuZhouMod:LaZuoMask": {
+    "NAME": "拉佐面具",
+    "DESCRIPTION": "在你回合开始时增加 !M! 张 *拉佐-刺刃团 到你手中。",
+    "UPGRADE_DESCRIPTION": "在你回合开始时增加 !M! 张 *拉佐-刺刃团+ 到你手中。"
+  },
+  "fuZhouMod:SaMoMask": {
+    "NAME": "萨莫面具",
+    "DESCRIPTION": "在你回合开始时增加 !M! 张 *萨莫-巨魔团 到你手中。",
+    "UPGRADE_DESCRIPTION": "在你回合开始时增加 !M! 张 *萨莫-巨魔团+ 到你手中。"
+  },
+  "fuZhouMod:BaTeMask": {
+    "NAME": "巴特面具",
+    "DESCRIPTION": "在你回合开始时增加 !M! 张 *巴特-夜蝠团 到你手中。",
+    "UPGRADE_DESCRIPTION": "在你回合开始时增加 !M! 张 *巴特-夜蝠团+ 到你手中。"
+  },
+  "fuZhouMod:KaBoMask": {
+    "NAME": "卡博面具",
+    "DESCRIPTION": "在你回合开始时增加 !M! 张 *卡博-猎钳团 到你手中。",
+    "UPGRADE_DESCRIPTION": "在你回合开始时增加 !M! 张 *卡博-猎钳团+ 到你手中。"
+  },
+  "fuZhouMod:LeiSuMask": {
+    "NAME": "雷苏面具",
+    "DESCRIPTION": "在你回合开始时增加 !M! 张 *雷苏-异形团 到你手中。",
+    "UPGRADE_DESCRIPTION": "在你回合开始时增加 !M! 张 *雷苏-异形团+ 到你手中。"
+  },
+  "fuZhouMod:ManNiMask": {
+    "NAME": "曼尼面具",
+    "DESCRIPTION": "在你回合开始时增加 !M! 张 *曼尼-螳形团 到你手中。",
+    "UPGRADE_DESCRIPTION": "在你回合开始时增加 !M! 张 *曼尼-螳形团+ 到你手中。"
+  },
+  "fuZhouMod:MingTaMask": {
+    "NAME": "明塔面具",
+    "DESCRIPTION": "在你回合开始时增加 !M! 张 *明塔-噬影团 到你手中。",
+    "UPGRADE_DESCRIPTION": "在你回合开始时增加 !M! 张 *明塔-噬影团+ 到你手中。"
+  },
+  "fuZhouMod:YiKaMask": {
+    "NAME": "伊卡面具",
+    "DESCRIPTION": "在你回合开始时增加 !M! 张 *伊卡-武士团 到你手中。",
+    "UPGRADE_DESCRIPTION": "在你回合开始时增加 !M! 张 *伊卡-武士团+ 到你手中。"
+  },
+  "fuZhouMod:TaLaMask": {
+    "NAME": "塔拉面具",
+    "DESCRIPTION": "面具容量增加 !M! 层。 NL 回合开始时随机获取一张 *黑影兵团 牌。",
+    "UPGRADE_DESCRIPTION": "面具容量增加 !M! 层。 NL 回合开始时随机获取一张 *黑影兵团 牌。"
+  },
+  "fuZhouMod:NiJiaNinja": {
+    "NAME": "尼嘉-忍者团",
+    "DESCRIPTION": "造成 !D! 点伤害。",
+    "UPGRADE_DESCRIPTION": "造成 !D! 点伤害。"
+  },
+  "fuZhouMod:LaZuoBlade": {
+    "NAME": "拉佐-刺刃团",
+    "DESCRIPTION": "造成 !D! 点伤害。若造成未被格挡的伤害，给予 !M! 层 *易伤 。",
+    "UPGRADE_DESCRIPTION": "造成 !D! 点伤害。若造成未被格挡的伤害，给予 !M! 层 *易伤 。"
+  },
+  "fuZhouMod:SaMoTroll": {
+    "NAME": "萨莫-巨魔团",
+    "DESCRIPTION": "获得 !B! 点格挡。本回合每打出一张黑影兵团牌，额外获得 !M! 点格挡。",
+    "UPGRADE_DESCRIPTION": "获得 !B! 点格挡。本回合每打出一张黑影兵团牌，额外获得 !M! 点格挡。"
+  },
+  "fuZhouMod:BaTeBat": {
+    "NAME": "巴特-夜蝠团",
+    "DESCRIPTION": "造成 !D! 点伤害。抽 !M! 张牌。",
+    "UPGRADE_DESCRIPTION": "造成 !D! 点伤害。抽 !M! 张牌。"
+  },
+  "fuZhouMod:KaBoPincer": {
+    "NAME": "卡博-猎钳团",
+    "DESCRIPTION": "获得 !B! 点格挡。给予 !M! 层 *虚弱 。",
+    "UPGRADE_DESCRIPTION": "获得 !B! 点格挡。给予 !M! 层 *虚弱 。"
+  },
+  "fuZhouMod:LeiSuAlien": {
+    "NAME": "雷苏-异形团",
+    "DESCRIPTION": "给予敌人 !M! 层 诅咒 （本回合黑影兵团牌会额外增加其层数）。",
+    "UPGRADE_DESCRIPTION": "给予敌人 !M! 层 诅咒 （本回合黑影兵团牌会额外增加其层数）。"
+  },
+  "fuZhouMod:ManNiMantis": {
+    "NAME": "曼尼-螳形团",
+    "DESCRIPTION": "造成 !D! 点伤害。敌人每有一层 *易伤 ，额外打击一次。",
+    "UPGRADE_DESCRIPTION": "造成 !D! 点伤害。敌人每有一层 *易伤 ，额外打击一次。"
+  },
+  "fuZhouMod:MingTaShadow": {
+    "NAME": "明塔-噬影团",
+    "DESCRIPTION": "消耗手中1张攻击牌，造成 !D! +历史消耗攻击牌伤害一半 的额外伤害。",
+    "UPGRADE_DESCRIPTION": "消耗手中1张攻击牌，造成 !D! +历史消耗攻击牌伤害一半 的额外伤害。"
+  },
+  "fuZhouMod:YiKaSamurai": {
+    "NAME": "伊卡-武士团",
+    "DESCRIPTION": "造成 !D! 点伤害。",
+    "UPGRADE_DESCRIPTION": "造成 !D! 点伤害。"
   }
 }
