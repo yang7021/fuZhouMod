@@ -1,9 +1,0 @@
-{
-  "workshopID": 0,
-  "title": "圣主历险记",
-  "description": "根据成龙历险记中的剧集内容改编的mod，以圣主为主视角，本mod需要【BaseMod、- StSLib】这两个前置mod",
-  "tags": ["Relics","Jackie Chan Adventures"],
-  "publishID": "",
-  "contentFolder": "content",
-  "previewImage": "preview.png"
-}
