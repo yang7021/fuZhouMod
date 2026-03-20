@@ -22,8 +22,8 @@
   "fuZhouMod:TaiShanPressPower": {
     "NAME": "泰山压顶",
     "DESCRIPTIONS": [
-      "每当你打出一个 阿福招式 ，获得 #b",
-      " 点 #y格挡 。"
+      "在你的回合结束时，对所有敌人造成本回合你造成总伤害 #b30% ( #b",
+      " ) 的伤害。"
     ]
   },
   "fuZhouMod:TornadoPower": {
