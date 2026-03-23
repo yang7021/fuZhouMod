@@ -14,7 +14,7 @@ public class CardBlackHandAhFen extends BaseCard {
     private static final CardStats info = new CardStats(
             CharacterEnums.SHENGZHU_COLOR,
             CardType.ATTACK,
-            CardRarity.COMMON,
+            CardRarity.BASIC,
             CardTarget.ENEMY,
             1);
 

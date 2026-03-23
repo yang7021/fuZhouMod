@@ -12,7 +12,7 @@ public class CardBlackHandChow extends BaseCard {
     private static final CardStats info = new CardStats(
             CharacterEnums.SHENGZHU_COLOR,
             CardType.SKILL,
-            CardRarity.COMMON,
+            CardRarity.BASIC,
             CardTarget.SELF,
             1);
 
