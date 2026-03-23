@@ -37,7 +37,7 @@
   },
   "fuZhouMod:AxeCutsTree": {
     "NAME": "巨斧砍大树",
-    "DESCRIPTION": "造成 !D! 点伤害。 如果目标拥有 *格挡 ，伤害提升 *百分之五十 "
+    "DESCRIPTION": "造成 !D! 点伤害。 如果目标拥有 *格挡 ，伤害提升 [#efc100]50%[] "
   },
   "fuZhouMod:AfuBeatJackie": {
     "NAME": "阿福揍扁了成龙",
@@ -71,11 +71,11 @@
   },
   "fuZhouMod:TaiShanPress": {
     "NAME": "泰山压顶",
-    "DESCRIPTION": "在你的回合结束时，对一名随机敌人造成本轮你造成总伤害 *百分之三十 的伤害"
+    "DESCRIPTION": "在你的回合结束时，对一名随机敌人造成本轮你造成总伤害 [#efc100]30%[] 的伤害"
   },
   "fuZhouMod:Tornado": {
     "NAME": "山",
-    "DESCRIPTION": "在你的回合结束时，对所有敌人造成本轮你造成总伤害 *百分之三十 的伤害"
+    "DESCRIPTION": "在你的回合结束时，对所有敌人造成本轮你造成总伤害 [#efc100]30%[] 的伤害"
   },
   "fuZhouMod:FlamingoStep": {
     "NAME": "弗朗明哥舞步",
@@ -116,7 +116,7 @@
   },
   "fuZhouMod:Gan": {
     "NAME": "甘",
-    "DESCRIPTION": "造成 !D! 点伤害，暴击时额外造成 *50% 伤害， NL 当前暴击率： !M!% ，每次使用叠加 *10% 暴击率"
+    "DESCRIPTION": "造成 !D! 点伤害，暴击时额外造成 [#efc100]50%[] 伤害， NL 当前暴击率： [#7fff00]!M!%[] ，每用一次叠加 [#7fff00]10%[] 暴击率"
   },
   "fuZhouMod:Wen": {
     "NAME": "文",
