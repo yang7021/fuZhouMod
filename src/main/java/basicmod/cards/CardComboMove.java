@@ -25,6 +25,7 @@ public class CardComboMove extends BaseCard {
 
     public CardComboMove() {
         super(ID, info);
+        setCostUpgrade(0);
         tags.add(CustomTags.afu);
     }
 
@@ -68,8 +69,8 @@ public class CardComboMove extends BaseCard {
                     if (p.hand.size() < 10) {
                         p.drawPile.removeCard(c);
                         p.hand.addToTop(c);
-                        // 使用 modifyCostForCombat 使 0 费效果在该实例上更持久
-                        c.modifyCostForCombat(-99);
+                        // 使用 setCostForTurn 使费用仅在回合内生效
+                        c.setCostForTurn(0);
                     } else {
                         p.drawPile.removeCard(c);
                         p.discardPile.addToTop(c);

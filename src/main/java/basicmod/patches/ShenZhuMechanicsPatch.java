@@ -47,9 +47,9 @@ public class ShenZhuMechanicsPatch {
         // 仅对攻击牌生效，且玩家拥有圣主石像，且基础费用大于 0 (0费牌不涨价)
         if (c.type == AbstractCard.CardType.ATTACK && AbstractDungeon.player != null
                 && AbstractDungeon.player.hasPower(ShenZhuStatuePower.POWER_ID)) {
-            if (c.cost > 0) {
+            // 如果该牌已被设置为本回合 0 费（例如通过组合技），则不应用涨价
+            if (c.cost > 0 && !(c.isCostModifiedForTurn && c.costForTurn == 0)) {
                 // 稳健方案：涨价后的费用 = 基础费用 + 1
-                // 这样无论 applyPowers 调用多少次，结果都是稳定的
                 c.costForTurn = c.cost + 1;
                 c.isCostModifiedForTurn = true;
             }
