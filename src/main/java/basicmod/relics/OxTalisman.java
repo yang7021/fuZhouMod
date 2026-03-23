@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 import static basicmod.BasicMod.makeID;
 
@@ -34,6 +35,18 @@ public class OxTalisman extends BaseRelic {
         // 每个回合开始重置使用限制
         this.usedThisTurn = false;
         this.grayscale = false;
+        this.activated = false;
+        stopPulse();
+    }
+
+    public static boolean isActivated() {
+        if (AbstractDungeon.player != null) {
+            AbstractRelic relic = AbstractDungeon.player.getRelic(ID);
+            if (relic instanceof OxTalisman) {
+                return ((OxTalisman) relic).activated;
+            }
+        }
+        return false;
     }
 
     @Override
@@ -52,22 +65,6 @@ public class OxTalisman extends BaseRelic {
                 }
             }
         }
-    }
-
-    @Override
-    public float atDamageModify(float damage, AbstractCard c) {
-        // 如果已激活且是攻击牌
-        if (this.activated && c.type == AbstractCard.CardType.ATTACK) {
-            int str = 0;
-            if (AbstractDungeon.player.hasPower("Strength")) {
-                str = AbstractDungeon.player.getPower("Strength").amount;
-            }
-            // 我们的目标是最终伤害 = (基础伤害 + 力量) * 2
-            // 杀塔的计算逻辑是：(遗物修改后的 damage) + 力量
-            // 所以我们需要返回：(damage + 力量) * 2 - 力量
-            return (damage + str) * 2.0F - str;
-        }
-        return damage;
     }
 
     @Override

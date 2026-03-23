@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import basicmod.powers.ShenZhuStatuePower;
+import basicmod.relics.OxTalisman;
  
 public class ShenZhuMechanicsPatch {
  
@@ -32,6 +33,7 @@ public class ShenZhuMechanicsPatch {
         @SpirePostfixPatch
         public static void Postfix(AbstractCard __instance) {
             modifyCost(__instance);
+            modifyDamage(__instance);
         }
     }
  
@@ -40,6 +42,7 @@ public class ShenZhuMechanicsPatch {
         @SpirePostfixPatch
         public static void Postfix(AbstractCard __instance, com.megacrit.cardcrawl.monsters.AbstractMonster mo) {
             modifyCost(__instance);
+            modifyDamage(__instance);
         }
     }
  
@@ -52,6 +55,16 @@ public class ShenZhuMechanicsPatch {
                 // 稳健方案：涨价后的费用 = 基础费用 + 1
                 c.costForTurn = c.cost + 1;
                 c.isCostModifiedForTurn = true;
+            }
+        }
+    }
+
+    private static void modifyDamage(AbstractCard c) {
+        // 关键：牛符咒翻倍逻辑。在所有力量、遗物加成计算完后的最后一步执行。
+        if (c.type == AbstractCard.CardType.ATTACK && OxTalisman.isActivated()) {
+            c.damage *= 2;
+            if (c.baseDamage > 0 && c.damage != c.baseDamage) {
+                c.isDamageModified = true;
             }
         }
     }
