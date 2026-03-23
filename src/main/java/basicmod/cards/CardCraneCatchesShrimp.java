@@ -25,16 +25,19 @@ public class CardCraneCatchesShrimp extends BaseCard {
     public CardCraneCatchesShrimp() {
         super(ID, info);
         setMagic(1); // 这里的 M 表示抽牌倍率/逻辑
+        setCostUpgrade(0);
         tags.add(CustomTags.afu);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new CraneCatchesShrimpAction());
+        addToBot(new CraneCatchesShrimpAction(this.magicNumber));
     }
 
     private static class CraneCatchesShrimpAction extends AbstractGameAction {
-        public CraneCatchesShrimpAction() {
+        private int magicVal;
+        public CraneCatchesShrimpAction(int magicVal) {
+            this.magicVal = magicVal;
             this.actionType = ActionType.CARD_MANIPULATION;
         }
 
@@ -55,7 +58,7 @@ public class CardCraneCatchesShrimp extends BaseCard {
             }
 
             if (count > 0) {
-                addToTop(new DrawCardAction(p, count));
+                addToTop(new DrawCardAction(p, count * magicVal));
             }
             this.isDone = true;
         }
