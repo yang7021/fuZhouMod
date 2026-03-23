@@ -197,13 +197,15 @@ public class ShengZhuCustomPlayer extends CustomPlayer {
     @Override
     public void applyStartOfCombatLogic() {
         super.applyStartOfCombatLogic();
-        // 如果没有鼠符咒，变石像；一旦有，得力量
-        if (!AbstractDungeon.player.hasRelic("fuZhouMod:RatTalisman")) {
-            AbstractDungeon.actionManager.addToBottom(
-                    new ApplyPowerAction(this, this, new basicmod.powers.ShenZhuStatuePower(this)));
-        } else {
+        // 刷新贴图，防止存读档后贴图变回石质形态
+        if (AbstractDungeon.player.hasRelic("fuZhouMod:RatTalisman")) {
+            this.img = basicmod.util.TextureLoader.getTexture(basicmod.BasicMod.imagePath("character/shengzhu/main.png"));
             AbstractDungeon.actionManager.addToBottom(
                     new ApplyPowerAction(this, this, new basicmod.powers.ShenZhuRevivedPower(this)));
+        } else {
+            this.img = basicmod.util.TextureLoader.getTexture(basicmod.BasicMod.imagePath("character/shengzhu/statue.png"));
+            AbstractDungeon.actionManager.addToBottom(
+                    new ApplyPowerAction(this, this, new basicmod.powers.ShenZhuStatuePower(this)));
         }
     }
 }
