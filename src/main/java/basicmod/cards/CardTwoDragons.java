@@ -22,6 +22,7 @@ public class CardTwoDragons extends BaseCard {
     public CardTwoDragons() {
         super(ID, info);
         setMagic(COUNT);
+        setCostUpgrade(1); // 升级后费用-1
         tags.add(CustomTags.afu);
     }
 
