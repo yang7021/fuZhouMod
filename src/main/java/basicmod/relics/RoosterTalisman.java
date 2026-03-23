@@ -16,12 +16,12 @@ public class RoosterTalisman extends BaseRelic {
 
     @Override
     public void onEquip() {
-        AbstractDungeon.player.masterHandSize += 10; // 获得遗物时手牌上限+10
+        AbstractDungeon.player.masterHandSize += 3; // 获得遗物时手牌上限+3
     }
 
     @Override
     public void onUnequip() {
-        AbstractDungeon.player.masterHandSize -= 10; // 失去遗物时手牌上限-10
+        AbstractDungeon.player.masterHandSize -= 3; // 失去遗物时手牌上限-3
     }
 
     @Override
