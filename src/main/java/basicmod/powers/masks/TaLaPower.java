@@ -1,8 +1,8 @@
 package basicmod.powers.masks;
 
 import basicmod.BasicMod;
+import basicmod.actions.AddMaskCardAction;
 import basicmod.powers.BasePower;
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -46,6 +46,6 @@ public class TaLaPower extends BasePower {
         cards.add(new basicmod.cards.shadowkhan.YiKaSamurai());
         
         AbstractCard rand = cards.get(AbstractDungeon.cardRandomRng.random(cards.size() - 1));
-        AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(rand, 1));
+        AbstractDungeon.actionManager.addToBottom(new AddMaskCardAction(rand));
     }
 }

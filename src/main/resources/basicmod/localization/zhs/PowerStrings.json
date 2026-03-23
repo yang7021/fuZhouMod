@@ -37,70 +37,70 @@
     "NAME": "尼嘉面具",
     "DESCRIPTIONS": [
       "回合开始时增加 #b",
-      " 张尼嘉-忍者团到手中"
+      " 张尼嘉-忍者团到手中，若手牌已满则自动打出"
     ]
   },
   "fuZhouMod:LaZuoPower": {
     "NAME": "拉佐面具",
     "DESCRIPTIONS": [
       "回合开始时增加 #b",
-      " 张拉佐-刺刃团到手中"
+      " 张拉佐-刺刃团到手中，若手牌已满则自动打出"
     ]
   },
   "fuZhouMod:SaMoPower": {
     "NAME": "萨莫面具",
     "DESCRIPTIONS": [
       "回合开始时增加 #b",
-      " 张萨莫-巨魔团到手中"
+      " 张萨莫-巨魔团到手中，若手牌已满则自动打出"
     ]
   },
   "fuZhouMod:BaTePower": {
     "NAME": "巴特面具",
     "DESCRIPTIONS": [
       "回合开始时增加 #b",
-      " 张巴特-夜蝠团到手中"
+      " 张巴特-夜蝠团到手中，若手牌已满则自动打出"
     ]
   },
   "fuZhouMod:KaBoPower": {
     "NAME": "卡博面具",
     "DESCRIPTIONS": [
       "回合开始时增加 #b",
-      " 张卡博-猎钳团到手中"
+      " 张卡博-猎钳团到手中，若手牌已满则自动打出"
     ]
   },
   "fuZhouMod:LeiSuPower": {
     "NAME": "雷苏面具",
     "DESCRIPTIONS": [
       "回合开始时增加 #b",
-      " 张雷苏-异形团到手中"
+      " 张雷苏-异形团到手中，若手牌已满则自动打出"
     ]
   },
   "fuZhouMod:ManNiPower": {
     "NAME": "曼尼面具",
     "DESCRIPTIONS": [
       "回合开始时增加 #b",
-      " 张曼尼-螳形团到手中"
+      " 张曼尼-螳形团到手中，若手牌已满则自动打出"
     ]
   },
   "fuZhouMod:MingTaPower": {
     "NAME": "明塔面具",
     "DESCRIPTIONS": [
       "回合开始时增加 #b",
-      " 张明塔-噬影团到手中"
+      " 张明塔-噬影团到手中，若手牌已满则自动打出"
     ]
   },
   "fuZhouMod:YiKaPower": {
     "NAME": "伊卡面具",
     "DESCRIPTIONS": [
       "回合开始时增加 #b",
-      " 张伊卡-武士团到手中"
+      " 张伊卡-武士团到手中，若手牌已满则自动打出"
     ]
   },
   "fuZhouMod:TaLaPower": {
     "NAME": "塔拉面具",
     "DESCRIPTIONS": [
       "面具容量增加 #b",
-      " 层。回合开始时随机获取一张黑影兵团牌"
+      " 层。回合开始时随机获取一张黑影兵团牌，若手牌已满则自动打出"
     ]
   },
   "fuZhouMod:LeiSuCurse": {

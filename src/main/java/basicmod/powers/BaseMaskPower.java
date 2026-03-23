@@ -1,7 +1,7 @@
 package basicmod.powers;
 
+import basicmod.actions.AddMaskCardAction;
 import basicmod.helpers.MaskManager;
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -44,16 +44,20 @@ public abstract class BaseMaskPower extends BasePower {
         this.flash();
         int reg = this.amount - this.upgradedAmount;
         if (reg > 0) {
-            AbstractCard card = getLinkedShadowKhanCard();
-            if (card != null) {
-                AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(card, reg));
+            for (int i = 0; i < reg; i++) {
+                AbstractCard card = getLinkedShadowKhanCard();
+                if (card != null) {
+                    AbstractDungeon.actionManager.addToBottom(new AddMaskCardAction(card));
+                }
             }
         }
         if (this.upgradedAmount > 0) {
-            AbstractCard card = getLinkedShadowKhanCard();
-            if (card != null) {
-                card.upgrade();
-                AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(card, this.upgradedAmount));
+            for (int i = 0; i < this.upgradedAmount; i++) {
+                AbstractCard card = getLinkedShadowKhanCard();
+                if (card != null) {
+                    card.upgrade();
+                    AbstractDungeon.actionManager.addToBottom(new AddMaskCardAction(card));
+                }
             }
         }
     }
@@ -64,16 +68,20 @@ public abstract class BaseMaskPower extends BasePower {
         this.flash();
         int reg = this.amount - this.upgradedAmount;
         if (reg > 0) {
-            AbstractCard card = getLinkedShadowKhanCard();
-            if (card != null) {
-                AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(card, reg));
+            for (int i = 0; i < reg; i++) {
+                AbstractCard card = getLinkedShadowKhanCard();
+                if (card != null) {
+                    AbstractDungeon.actionManager.addToBottom(new AddMaskCardAction(card));
+                }
             }
         }
         if (this.upgradedAmount > 0) {
-            AbstractCard card = getLinkedShadowKhanCard();
-            if (card != null) {
-                card.upgrade();
-                AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(card, this.upgradedAmount));
+            for (int i = 0; i < this.upgradedAmount; i++) {
+                AbstractCard card = getLinkedShadowKhanCard();
+                if (card != null) {
+                    card.upgrade();
+                    AbstractDungeon.actionManager.addToBottom(new AddMaskCardAction(card));
+                }
             }
         }
     }

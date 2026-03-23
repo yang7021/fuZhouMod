@@ -128,53 +128,53 @@
   },
   "fuZhouMod:NiJiaMask": {
     "NAME": "尼嘉面具",
-    "DESCRIPTION": "在你回合开始时增加 !M! 张 *尼嘉-忍者团 到你手中",
-    "UPGRADE_DESCRIPTION": "在你回合开始时增加 !M! 张 *尼嘉-忍者团+ 到你手中"
+    "DESCRIPTION": "在你回合开始时增加 !M! 张 *尼嘉-忍者团 到你手中，若手牌已满则自动打出",
+    "UPGRADE_DESCRIPTION": "在你回合开始时增加 !M! 张 *尼嘉-忍者团+ 到你手中，若手牌已满则自动打出"
   },
   "fuZhouMod:LaZuoMask": {
     "NAME": "拉佐面具",
-    "DESCRIPTION": "在你回合开始时增加 !M! 张 *拉佐-刺刃团 到你手中",
-    "UPGRADE_DESCRIPTION": "在你回合开始时增加 !M! 张 *拉佐-刺刃团+ 到你手中"
+    "DESCRIPTION": "在你回合开始时增加 !M! 张 *拉佐-刺刃团 到你手中，若手牌已满则自动打出",
+    "UPGRADE_DESCRIPTION": "在你回合开始时增加 !M! 张 *拉佐-刺刃团+ 到你手中，若手牌已满则自动打出"
   },
   "fuZhouMod:SaMoMask": {
     "NAME": "萨莫面具",
-    "DESCRIPTION": "在你回合开始时增加 !M! 张 *萨莫-巨魔团 到你手中",
-    "UPGRADE_DESCRIPTION": "在你回合开始时增加 !M! 张 *萨莫-巨魔团+ 到你手中"
+    "DESCRIPTION": "在你回合开始时增加 !M! 张 *萨莫-巨魔团 到你手中，若手牌已满则自动打出",
+    "UPGRADE_DESCRIPTION": "在你回合开始时增加 !M! 张 *萨莫-巨魔团+ 到你手中，若手牌已满则自动打出"
   },
   "fuZhouMod:BaTeMask": {
     "NAME": "巴特面具",
-    "DESCRIPTION": "在你回合开始时增加 !M! 张 *巴特-夜蝠团 到你手中",
-    "UPGRADE_DESCRIPTION": "在你回合开始时增加 !M! 张 *巴特-夜蝠团+ 到你手中"
+    "DESCRIPTION": "在你回合开始时增加 !M! 张 *巴特-夜蝠团 到你手中，若手牌已满则自动打出",
+    "UPGRADE_DESCRIPTION": "在你回合开始时增加 !M! 张 *巴特-夜蝠团+ 到你手中，若手牌已满则自动打出"
   },
   "fuZhouMod:KaBoMask": {
     "NAME": "卡博面具",
-    "DESCRIPTION": "在你回合开始时增加 !M! 张 *卡博-猎钳团 到你手中",
-    "UPGRADE_DESCRIPTION": "在你回合开始时增加 !M! 张 *卡博-猎钳团+ 到你手中"
+    "DESCRIPTION": "在你回合开始时增加 !M! 张 *卡博-猎钳团 到你手中，若手牌已满则自动打出",
+    "UPGRADE_DESCRIPTION": "在你回合开始时增加 !M! 张 *卡博-猎钳团+ 到你手中，若手牌已满则自动打出"
   },
   "fuZhouMod:LeiSuMask": {
     "NAME": "雷苏面具",
-    "DESCRIPTION": "在你回合开始时增加 !M! 张 *雷苏-异形团 到你手中",
-    "UPGRADE_DESCRIPTION": "在你回合开始时增加 !M! 张 *雷苏-异形团+ 到你手中"
+    "DESCRIPTION": "在你回合开始时增加 !M! 张 *雷苏-异形团 到你手中，若手牌已满则自动打出",
+    "UPGRADE_DESCRIPTION": "在你回合开始时增加 !M! 张 *雷苏-异形团+ 到你手中，若手牌已满则自动打出"
   },
   "fuZhouMod:ManNiMask": {
     "NAME": "曼尼面具",
-    "DESCRIPTION": "在你回合开始时增加 !M! 张 *曼尼-螳形团 到你手中",
-    "UPGRADE_DESCRIPTION": "在你回合开始时增加 !M! 张 *曼尼-螳形团+ 到你手中"
+    "DESCRIPTION": "在你回合开始时增加 !M! 张 *曼尼-螳形团 到你手中，若手牌已满则自动打出",
+    "UPGRADE_DESCRIPTION": "在你回合开始时增加 !M! 张 *曼尼-螳形团+ 到你手中，若手牌已满则自动打出"
   },
   "fuZhouMod:MingTaMask": {
     "NAME": "明塔面具",
-    "DESCRIPTION": "在你回合开始时增加 !M! 张 *明塔-噬影团 到你手中",
-    "UPGRADE_DESCRIPTION": "在你回合开始时增加 !M! 张 *明塔-噬影团+ 到你手中"
+    "DESCRIPTION": "在你回合开始时增加 !M! 张 *明塔-噬影团 到你手中，若手牌已满则自动打出",
+    "UPGRADE_DESCRIPTION": "在你回合开始时增加 !M! 张 *明塔-噬影团+ 到你手中，若手牌已满则自动打出"
   },
   "fuZhouMod:YiKaMask": {
     "NAME": "伊卡面具",
-    "DESCRIPTION": "在你回合开始时增加 !M! 张 *伊卡-武士团 到你手中",
-    "UPGRADE_DESCRIPTION": "在你回合开始时增加 !M! 张 *伊卡-武士团+ 到你手中"
+    "DESCRIPTION": "在你回合开始时增加 !M! 张 *伊卡-武士团 到你手中，若手牌已满则自动打出",
+    "UPGRADE_DESCRIPTION": "在你回合开始时增加 !M! 张 *伊卡-武士团+ 到你手中，若手牌已满则自动打出"
   },
   "fuZhouMod:TaLaMask": {
     "NAME": "塔拉面具",
-    "DESCRIPTION": "面具容量增加 !M! 层。 NL 回合开始时随机获取一张 *黑影兵团 牌",
-    "UPGRADE_DESCRIPTION": "面具容量增加 !M! 层。 NL 回合开始时随机获取一张 *黑影兵团 牌"
+    "DESCRIPTION": "面具容量增加 !M! 层。 NL 回合开始时随机获取一张 *黑影兵团 牌，若手牌已满则自动打出",
+    "UPGRADE_DESCRIPTION": "面具容量增加 !M! 层。 NL 回合开始时随机获取一张 *黑影兵团 牌，若手牌已满则自动打出"
   },
   "fuZhouMod:NiJiaNinja": {
     "NAME": "尼嘉-忍者团",
