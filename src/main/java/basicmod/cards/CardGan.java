@@ -40,6 +40,8 @@ public class CardGan extends BaseCard {
             growthCount = p.getPower(GanPower.POWER_ID).amount;
         }
         int currentCrit = baseCrit + growthCount * 10;
+        // 老大爷说最高就 100% 暴击，再高也没意义了，咱们给它封个顶
+        if (currentCrit > 100) currentCrit = 100;
         
         // 老大爷，我在这里改成了基于 Power 的全局计数，确保同局战斗内所有【甘】共享成长
         basicmod.BasicMod.logger.info("【甘】卡牌使用 - 当前暴击率: " + currentCrit + "% (基础: " + baseCrit + ", 全局增长次数: " + growthCount + ")");
@@ -59,8 +61,8 @@ public class CardGan extends BaseCard {
         // 增加全局暴击成长
         addToBot(new ApplyPowerAction(p, p, new GanPower(p, 1), 1));
         
-        // 日志记录下一次
-        int nextCrit = baseCrit + (growthCount + 1) * 10;
+        // 日志记录下一次（也封个顶显示）
+        int nextCrit = Math.min(100, baseCrit + (growthCount + 1) * 10);
         basicmod.BasicMod.logger.info("【甘】魔力增长 - 期待下次暴击率: " + nextCrit + "%");
     }
 
@@ -73,7 +75,10 @@ public class CardGan extends BaseCard {
         if (AbstractDungeon.player != null && AbstractDungeon.player.hasPower(GanPower.POWER_ID)) {
             growthCount = AbstractDungeon.player.getPower(GanPower.POWER_ID).amount;
         }
-        this.baseMagicNumber = baseCrit + growthCount * 10;
+        int totalCrit = baseCrit + growthCount * 10;
+        if (totalCrit > 100) totalCrit = 100; // 描述里也封顶显示 100
+        
+        this.baseMagicNumber = totalCrit;
         this.magicNumber = this.baseMagicNumber;
         this.isMagicNumberModified = (growthCount > 0);
     }
